@@ -11,13 +11,22 @@ MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
 # ====================================================================================
-# COMMANDS
+# ROOT TARGETS
 # ====================================================================================
+
+.PHONY: sync
+sync: ## Sync project commands and MCP configuration to assistant-specific directories.
+	@make commands-sync
+	@make mcp-sync
 
 .PHONY: prepare
 prepare: ## Prepare the project for development.
 	@make commands-copy
-	@make mcp-sync
+
+# ====================================================================================
+# COMMANDS
+# ====================================================================================
+
 
 .PHONY: commands-sync
 commands-sync: ## Sync project commands to assistant-specific directories.
