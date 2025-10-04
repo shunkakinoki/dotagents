@@ -7,6 +7,9 @@
 COMMANDS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))commands
 COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME)/.codex/prompts $(HOME)/.config/opencode/command $(HOME)/.config/amp/commands $(HOME)/.kilocode/workflows $(HOME)/Documents/Cline/Rules
 
+MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
+MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
+
 # ====================================================================================
 # COMMANDS
 # ====================================================================================
@@ -14,6 +17,7 @@ COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME
 .PHONY: prepare
 prepare: ## Prepare the project for development.
 	@make commands-copy
+	@make mcp-sync
 
 .PHONY: commands-sync
 commands-sync: ## Sync project commands to assistant-specific directories.
@@ -29,6 +33,21 @@ commands-sync: ## Sync project commands to assistant-specific directories.
 .PHONY: commands-copy
 commands-copy: ## Copy commands to .ruler directory.
 	@cp $(COMMANDS_SRC_DIR)/*.md .ruler/
+
+.PHONY: mcp-sync
+mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
+	@if [ ! -f $(MCP_SRC) ]; then \
+		echo "Error: $(MCP_SRC) not found"; \
+		exit 1; \
+	fi
+	@for target in $(MCP_TARGET_DIRS); do \
+		if mkdir -p $$target && cp $(MCP_SRC) $$target/mcp.json; then \
+			echo "Synced $(MCP_SRC) → $$target/mcp.json"; \
+		else \
+			echo "Failed syncing $(MCP_SRC) → $$target/mcp.json"; \
+			exit 1; \
+		fi; \
+	done
 
 # ====================================================================================
 # HELP
