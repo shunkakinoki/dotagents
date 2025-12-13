@@ -1,49 +1,35 @@
-# /pr-label - Comprehensive PR Labeling Guide
+# /pr-label — Label pull requests
 
-This document outlines the rules and best practices for automatically labeling GitHub Pull Requests (PRs) based on Conventional Commit types and other criteria.
+Apply labels to PRs based on conventional commit types.
 
-## GitHub PR Labeling Rules
+## Label Mapping
 
-This rule defines how PR labels are applied automatically. It uses the default labels and maps Conventional Commit types to GitHub labels.
+| Commit Type | Label |
+|-------------|-------|
+| `feat:` | enhancement |
+| `fix:` | bug |
+| `docs:` | documentation |
+| `chore(deps):`, `build(deps):` | dependencies |
+| Author: dependabot | dependabot |
+| Author: renovate | renovate |
+| Title contains `[automerge]` | automerge |
 
-## Default Labels (source of truth)
+## Available Labels
 
-Names are defined as:
+**Primary**: bug, documentation, enhancement
 
-- bug
-- documentation
-- duplicate
-- enhancement
-- good first issue
-- help wanted
-- invalid
-- question
-- wontfix
+**Status**: duplicate, invalid, wontfix, question, good first issue, help wanted
 
-## Other Labels (additional ones defined for `shunkakinoki` repositories)
-
-- dependabot
-- renovate
-- dependencies
-- automerge
-- codex
-- refactor
-
-## Label Mapping Rules
-
-- feat → enhancement
-- fix → bug
-- docs → documentation
-- chore(deps), build(deps) → dependencies
-- PR authored by dependabot → dependabot
-- PR authored by renovate → renovate
-- If title contains "[automerge]" or label "automerge" is requested in the description, also add automerge
-
-Notes:
-- Only apply one of enhancement/bug/documentation based on the primary Conventional Commit type at the start of the PR title.
-- Do not add unrelated labels automatically.
+**Automation**: dependencies, dependabot, renovate, automerge, codex, refactor
 
 ## Usage
 
-- Run the snippet after creating the PR, or integrate it into your local automation.
-- Ensure the label names exist in the repository (they are provisioned via Pulumi from `labels.ts`).
+```bash
+gh pr edit <number> --add-label <label>
+```
+
+## Guidelines
+
+- Apply one primary label based on commit type prefix
+- Do not add unrelated labels automatically
+- Labels are provisioned via Pulumi from `labels.ts`
