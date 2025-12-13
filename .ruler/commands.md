@@ -1,8 +1,11 @@
-@commands
-- [/changesets](commands/changesets.md) — Automatic changeset management and generation
-- [/commit-lint](commands/commit-lint.md) — Commit linting configuration for AI agents
-- [/commit-push](commands/commit-push.md) — Conventional commit and push workflow
-- [/issue-create](commands/issue-create.md) — Standard Linear issue checklist
-- [/pr-create](commands/pr-create.md) — Comprehensive PR creation workflow
-- [/pr-label](commands/pr-label.md) — Comprehensive PR Labeling Guide
-- [/serena](commands/serena.md) — Token-efficient Serena MCP command for structured app development and problem-solving
+# Commands
+
+| Command | Description |
+|---------|-------------|
+| [/changesets](changesets.md) | Generate changeset entries |
+| [/commit-lint](commit-lint.md) | Commit message validation |
+| [/commit-push](commit-push.md) | Commit and push workflow |
+| [/issue-create](issue-create.md) | Create Linear issues |
+| [/pr-create](pr-create.md) | Create pull requests |
+| [/pr-label](pr-label.md) | Label pull requests |
+| [/serena](serena.md) | Problem-solving with Serena MCP |
