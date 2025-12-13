@@ -1,134 +1,35 @@
 ---
 Source: .ruler/changesets.md
 ---
-# /changesets — Chainset Entry Generation for AI Agents
+# /changesets — Generate changeset entries
 
-This document outlines the chainset entry generation guidelines that AI agents must follow when creating release documentation entries.
+Generate release documentation entries following Changesets semantics.
 
-## Overview
+## Format
 
-The chainset system ensures consistent release documentation by automatically generating single-file chainset entries that describe changes using Changesets semantics. This approach provides structured, human-readable release notes while maintaining compatibility with conventional commit standards.
+```markdown
+---
+"package-name": minor
+---
 
-## Chainset Entry Generation
-
-### LLM Prompt: "Create a Chainset Entry"
-
-Use this reusable LLM prompt to generate chainset entries that reliably produce structured release documentation:
-
-#### Role
-You are a release notes assistant that writes **one chainset file** describing the current change. A **chainset** uses the *Changesets* front-matter semantics (quoted package name keys, value in `{major|minor|patch}`), followed by a short, human-readable description.
-
-#### Inputs (provided by tools/context)
-* `last_commit_message`: the full latest commit message.
-* `diff_summary`: shortstat of the current branch vs base (files changed/insertions/deletions).
-* `changed_paths`: list of files changed.
-* `branch`: current branch name.
-* `base_ref`: base branch or remote ref (e.g., `origin/main`).
-* *(Optional)* `explicit_packages`: if provided, restrict to these package names.
-* *(Optional)* `explicit_levels`: map of package → level overriding inference.
-
-#### Rules
-
-1. **Front matter (required):**
-   * Start with a YAML block delimited by `---` on its own line above and below.
-   * Each **key** is a **quoted package name** (e.g., `"viem"`).
-   * Each **value** is one of: `major`, `minor`, `patch` (lowercase).
-   * Include **only packages that actually changed**. If monorepo paths like `packages/<name>/…` exist, use `<name>`. If no package can be inferred, use `"repo"`.
-
-2. **Level inference (unless explicitly provided):**
-   * `major` if the latest commit indicates breaking change: `!` in type/scope or `BREAKING CHANGE`.
-   * `minor` if the latest commit is a `feat:` (any scope).
-   * `patch` otherwise (e.g., `fix:`, `chore:`, `docs:`, `refactor:`, etc.).
-   * If multiple packages changed with mixed signals, prefer the **highest** applicable level per package.
-
-3. **Description (required):**
-   * One to two sentences max.
-   * Lead with the user-visible outcome (what was added/changed/fixed).
-   * Mention relevant scope (API/function/command/chain/network) if obvious from context.
-   * Avoid commit jargon; no issue numbers unless essential.
-   * Do not restate diff stats.
-   * Keep it tense-consistent and crisp.
-
-4. **Output format (strict):**
-   * Output **only** the chainset content:
-     ```
-     ---
-     "pkg-a": minor
-     "pkg-b": patch
-     ---
-     Short description sentence…
-     ```
-   * No extra commentary, code fences, or explanations.
-
-#### Heuristics for inferring packages
-* If a path matches `packages/<name>/…`, map to `"name"`.
-* Otherwise, fall back to `"repo"`.
-* If `explicit_packages` is provided, intersect with inferred packages.
-
-#### Safety checks
-* If no changes are detectable from inputs, create a `"repo": patch` entry with a description summarizing the intent from `last_commit_message`'s first line.
-* If `explicit_levels` conflicts with inference, **use explicit**.
-
-### Integration with Commit Process
-
-When AI agents make commits, they should:
-
-1. **Generate chainset entries** using the LLM prompt above
-2. **Include chainset files** in the same commit as the code changes
-3. **Follow conventional commit format** for commit messages
-4. **Maintain solo authorship** in commits (no co-authorship)
-
-### Package Detection Guidelines
-
-AI agents should automatically detect project structure and adapt chainset generation:
-
-- **Monorepo projects**: Map file paths to package names using `packages/<name>/` patterns
-- **Single package projects**: Use `"repo"` as the default package name
-- **Multi-package changes**: Include all affected packages in the front matter
-
-### Chainset File Naming
-
-Chainset entries should be created with descriptive filenames that reference the change:
-
-```
-chainset/
-├── feat-add-user-auth.md
-├── fix-login-validation.md
-└── docs-update-api-ref.md
+Short description of user-visible change (1-2 sentences max).
 ```
 
-## Quality Standards
+## Level Inference
 
-### Chainset Content Standards
-- **Focus on user impact**: Describe what users can do differently, not implementation details
-- **Keep descriptions concise**: 1-2 sentences maximum
-- **Use active voice**: "Adds support for..." not "Support for... was added"
-- **Be specific**: Include relevant scope (API, UI, performance, etc.) when applicable
+| Commit Type | Level |
+|-------------|-------|
+| `feat!:` or `BREAKING CHANGE` | `major` |
+| `feat:` | `minor` |
+| `fix:`, `docs:`, `chore:`, etc. | `patch` |
 
-### Commit Message Standards
-- Use conventional commit format: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`
-- Keep messages under 72 characters
-- Include descriptive details for complex changes
-- Reference related issues when applicable
+## Package Detection
 
-## Best Practices
+- Monorepo: `packages/<name>/...` → `"<name>"`
+- Single package or unknown: `"repo"`
 
-### For AI Agents
-- **Generate chainset entries** for every feature commit
-- **Use the provided LLM prompt** for consistent formatting
-- **Focus on user-visible changes** in descriptions
-- **Include all affected packages** in monorepo scenarios
-- **Test chainset generation** with various commit types
+## Examples
 
-### Integration with Release Process
-- Chainset entries accumulate in the `chainset/` directory
-- Each entry represents one logical change
-- Release process can aggregate entries for changelog generation
-- Entries should be committed alongside their related code changes
-
-### Examples
-
-#### Feature Addition
 ```markdown
 ---
 "viem": patch
@@ -137,1345 +38,320 @@ chainset/
 Added estimateOperatorFee action for OP Stack chains
 ```
 
-#### Package-Specific Change
-```markdown
----
-"wallets": minor
----
-
-Added Ledger WebHID transport for hardware wallet connections
-```
-
-#### Breaking Change
 ```markdown
 ---
 "core": major
 ---
 
-Replaced legacy serializer with a new wire format incompatible with previous releases
+Replaced legacy serializer with new wire format
 ```
 
-This chainset approach ensures that all AI agent contributions include proper release documentation that follows consistent formatting and focuses on user-visible impact rather than implementation details.
+## Guidelines
+
+- Lead with user-visible outcome
+- Avoid commit jargon and issue numbers
+- Use active voice: "Adds..." not "Added..."
+- Include in same commit as code changes
 
 ---
 Source: .ruler/commands.md
 ---
-@commands
-- [/changesets](commands/changesets.md) — Automatic changeset management and generation
-- [/commit-lint](commands/commit-lint.md) — Commit linting configuration for AI agents
-- [/commit-push](commands/commit-push.md) — Conventional commit and push workflow
-- [/issue-create](commands/issue-create.md) — Standard Linear issue checklist
-- [/pr-create](commands/pr-create.md) — Comprehensive PR creation workflow
-- [/pr-label](commands/pr-label.md) — Comprehensive PR Labeling Guide
-- [/serena](commands/serena.md) — Token-efficient Serena MCP command for structured app development and problem-solving
+# Commands
+
+| Command | Description |
+|---------|-------------|
+| [/changesets](changesets.md) | Generate changeset entries |
+| [/commit-lint](commit-lint.md) | Commit message validation |
+| [/commit-push](commit-push.md) | Commit and push workflow |
+| [/issue-create](issue-create.md) | Create Linear issues |
+| [/pr-create](pr-create.md) | Create pull requests |
+| [/pr-label](pr-label.md) | Label pull requests |
+| [/serena](serena.md) | Problem-solving with Serena MCP |
 
 ---
 Source: .ruler/commit-lint.md
 ---
-# /commit-lint — Commit linting configuration for AI agents
+# /commit-lint — Commit message validation
 
-This document outlines the commit linting configuration and guidelines that AI agents must follow when committing files.
+Ensure commits follow conventional commit format and pass quality checks.
 
-## Overview
+## Commit Format
 
-The commit linting system ensures code quality and consistency by automatically running formatting, linting, and commit message validation checks before any commits are made by AI agents. This comprehensive system uses both lefthook pre-commit hooks and commitlint to prevent the introduction of poorly formatted code or improperly formatted commit messages into the repository.
+```
+<type>[scope]: <description>
 
-## Installation
+[body]
 
-### Commitlint Setup
+[footer]
+```
 
-Install commitlint for commit message validation:
+## Commit Types
+
+| Type | Purpose |
+|------|---------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation |
+| `style` | Formatting (no code change) |
+| `refactor` | Code restructuring |
+| `test` | Adding/fixing tests |
+| `chore` | Build/tooling changes |
+| `perf` | Performance improvement |
+| `ci` | CI configuration |
+| `build` | Build system changes |
+| `revert` | Revert previous commit |
+
+## Pre-commit Checks
+
+Auto-detected based on lock files (bun/pnpm/yarn/npm):
 
 ```bash
-# Install commitlint CLI and conventional config
-bun add -D @commitlint/cli @commitlint/config-conventional
-
-# Install lefthook for pre-commit hooks
-bun add -D lefthook
-
-# Initialize lefthook hooks
-bun run lefthook:install
+$PM run format   # Biome formatting
+$PM run lint     # Linting checks
+$PM run check    # Quality verification
 ```
 
-### Required Dependencies
+## Hook Detection
 
-Ensure these packages are installed:
-- `@commitlint/cli` - Commit message linting
-- `@commitlint/config-conventional` - Conventional commit rules
-- `lefthook` - Git hooks management
-- `@biomejs/biome` - Code formatting and linting
+| File | System |
+|------|--------|
+| `lefthook.yml` | lefthook (automatic) |
+| `.pre-commit-config.yaml` | pre-commit (automatic) |
+| Neither | Manual validation |
 
-## Configuration
-
-### Ruler.toml Configuration
-
-The commit linting configuration is defined in `ruler.toml` under the `[commit]` section:
-
-```toml
-[commit]
-enabled = true
-pre_commit_commands = [
-  "bun run format",    # Format code with Biome
-  "bun run lint",      # Run linting and checks
-  "bun run check"      # Run all quality checks
-]
-```
-
-### Commitlint Configuration
-
-Commit message validation is configured in `.commitlintrc.json`:
-
-```json
-{
-  "extends": ["@commitlint/config-conventional"],
-  "rules": {
-    "type-enum": [
-      2,
-      "always",
-      [
-        "feat",
-        "fix",
-        "docs",
-        "style",
-        "refactor",
-        "test",
-        "chore",
-        "perf",
-        "ci",
-        "build",
-        "revert"
-      ]
-    ],
-    "type-case": [2, "always", "lower"],
-    "type-empty": [2, "never"],
-    "subject-empty": [2, "never"],
-    "subject-full-stop": [2, "never", "."],
-    "header-max-length": [2, "always", 72],
-    "body-leading-blank": [1, "always"],
-    "footer-leading-blank": [1, "always"]
-  }
-}
-```
-
-### Lefthook Configuration
-
-Git hooks are managed through `lefthook.yml` with three main stages:
-
-1. **Pre-commit**: Code formatting and linting
-2. **Commit-msg**: Commit message validation
-3. **Pre-push**: Comprehensive quality checks
-
-## Pre-commit Commands
-
-### 1. Code Formatting (`bun run format`)
-- Uses Biome to format all code files
-- Ensures consistent indentation, spacing, and line breaks
-- Applies project-specific formatting rules
-
-### 2. Linting (`bun run lint`)
-- Runs comprehensive linting checks
-- Validates code quality and style
-- Checks for potential bugs and issues
-
-### 3. Quality Checks (`bun run check`)
-- Runs all automated quality verification
-- Ensures ruler rules are applied
-- Verifies no uncommitted changes remain
-
-## File Patterns
-
-The linting system targets specific file types to optimize performance:
-
-- **JavaScript/TypeScript**: `*.{js,jsx,ts,tsx}`
-- **Configuration Files**: `*.{json,css,md,yml,yaml,toml}`
-- **Programming Languages**: `*.py`, `*.rs`, `*.go`, `*.java`
-- **Infrastructure**: `Makefile*`, `Dockerfile*`
-
-## Auto-fix Capabilities
-
-The system includes auto-fix commands that attempt to resolve issues automatically:
-
-- **Biome Format**: `bun run biome:format`
-  - Automatically formats code
-  - Fixes spacing and indentation issues
-
-- **Biome Check**: `bun run biome:check --write`
-  - Auto-fixes linting violations where possible
-  - Applies safe corrections
-
-## Agent Responsibilities
-
-When contributing code, AI agents must ensure code quality by:
-
-1. **Run Pre-commit Checks**: Execute all pre-commit commands before finalizing changes
-2. **Review Auto-fixes**: Verify that auto-fixes have been applied correctly
-3. **Manual Fixes**: Address any issues that cannot be auto-fixed
-4. **Verify Quality**: Ensure all checks pass before contributing
-5. **Test Changes**: Validate that formatting changes don't break functionality
-6. **Solo Authorship**: DO NOT include co-authorship in commit messages - commits should be solo-authored
-7. **PR Attribution**: Include AI attribution in PR descriptions, not commit messages
-
-## Package Manager Detection
-
-AI agents must automatically detect which package manager is being used and adapt their behavior accordingly:
-
-### Detection Logic
+## Examples
 
 ```bash
-# Check for package manager
-if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
-  PACKAGE_MANAGER="bun"
-elif [ -f "pnpm-lock.yaml" ]; then
-  PACKAGE_MANAGER="pnpm"
-elif [ -f "yarn.lock" ]; then
-  PACKAGE_MANAGER="yarn"
-elif [ -f "package-lock.json" ]; then
-  PACKAGE_MANAGER="npm"
-else
-  PACKAGE_MANAGER="npm"  # fallback to npm
-fi
-```
-
-#### Fish Detection Logic
-
-```fish
-# Check for package manager (Fish)
-set PACKAGE_MANAGER npm
-if test -f bun.lockb -o -f bun.lock
-  set PACKAGE_MANAGER bun
-else if test -f pnpm-lock.yaml
-  set PACKAGE_MANAGER pnpm
-else if test -f yarn.lock
-  set PACKAGE_MANAGER yarn
-else if test -f package-lock.json
-  set PACKAGE_MANAGER npm
-end
-```
-
-### Package Manager Commands
-
-Based on the detected package manager, use these commands:
-
-- **bun**: `bun add`, `bun run`, `bun install`
-- **pnpm**: `pnpm add`, `pnpm run`, `pnpm install`
-- **yarn**: `yarn add`, `yarn run`, `yarn install`
-- **npm**: `npm install`, `npm run`
-
-## Pre-commit Hook Detection
-
-AI agents must automatically detect which pre-commit hook system is being used and adapt their behavior accordingly:
-
-### Detection Logic
-
-```bash
-# Check for lefthook
-if [ -f ".lefthook.yml" ] || [ -f "lefthook.yml" ]; then
-  HOOK_SYSTEM="lefthook"
-elif [ -f ".pre-commit-config.yaml" ]; then
-  HOOK_SYSTEM="pre-commit"
-else
-  HOOK_SYSTEM="none"
-fi
-```
-
-#### Fish Detection Logic
-
-```fish
-# Check for lefthook (Fish)
-set HOOK_SYSTEM none
-if test -f .lefthook.yml -o -f lefthook.yml
-  set HOOK_SYSTEM lefthook
-else if test -f .pre-commit-config.yaml
-  set HOOK_SYSTEM pre-commit
-end
-```
-
-### Lefthook Detection and Usage
-
-**Files to check:**
-- `lefthook.yml` (project root)
-- `.lefthook.yml` (project root)
-
-**When lefthook is detected:**
-- Use lefthook commands for validation
-- Respect lefthook configuration settings
-- Allow lefthook to handle pre-commit, commit-msg, and pre-push hooks
-- Do not run duplicate linting if lefthook is configured
-
-**Lefthook workflow:**
-```bash
-# Let lefthook handle the hooks automatically
-git add <files>
-git commit -m "feat: add new feature"
-
-# lefthook will automatically run:
-# - pre-commit: formatting and linting
-# - commit-msg: commitlint validation
-# - pre-push: comprehensive checks
-```
-
-### Pre-commit Detection and Usage
-
-**Files to check:**
-- `.pre-commit-config.yaml` (project root)
-
-**When pre-commit is detected:**
-- Use pre-commit commands for validation
-- Respect pre-commit configuration
-- Allow pre-commit to manage all hooks
-- Do not interfere with pre-commit's hook management
-
-**Pre-commit workflow:**
-```bash
-# Let pre-commit handle the hooks automatically
-git add <files>
-git commit -m "feat: add new feature"
-
-# pre-commit will automatically run configured hooks
-```
-
-### No Hook System Detected
-
-**When neither system is detected:**
-- Fall back to manual validation
-- Run linting commands directly
-- Validate commit messages manually
-- Provide guidance for setting up hooks
-
-**Manual workflow:**
-```bash
-# Run manual checks (adapt commands based on detected package manager)
-$PACKAGE_MANAGER run lint
-$PACKAGE_MANAGER run format
-$PACKAGE_MANAGER run check
-
-# Validate commit message format
-echo "feat: add new feature" | npx commitlint
-
-# Then commit
-git add <files>
-git commit -m "feat: add new feature"
-```
-
-### Agent Decision Flow
-
-The agent should follow this decision-making process:
-
-```mermaid
-graph TD
-    A[Agent starts commit process] --> B{Check for lefthook.yml}
-    B -->|Found| C[Use lefthook workflow]
-    B -->|Not found| D{Check for .pre-commit-config.yaml}
-    D -->|Found| E[Use pre-commit workflow]
-    D -->|Not found| F[Use manual validation workflow]
-
-    C --> G[Let lefthook handle all hooks]
-    E --> H[Let pre-commit handle all hooks]
-    F --> I[Run manual checks and validation]
-
-    G --> J[Commit with confidence]
-    H --> J
-    I --> J
-```
-
-### Conflict Resolution
-
-**If both systems are detected:**
-- Prioritize lefthook (more project-specific configuration)
-- Warn about potential conflicts
-- Suggest consolidating to one system
-
-**Detection priority:**
-1. lefthook (project-specific, more flexible)
-2. pre-commit (standardized, widely adopted)
-3. manual validation (fallback)
-
-### Environment-Specific Behavior
-
-**CI/CD Environment:**
-- Always use manual validation
-- Run all checks explicitly
-- Don't rely on git hooks
-
-**Local Development:**
-- Use detected hook system
-- Fall back to manual if hooks fail
-- Provide helpful error messages
-
-### Implementation Example
-
-Here's how an AI agent can implement the detection logic:
-
-```javascript
-// Node.js/TypeScript implementation
-function detectHookSystem(projectRoot = process.cwd()) {
-  const fs = require('fs');
-  const path = require('path');
-
-  // Check for lefthook configuration
-  const lefthookFiles = ['lefthook.yml', '.lefthook.yml'];
-  for (const file of lefthookFiles) {
-    if (fs.existsSync(path.join(projectRoot, file))) {
-      return {
-        system: 'lefthook',
-        configFile: file,
-        workflow: 'automatic'
-      };
-    }
-  }
-
-  // Check for pre-commit configuration
-  const preCommitFile = '.pre-commit-config.yaml';
-  if (fs.existsSync(path.join(projectRoot, preCommitFile))) {
-    return {
-      system: 'pre-commit',
-      configFile: preCommitFile,
-      workflow: 'automatic'
-    };
-  }
-
-  // No hook system detected
-  return {
-    system: 'manual',
-    configFile: null,
-    workflow: 'manual'
-  };
-}
-
-// Usage in agent
-const hookConfig = detectHookSystem();
-
-switch (hookConfig.system) {
-  case 'lefthook':
-    console.log(`✅ Lefthook detected (${hookConfig.configFile})`);
-    console.log('Using lefthook workflow...');
-    break;
-
-  case 'pre-commit':
-    console.log(`✅ Pre-commit detected (${hookConfig.configFile})`);
-    console.log('Using pre-commit workflow...');
-    break;
-
-  default:
-    console.log('⚠️  No hook system detected');
-    console.log('Using manual validation workflow...');
-    break;
-}
-```
-
-```python
-# Python implementation
-import os
-from pathlib import Path
-
-def detect_hook_system(project_root: str = ".") -> dict:
-    """Detect which pre-commit hook system is being used."""
-
-    # Check for lefthook configuration
-    lefthook_files = ['lefthook.yml', '.lefthook.yml']
-    for file in lefthook_files:
-        if os.path.exists(os.path.join(project_root, file)):
-            return {
-                'system': 'lefthook',
-                'config_file': file,
-                'workflow': 'automatic'
-            }
-
-    # Check for pre-commit configuration
-    pre_commit_file = '.pre-commit-config.yaml'
-    if os.path.exists(os.path.join(project_root, pre_commit_file)):
-        return {
-            'system': 'pre-commit',
-            'config_file': pre_commit_file,
-            'workflow': 'automatic'
-        }
-
-    # No hook system detected
-    return {
-        'system': 'manual',
-        'config_file': None,
-        'workflow': 'manual'
-    }
-
-# Usage
-hook_config = detect_hook_system()
-
-if hook_config['system'] == 'lefthook':
-    print(f"✅ Lefthook detected ({hook_config['config_file']})")
-    print("Using lefthook workflow...")
-elif hook_config['system'] == 'pre-commit':
-    print(f"✅ Pre-commit detected ({hook_config['config_file']})")
-    print("Using pre-commit workflow...")
-else:
-    print("⚠️  No hook system detected")
-    print("Using manual validation workflow...")
-```
-
-## Integration with Existing Tools
-
-### Lefthook Integration
-The commit linting system works alongside existing lefthook pre-commit hooks:
-
-- **Pre-commit Hook**: Runs formatting on relevant files
-- **Pre-push Hook**: Runs linting before pushing
-- **Commit Lint**: Additional validation for AI agent commits
-
-### Biome Configuration
-The system leverages the existing Biome configuration:
-
-```json
-{
-  "formatter": {
-    "enabled": true,
-    "formatWithErrors": true,
-    "indentStyle": "space"
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
-  }
-}
-```
-
-## Error Handling
-
-### Common Issues
-- **Formatting Failures**: Check Biome configuration and file permissions
-- **Linting Errors**: Review error messages and fix manually if auto-fix fails
-- **Command Not Found**: Ensure bun and Biome are properly installed
-
-### Troubleshooting Steps
-1. Verify Biome installation: `bun biome --version`
-2. Check configuration: `bun run biome:check`
-3. Run manual format: `bun run biome:format`
-4. Review git status after fixes
-
-## Quality Standards
-
-### Code Formatting
-- Use 2-space indentation (configured in Biome)
-- Consistent line endings and encoding
-- Proper spacing around operators and keywords
-
-### Linting Rules
-- Follow Biome recommended rules
-- No unused variables or imports
-- Consistent naming conventions
-- Proper error handling
-
-### Commit Message Standards
-- Use conventional commit format: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`
-- Keep messages under 72 characters
-- Include descriptive details for complex changes
-
-## Best Practices
-
-### For AI Agents
-- **Always run linting before contributing code**
-- **Review auto-fixes for correctness**
-- **Test functionality after formatting changes**
-- **Use descriptive commit messages**
-- **Solo-authored commits only** - DO NOT include co-authorship in commit messages
-- **PR attribution only** - Include AI attribution in PR descriptions, not commits
-
-### For Development Workflow
-- **Regular updates**: Keep Biome and dependencies updated
-- **Configuration review**: Regularly audit linting rules
-- **Performance monitoring**: Ensure linting doesn't slow down workflow
-- **Documentation updates**: Keep this document current with configuration changes
-
-## Commit Message Standards
-
-### Conventional Commit Format
-
-All commit messages must follow the conventional commit format:
-
-```bash
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer]
-```
-
-### Commit Types
-
-- `feat`: A new feature
-- `fix`: A bug fix
-- `docs`: Documentation only changes
-- `style`: Changes that do not affect the meaning of the code
-- `refactor`: A code change that neither fixes a bug nor adds a feature
-- `test`: Adding missing tests or correcting existing tests
-- `chore`: Changes to the build process or auxiliary tools
-- `perf`: A code change that improves performance
-- `ci`: Changes to CI configuration files and scripts
-- `build`: Changes that affect the build system or external dependencies
-- `revert`: Reverts a previous commit
-
-### Examples
-
-```bash
-# Feature commit
-feat: add user authentication system
-
-# Bug fix with scope
+feat: add user authentication
 fix(auth): resolve login validation error
+docs: update API documentation
+feat!: change API interface
 
-# Documentation update
-docs: update API documentation for v2.0
-
-# Refactoring with body
-refactor: simplify user model validation logic
-
-- Remove redundant validation checks
-- Consolidate error handling
-- Improve code readability
-
-# Breaking change
-feat!: change authentication API interface
-
-BREAKING CHANGE: The authenticate() method now requires email parameter
+BREAKING CHANGE: Method now requires email parameter
 ```
 
+## Guidelines
 
-This commit linting system ensures that all AI agent contributions maintain the same high standards of code quality, formatting, and commit message conventions as human developers, creating a consistent and maintainable codebase.
+- Keep header under 72 characters
+- Use present tense: "Add" not "Added"
+- Solo-authored commits only (no co-authorship)
+- AI attribution goes in PR description, not commits
 
 ---
 Source: .ruler/commit-push.md
 ---
-# /commit-push — Conventional commit and push workflow
+# /commit-push — Commit and push workflow
 
-Use this command when committing changes to follow Conventional Commits standards and push with upstream tracking.
-
-## Prerequisites
-- Ensure all changes are staged or ready to be staged
-- Work from a feature branch (not main)
-- Run pre-commit checks before staging files
-- Review and apply any auto-fixes
+Stage, commit with conventional format, and push with upstream tracking.
 
 ## Quick Workflow
+
 ```bash
-# Stage all changes
 git add .
-
-# Or stage specific files
-git add <file1> <file2>
-
-# Commit with conventional format
-git commit -m "feat: add new feature description"
-
-# Push with upstream tracking (first push only)
-git push -u origin <branch-name>
-
-# Subsequent pushes (no -u needed)
-git push
+git commit -m "feat: add new feature"
+git push -u origin <branch>   # First push
+git push                      # Subsequent pushes
 ```
 
-## Package Manager Detection
+## Commit Types
 
-Before running any package manager commands, detect which package manager is being used:
+| Type | Purpose |
+|------|---------|
+| `feat:` | New feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation |
+| `refactor:` | Code restructuring |
+| `chore:` | Build/tooling |
+| `perf:` | Performance |
+| `test:` | Tests |
+
+## Pre-commit (auto-detected package manager)
 
 ```bash
-# Check for package manager
-if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
-  PACKAGE_MANAGER="bun"
-elif [ -f "pnpm-lock.yaml" ]; then
-  PACKAGE_MANAGER="pnpm"
-elif [ -f "yarn.lock" ]; then
-  PACKAGE_MANAGER="yarn"
-elif [ -f "package-lock.json" ]; then
-  PACKAGE_MANAGER="npm"
-else
-  PACKAGE_MANAGER="npm"  # fallback to npm
-fi
+$PM run format && $PM run lint && $PM run check
 ```
 
-### Fish Detection Logic
-
-```fish
-# Check for package manager (Fish)
-set PACKAGE_MANAGER npm
-if test -f bun.lockb -o -f bun.lock
-  set PACKAGE_MANAGER bun
-else if test -f pnpm-lock.yaml
-  set PACKAGE_MANAGER pnpm
-else if test -f yarn.lock
-  set PACKAGE_MANAGER yarn
-else if test -f package-lock.json
-  set PACKAGE_MANAGER npm
-end
-```
-
-## Pre-commit Quality Checks
-
-Before committing, ensure code quality by running:
+## Examples
 
 ```bash
-# Run formatting with Biome (adapt based on detected package manager)
-$PACKAGE_MANAGER run format
-
-# Run linting and checks
-$PACKAGE_MANAGER run lint
-
-# Run all quality checks
-$PACKAGE_MANAGER run check
-```
-
-### Auto-fix Capabilities
-The system includes auto-fix commands (adapt based on detected package manager):
-
-- **Biome Format**: `$PACKAGE_MANAGER run biome:format` - Automatically formats code
-- **Biome Check**: `$PACKAGE_MANAGER run biome:check --write` - Auto-fixes linting violations
-
-### Quality Verification
-- **Review auto-fixes** for correctness before committing
-- **Test changes** to ensure formatting doesn't break functionality
-- **Verify all checks pass** before finalizing the commit
-
-## Conventional Commit Types
-
-- `feat:` - A new feature
-- `fix:` - A bug fix
-- `docs:` - Documentation only changes
-- `style:` - Changes that do not affect the meaning of the code
-- `refactor:` - A code change that neither fixes a bug nor adds a feature
-- `test:` - Adding missing tests or correcting existing tests
-- `chore:` - Changes to the build process or auxiliary tools
-- `perf:` - A code change that improves performance
-- `ci:` - Changes to CI configuration files and scripts
-- `build:` - Changes that affect the build system or external dependencies
-- `revert:` - Reverts a previous commit
-
-## Commit Message Format
-
-```bash
-<type>[optional scope]: <description>
-
-[optional body]
-
-[optional footer]
-```
-
-### Examples
-
-```bash
-# Feature commit
-feat: add user authentication system
+# Feature
+feat: add user authentication
 
 # Bug fix with scope
-fix(auth): resolve login validation error
-
-# Documentation update
-docs: update API documentation for v2.0
+fix(auth): resolve login error
 
 # Breaking change
-feat!: change authentication API interface
+feat!: change API interface
 
-BREAKING CHANGE: The authenticate() method now requires email parameter
+BREAKING CHANGE: Method requires email parameter
 ```
-
-## Interactive Commit Helper
-
-For complex changes, use interactive staging:
-
-```bash
-# Interactive staging
-git add -p
-
-# Or use git gui for visual staging
-git gui
-
-# Then commit
-git commit -m "feat: implement user dashboard"
-```
-
-## Branch Management
-
-```bash
-# Create and switch to new feature branch
-git checkout -b feature/new-feature
-
-# Push and set upstream (first time)
-git push -u origin feature/new-feature
-
-# Check branch status
-git status
-git branch -v
-```
-
-## Best Practices
-
-- **Keep commits atomic**: Each commit should represent one logical change
-- **Write clear descriptions**: Explain what changed and why
-- **Stay under 72 characters**: For both title and body lines
-- **Use present tense**: "Add feature" not "Added feature"
-- **Reference issues**: Use `Closes #123` or `Fixes #456` in commit body
-- **No co-authors in commits**: Keep commits solo-authored (per project policy)
 
 ## Troubleshooting
 
-### Amend last commit
 ```bash
-# Amend commit message
-git commit --amend -m "feat: updated commit message"
-
-# Amend and add more changes
-git add <new-files>
-git commit --amend --no-edit
+git commit --amend -m "new message"  # Fix last commit
+git reset --soft HEAD~1              # Undo commit, keep changes
 ```
 
-### Undo last commit (keep changes)
-```bash
-git reset --soft HEAD~1
-```
+## Guidelines
 
-### Undo last commit (discard changes)
-```bash
-git reset --hard HEAD~1
-```
-
-### Fix commit message issues
-```bash
-# If commit message fails validation
-git commit --amend
-# Edit the message in your editor
-# Save and exit
-
-# Or amend with new message directly
-git commit --amend -m "fix: correct validation logic"
-```
-
-## Integration with PR Workflow
-
-After committing and pushing:
-1. Use `/pr-create` command to create pull request
-2. Follow PR creation checklist
-3. Request reviewers as needed
-
-## Reference
-- Full commit linting rules: `/commit-lint`
-- Pre-commit hook detection: `.ruler/commit-lint.md`
-- PR creation workflow: `/pr-create`
+- Atomic commits (one logical change)
+- Present tense: "Add" not "Added"
+- Under 72 characters
+- No co-authorship in commits
+- Reference issues: `Closes #123`
 
 ---
 Source: .ruler/issue-create.md
 ---
-# /issue-create — Standard Linear issue checklist
+# /issue-create — Create Linear issues
 
-Follow this command to create Linear issues that align with the project's default assignment and labeling rules.
+Create Linear issues with proper assignment and labeling.
 
 ## Default Assignment
-- Assign every new issue to `shunkakinoki` immediately after creation.
-- Mention additional collaborators in the description instead of reassigning unless ownership genuinely changes.
 
-## Labeling Rules
-Apply capitalised labels sourced from `devops/infra/github/src/labels.ts`:
-- Bug
-- Documentation
-- Duplicate
-- Enhancement
-- Good First Issue
-- Help Wanted
-- Invalid
-- Question
-- Wontfix
-- Dependabot
-- Renovate
-- Dependencies
-- Automerge
+Assign all issues to `shunkakinoki`.
 
-Add the most relevant primary label (e.g., `Enhancement` for features, `Bug` for fixes) and append `Dependencies`, `Automerge`, or automation labels only when they truly apply.
+## Labels
 
-## Issue Body Guidelines
-1. **Problem statement** — Describe the user-facing impact or goal.
-2. **Acceptance criteria** — Bullet list of conditions that must be met.
-3. **Technical notes** — Implementation hints, links to specs, or affected services.
-4. **Testing plan** — Outline manual or automated validation steps.
+| Category | Labels |
+|----------|--------|
+| Primary | Bug, Enhancement, Documentation |
+| Status | Duplicate, Invalid, Wontfix, Question |
+| Automation | Dependencies, Dependabot, Renovate, Automerge |
+| Other | Good First Issue, Help Wanted |
 
-## Tips
-- Use templates where available, but still confirm assignment and labels afterwards.
-- Cross-link related GitHub issues or PRs inline to give downstream automation the right context.
-- Close the issue (or move to Done) only after verifying acceptance criteria and closing PRs that reference it.
+## Issue Structure
+
+```markdown
+## Problem
+[User-facing impact or goal]
+
+## Acceptance Criteria
+- [ ] Condition 1
+- [ ] Condition 2
+
+## Technical Notes
+[Implementation hints, specs, affected services]
+
+## Testing
+[Validation steps]
+```
+
+## Guidelines
+
+- Apply one primary label (Bug/Enhancement/Documentation)
+- Cross-link related GitHub issues/PRs
+- Close only after verifying acceptance criteria
 
 ---
 Source: .ruler/pr-create.md
 ---
-# /pr-create — Comprehensive PR creation workflow
+# /pr-create — Create pull requests
 
-## OBJECTIVE
+Create GitHub PRs with proper formatting, labeling, and quality checks.
 
-This command provides a standardized, comprehensive workflow for creating GitHub Pull Requests with proper formatting, labeling, and quality assurance. The workflow ensures:
+## Quick Workflow
 
-- Consistent PR structure and content standards
-- Automated quality checks and validation
-- Proper conventional commit practices
-- Strategic labeling and reviewer assignment
-- Comprehensive testing and documentation requirements
-- Automatic changeset generation for version management
-
-**CRITICAL RULE**: This command is STRICTLY for creating GitHub Pull Requests only. Creating new script files, executables, or automation tools that replicate or extend this functionality is EXPLICITLY PROHIBITED. All PR creation must go through the established `gh pr create` workflow documented here.
-
-Use this command when preparing a pull request. This is a **step-by-step workflow** - read each section and execute the commands in order before running `gh pr create`. You must run the changeset generation step (Step 3) as part of this workflow.
-
-## Prerequisites
-
-### GitHub CLI Setup
-- **Install GitHub CLI**: `which gh` (install if not found)
-- **Verify authentication**: `gh auth status`
-- **Required token scope**: Token must have `repo` scope for PR creation
-- **Authentication**: Run `gh auth login` if not authenticated
-
-### Branch Requirements
-- **Work on feature branches** (never commit directly to `main`)
-- **Keep branches focused** on single features/fixes
-- **Use descriptive names** (e.g., `fix-build-dependencies`, `feat-user-auth`)
-- **Current branch check**: `git branch --show-current`
-
-## Complete Workflow
-
-### Step 1: Prepare Changes
 ```bash
-# Check current status and see what files changed
-git status
+# 1. Stage and commit
+git add .
+git commit -m "feat: add feature"
 
-# Stage specific files or all changes
-git add <files>          # Stage specific files
-git add .               # Stage all changes in current directory
+# 2. Push branch
+git push -u origin feature-branch
 
-# Or use interactive staging for complex changes
-git add -p              # Interactive patch staging
-```
-
-### Step 2: Create Feature Branch (if needed)
-```bash
-# Create and switch to new feature branch
-git checkout -b feature/new-feature-name
-
-# Or switch to existing feature branch
-git checkout existing-feature-branch
-
-# Verify you're on the correct branch
-git branch --show-current
-```
-
-### Step 3: Generate Changeset (if applicable)
-
-For detailed changeset generation instructions, see the [`/changesets`](commands/changesets.md) command documentation.
-
-**Important**: Use the LLM-tailored changeset generation approach described in `/changesets` to create properly formatted changeset entries that follow the established patterns and conventions. This ensures consistent release documentation that aligns with the project's standards.
-
-The changeset generation process uses structured prompting to create entries that:
-- Follow Changesets front-matter semantics
-- Include appropriate version bump levels (major/minor/patch)
-- Focus on user-visible impact rather than implementation details
-- Maintain consistency with existing release documentation patterns
-
-After generating the changeset entry, commit it alongside your code changes.
-
-### Step 4: Commit Changes
-```bash
-# Commit with conventional commit format
-git commit -m "feat: add user authentication system
-
-- Add login form component
-- Implement JWT token handling
-- Add user session management
-
-Closes #123"
-
-# Or use /commit-and-push command for guided workflow
-# Reference: /commit-and-push
-```
-
-### Step 5: Push Branch
-```bash
-# Push and set upstream (first time only)
-git push -u origin feature-branch-name
-
-# Subsequent pushes (no -u needed)
-git push
-```
-
-### Step 6: Create PR via CLI
-```bash
+# 3. Create PR
 gh pr create \
-  --title "feat: add user authentication system" \
-  --body "## Changes Made
-- Added login form component with validation
-- Implemented JWT token handling and storage
-- Added user session management utilities
-- Updated routing to protect authenticated routes
-
-## Technical Details
-- Uses React hooks for state management
-- Implements secure token storage in localStorage
-- Adds middleware for route protection
-- Follows existing component patterns and styling
+  --title "feat: add feature" \
+  --body "## Changes
+- Added feature X
 
 ## Testing
-- Verified login/logout flow works correctly
-- All pre-commit hooks pass (Biome formatting, linting)
-- Component tests added for auth utilities
-- Manual testing completed on all major browsers
-- No breaking changes to existing functionality
+- All checks pass
 
-🤖 Generated with <AI_TOOL> by <AI_MODEL>" \
-  --base main \
-  --head feature-branch-name
+🤖 Generated with [AI_TOOL] by [AI_MODEL]" \
+  --base main
 ```
 
-### Step 7: Reviews and (Optional) Auto-merge
-Do not merge immediately after creating a PR. First request reviews and wait for required checks to pass. If your repository policy allows it, you may enable auto-merge so GitHub merges the PR once approvals and checks are satisfied.
+## Variant: `/pr-create auto`
 
-Variant: `/pr-create auto` — This variant configures the created PR to auto-merge using squash. It never merges immediately; it will merge only after all required approvals and checks pass according to repository rules.
+Enable auto-merge after creation:
 
 ```bash
-# (Optional) Enable auto-merge with squash; merges later when ready
-gh pr merge <pr-number> --squash --auto
+gh pr merge $(gh pr view --json number -q '.number') --squash --auto
 ```
 
-**Note**: Auto-squashing should only be used when:
-- The PR contains multiple small commits that would benefit from consolidation
-- All commits in the PR are related to the same feature/fix
-- The commit history doesn't contain important intermediate states that need preservation
-- Team policy allows squashing (consult repository guidelines)
+## PR Description Template
 
-## Auto-Merge Variant Workflow
-
-### When to Use `/pr-create auto`
-Use this variant when:
-- **Repository policy allows auto-merge** with required approvals
-- **PR contains multiple related commits** that should be squashed
-- **All required checks pass** and approvals are expected
-- **You want to reduce manual merge operations**
-
-### Auto-Merge Prerequisites
-- **Branch protection rules** must allow auto-merge
-- **Required status checks** must be configured
-- **Minimum approval requirements** must be met
-- **Repository settings** must enable auto-merge
-
-### Step 7 (Auto Variant): Create PR with Auto-Merge
-```bash
-gh pr create \
-  --title "feat: add user authentication system" \
-  --body "## Changes Made
-- Added login form component with validation
-- Implemented JWT token handling and storage
-- Added user session management utilities
-- Updated routing to protect authenticated routes
+```markdown
+## Changes
+- What was modified
 
 ## Technical Details
-- Uses React hooks for state management
-- Implements secure token storage in localStorage
-- Adds middleware for route protection
-- Follows existing component patterns and styling
+- Implementation specifics
 
 ## Testing
-- Verified login/logout flow works correctly
-- All pre-commit hooks pass (Biome formatting, linting)
-- Component tests added for auth utilities
-- Manual testing completed on all major browsers
-- No breaking changes to existing functionality
+- Verification steps
 
-🤖 Generated with <AI_TOOL> by <AI_MODEL>" \
-  --base main \
-  --head feature-branch-name
+🤖 Generated with [AI_TOOL] by [AI_MODEL]
 ```
 
-### Step 8 (Auto Variant): Enable Auto-Merge
-```bash
-# Enable auto-merge with squash for the created PR
-PR_NUMBER=$(gh pr view --json number --jq '.number')
-gh pr merge $PR_NUMBER --squash --auto
-
-echo "✅ Auto-merge enabled for PR #$PR_NUMBER"
-echo "🔄 PR will merge automatically when:"
-echo "   - All required approvals are received"
-echo "   - All status checks pass"
-echo "   - Branch protection rules are satisfied"
-```
-
-### Auto-Merge Status Monitoring
-```bash
-# Check auto-merge status
-gh pr view <pr-number> --json isInMergeQueue,mergeable,mergeStateStatus
-
-# Monitor merge queue (if using merge queues)
-gh pr view <pr-number> --json mergeQueueEntry
-```
-
-### Auto-Merge Troubleshooting
-```bash
-# Check why auto-merge is blocked
-gh pr view <pr-number> --json reviewDecision,mergeStateStatus
-
-# View detailed merge requirements
-gh pr view <pr-number> --json mergeRequirements
-
-# Manually disable auto-merge if needed
-gh pr merge <pr-number> --auto-merge disable
-```
-
-### Auto-Merge Best Practices
-- **Monitor auto-merge status** regularly until merged
-- **Review merge requirements** before enabling auto-merge
-- **Test the workflow** on non-critical PRs first
-- **Have rollback plan** if auto-merge causes issues
-- **Document auto-merge usage** in team guidelines
-
-## PR Content Standards
-
-### Title Format
-- **Use conventional commit format**: `feat:`, `fix:`, `refactor:`, `docs:`, `chore:`
-- **Keep under 72 characters** for optimal display
-- **Be specific and actionable**: "Add user auth" vs "Update stuff"
-- **Include scope if relevant**: `fix(auth): resolve login issue`
-
-### Description Requirements
-- **Changes Made**: Bullet list of what was modified
-- **Technical Details**: Implementation specifics and rationale
-- **Testing**: Verification steps and pre-commit status
-- **AI Attribution**: `🤖 Generated with <AI_TOOL> by <AI_MODEL>` (current assistant)
-
-### AI Attribution Guidelines
-- **Current assistant**: Replace `<AI_TOOL>` with your AI tool name (e.g., Cursor, VS Code with Copilot, JetBrains AI) and `<AI_MODEL>` with your AI model name (e.g., Claude, GPT-4)
-- **Format**: `🤖 Generated with <AI_TOOL> by <AI_MODEL>` (no co-authorship)
-- **Placement**: At the end of PR description
-- **Consistency**: Use same attribution across all generated content
-
-## Step 9: Labeling & Reviewers
-
-### Automatic Labeling
-After PR creation, add appropriate labels:
-```bash
-# Feature PR
-gh pr edit <number> --add-label enhancement
-
-# Bug fix PR
-gh pr edit <number> --add-label bug
-
-# Documentation PR
-gh pr edit <number> --add-label documentation
-
-# Dependencies PR
-gh pr edit <number> --add-label dependencies
-```
-
-### Request Reviewers
-```bash
-# Add specific reviewers
-gh pr edit <number> --add-reviewer username1,username2
-
-# Add team reviewers
-gh pr edit <number> --add-reviewer "@org/team-name"
-```
-
-## Error Handling
-
-### Common Issues & Solutions
-- **Authentication failed**: Run `gh auth login`
-- **Branch not found**: Ensure branch is pushed to remote first
-- **Permission denied**: Check repository access and token scopes
-- **PR already exists**: Use `gh pr edit` to modify existing PR
-
-### Troubleshooting Commands
-```bash
-# Check PR status
-gh pr list
-
-# View PR details
-gh pr view <number>
-
-# Update PR description
-gh pr edit <number> --body "Updated description"
-
-# Change PR title
-gh pr edit <number> --title "Updated title"
-
-# Close PR
-gh pr close <number>
-```
-
-## Step 10: Best Practices
-
-### Commit Guidelines
-- **Solo-authored commits only** - DO NOT include co-authorship in commit messages
-- **NO co-authorship** - Never add "Co-Authored-By: Claude" or similar co-authorship attribution in commits
-- **AI name belongs in PR description only** - Use `🤖 Generated with <AI_TOOL> by <AI_MODEL>` format in PR body, not commit messages
-- **Use present tense** in commit messages ("Add feature" not "Added feature")
-- **Keep commits atomic** and focused on single changes
-- **Reference issues** when applicable (`Closes #123`, `Fixes #456`)
-
-### PR Size Management
-- **Keep PRs focused** on single concerns or related changes
-- **Split large changes** into multiple smaller PRs
-- **Use draft PRs** for work-in-progress or incomplete features
-- **Request reviews early** for complex changes to get feedback
-
-### Quality Assurance
-- **Ensure all pre-commit hooks pass** before creating PR
-- **Run tests** before creating PR (adapt commands based on detected package manager)
-- **Verify code formatting** (Biome handles this automatically)
-- **Check for breaking changes** and document them clearly
-- **Test manually** for UI/UX changes
-
-#### Package Manager Detection for Testing
-
-Before running tests, detect which package manager is being used:
+## Labeling
 
 ```bash
-# Check for package manager
-if [ -f "bun.lockb" ] || [ -f "bun.lock" ]; then
-  PACKAGE_MANAGER="bun"
-elif [ -f "pnpm-lock.yaml" ]; then
-  PACKAGE_MANAGER="pnpm"
-elif [ -f "yarn.lock" ]; then
-  PACKAGE_MANAGER="yarn"
-elif [ -f "package-lock.json" ]; then
-  PACKAGE_MANAGER="npm"
-else
-  PACKAGE_MANAGER="npm"  # fallback to npm
-fi
-
-# Run tests with detected package manager
-$PACKAGE_MANAGER run test
+gh pr edit <number> --add-label enhancement  # feat:
+gh pr edit <number> --add-label bug          # fix:
+gh pr edit <number> --add-label documentation # docs:
 ```
 
-### CI/CD Integration
-- **PRs automatically trigger** CI pipelines
-- **Address failing checks** promptly (tests, linting, formatting)
-- **Monitor CI status** and fix issues before requesting review
-- **Document known limitations** if any checks are expected to fail
+## Guidelines
 
-## Complete Example
-
-```bash
-# 1. Create feature branch
-git checkout -b feat-add-user-auth
-
-# 2. Make changes and stage
-git add src/components/Auth/ src/utils/auth.ts
-git status
-
-# 3. Generate changeset (if changesets is configured)
-#    Use LLM-tailored changeset generation (see /changesets for detailed instructions)
-#    Generate changeset entry using the structured prompting approach described in /changesets
-#    This creates properly formatted entries that follow project conventions
-
-# 4. Commit with conventional format with no co-authorship
-git commit -m "feat: implement user authentication system
-
-- Add login/logout components with form validation
-- Implement JWT token management and secure storage
-- Create auth context for global state management
-- Add protected route wrapper component
-
-Closes #123"
-
-# 5. Push to remote
-git push -u origin feat-add-user-auth
-
-# 6. Create PR with comprehensive description
-gh pr create \
-  --title "feat: implement user authentication system" \
-  --body "## Changes Made
-- Added complete user authentication flow with login/logout
-- Implemented secure JWT token handling and storage
-- Created React context for global auth state management
-- Added protected route components for authenticated pages
-
-## Technical Details
-- Uses React hooks and context for state management
-- Implements secure token storage with expiration handling
-- Follows existing component architecture and styling patterns
-- Includes proper error handling and loading states
-
-## Testing
-- All pre-commit hooks pass (Biome formatting, linting, TypeScript checks)
-- Component tests added for auth utilities and context
-- Manual testing completed for login/logout flows
-- Verified compatibility with existing user management
-
-🤖 Generated with <AI_TOOL> by <AI_MODEL>" \
-  --base main \
-  --head feat-add-user-auth
-
-# 7. Enable auto-squashing (if using /pr-create auto)
-gh pr merge <pr-number> --squash --auto
-
-# 8. Add labels and reviewers
-gh pr edit <pr-number> --add-label enhancement
-gh pr edit <pr-number> --add-reviewer "@org/frontend-team"
-```
-
-## Integration with Other Commands
-
-- **Changeset management**: Use `/changesets` for automatic changeset generation and management
-- **Commit workflow**: Use `/commit-and-push` for guided conventional commits
-- **Code quality**: Reference `.ruler/commit-lint.md` for detailed standards
-- **PR labeling**: Use `/pr-labeling` for automated label management
-
-## Reference
-- Full policy: `.ruler/pr-creation.md` in this repository
-- Changeset management: `/changesets`
-- Commit standards: `/commit-and-push`
-- Labeling automation: `/pr-labeling`
+- Conventional commit title format
+- Under 72 characters
+- Solo-authored commits (no co-authorship)
+- AI attribution in PR body only
+- Generate changeset via `/changesets` if applicable
+- Run quality checks before creating
 
 ---
 Source: .ruler/pr-label.md
 ---
-# /pr-label - Comprehensive PR Labeling Guide
+# /pr-label — Label pull requests
 
-This document outlines the rules and best practices for automatically labeling GitHub Pull Requests (PRs) based on Conventional Commit types and other criteria.
+Apply labels to PRs based on conventional commit types.
 
-## GitHub PR Labeling Rules
+## Label Mapping
 
-This rule defines how PR labels are applied automatically. It uses the default labels and maps Conventional Commit types to GitHub labels.
+| Commit Type | Label |
+|-------------|-------|
+| `feat:` | enhancement |
+| `fix:` | bug |
+| `docs:` | documentation |
+| `chore(deps):`, `build(deps):` | dependencies |
+| Author: dependabot | dependabot |
+| Author: renovate | renovate |
+| Title contains `[automerge]` | automerge |
 
-## Default Labels (source of truth)
+## Available Labels
 
-Names are defined as:
+**Primary**: bug, documentation, enhancement
 
-- bug
-- documentation
-- duplicate
-- enhancement
-- good first issue
-- help wanted
-- invalid
-- question
-- wontfix
+**Status**: duplicate, invalid, wontfix, question, good first issue, help wanted
 
-## Other Labels (additional ones defined for `shunkakinoki` repositories)
-
-- dependabot
-- renovate
-- dependencies
-- automerge
-- codex
-- refactor
-
-## Label Mapping Rules
-
-- feat → enhancement
-- fix → bug
-- docs → documentation
-- chore(deps), build(deps) → dependencies
-- PR authored by dependabot → dependabot
-- PR authored by renovate → renovate
-- If title contains "[automerge]" or label "automerge" is requested in the description, also add automerge
-
-Notes:
-- Only apply one of enhancement/bug/documentation based on the primary Conventional Commit type at the start of the PR title.
-- Do not add unrelated labels automatically.
+**Automation**: dependencies, dependabot, renovate, automerge, codex, refactor
 
 ## Usage
 
-- Run the snippet after creating the PR, or integrate it into your local automation.
-- Ensure the label names exist in the repository (they are provisioned via Pulumi from `labels.ts`).
+```bash
+gh pr edit <number> --add-label <label>
+```
+
+## Guidelines
+
+- Apply one primary label based on commit type prefix
+- Do not add unrelated labels automatically
+- Labels are provisioned via Pulumi from `labels.ts`
 
 ---
 Source: .ruler/ruler-apply.md
@@ -1512,186 +388,59 @@ pnpm run ruler:check
 Source: .ruler/serena.md
 ---
 ---
-allowed-tools: Read, Glob, Grep, Edit, MultiEdit, Write, Bash, TodoWrite, mcp__serena__check_onboarding_performed, mcp__serena__delete_memory, mcp__serena__find_file, mcp__serena__find_referencing_symbols, mcp__serena__find_symbol, mcp__serena__get_symbols_overview, mcp__serena__insert_after_symbol, mcp__serena__insert_before_symbol, mcp__serena__list_dir, mcp__serena__list_memories, mcp__serena__onboarding, mcp__serena__read_memory, mcp__serena__remove_project, mcp__serena__replace_regex, mcp__serena__replace_symbol_body, mcp__serena__restart_language_server, mcp__serena__search_for_pattern, mcp__serena__switch_modes, mcp__serena__think_about_collected_information, mcp__serena__think_about_task_adherence, mcp__serena__think_about_whether_you_are_done, mcp__serena__write_memory, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
-description: Token-efficient Serena MCP command for structured app development and problem-solving
+allowed-tools: Read, Glob, Grep, Edit, MultiEdit, Write, Bash, TodoWrite, mcp__serena__*, mcp__context7__*
+description: Structured problem-solving with Serena MCP
 ---
 
-From: https://zenn.dev/sc30gsw/articles/ff81891959aaef
-Thank you to @sc30gsw for the inspiration!
+# /serena — Problem-solving with Serena MCP
 
-## Quick Reference
+Use Serena MCP for structured app development and debugging.
+
+## Usage
 
 ```bash
-/serena <problem> [options]           # Basic usage
-/serena debug "memory leak in prod"   # Debug pattern (5-8 thoughts)
-/serena design "auth system"          # Design pattern (8-12 thoughts)  
-/serena review "optimize this code"   # Review pattern (4-7 thoughts)
-/serena implement "add feature X"     # Implementation (6-10 thoughts)
+/serena <problem> [options]
+/serena debug "memory leak"     # 5-8 thoughts
+/serena design "auth system"    # 8-12 thoughts
+/serena implement "add feature" # 6-10 thoughts
+/serena review "optimize code"  # 4-7 thoughts
 ```
 
 ## Options
 
-| Option | Description | Usage | Use Case |
-|--------|-------------|-------|----------|
-| `-q` | Quick mode (3-5 thoughts/steps) | `/serena "fix button" -q` | Simple bugs, minor features |
-| `-d` | Deep mode (10-15 thoughts/steps) | `/serena "architecture design" -d` | Complex systems, major decisions |
-| `-c` | Code-focused analysis | `/serena "optimize performance" -c` | Code review, refactoring |
-| `-s` | Step-by-step implementation | `/serena "build dashboard" -s` | Full feature development |
-| `-v` | Verbose output (show process) | `/serena "debug issue" -v` | Learning, understanding process |
-| `-r` | Include research phase | `/serena "choose framework" -r` | Technology decisions |
-| `-t` | Create implementation todos | `/serena "new feature" -t` | Project management |
+| Flag | Mode | Use Case |
+|------|------|----------|
+| `-q` | Quick (3-5 thoughts) | Simple bugs |
+| `-d` | Deep (10-15 thoughts) | Complex systems |
+| `-c` | Code-focused | Refactoring |
+| `-s` | Step-by-step | Full features |
+| `-v` | Verbose | Show process |
+| `-r` | Research | Tech decisions |
+| `-t` | Todos | Create task list |
 
-## Usage Patterns
+## Problem Detection
 
-### Basic Usage
-```bash
-# Simple problem solving
-/serena "fix login bug"
+| Keywords | Pattern | Thoughts |
+|----------|---------|----------|
+| error, bug, broken | Debug | 5-8 |
+| architecture, system | Design | 8-12 |
+| build, create, add | Implement | 6-10 |
+| performance, slow | Optimize | 4-7 |
+| analyze, check | Review | 4-7 |
 
-# Quick feature implementation  
-/serena "add search filter" -q
+## Workflow
 
-# Code optimization
-/serena "improve load time" -c
-```
+1. Auto-detect problem type
+2. Use Serena MCP tools for code analysis
+3. Research with Context7 if needed
+4. Provide actionable solution
+5. Create todos if `-s` flag used
 
-### Advanced Usage
-```bash
-# Complex system design with research
-/serena "design microservices architecture" -d -r -v
+## Guidelines
 
-# Full feature development with todos
-/serena "implement user dashboard with charts" -s -t -c
-
-# Deep analysis with documentation
-/serena "migrate to new framework" -d -r -v --focus=frontend
-```
-
-## Context (Auto-gathered)
-- Project files: !`find . -maxdepth 2 -name "package.json" -o -name "*.config.*" | head -5 2>/dev/null || echo "No config files"`
-- Git status: !`git status --porcelain 2>/dev/null | head -3 || echo "Not git repo"`
-
-## Core Workflow
-
-### 1. Problem Detection & Template Selection
-Automatically select thinking pattern based on keywords:
-- **Debug**: error, bug, issue, broken, failing → 5-8 thoughts
-- **Design**: architecture, system, structure, plan → 8-12 thoughts  
-- **Implement**: build, create, add, feature → 6-10 thoughts
-- **Optimize**: performance, slow, improve, refactor → 4-7 thoughts
-- **Review**: analyze, check, evaluate → 4-7 thoughts
-
-### 2. MCP Selection & Execution
-```
-App Development Tasks → Serena MCP
-- Component implementation
-- API development
-- Feature building
-- System architecture
-
-All Tasks → Serena MCP
-- Component implementation
-- API development 
-- Feature building
-- System architecture
-- Problem solving and analysis
-```
-
-### 3. Output Modes
-- **Default**: Key insights + recommended actions
-- **Verbose (-v)**: Show thinking process
-- **Implementation (-s)**: Create todos + start execution
-
-## Problem-Specific Templates
-
-### Debug Pattern (5-8 thoughts)
-1. Symptom analysis & reproduction
-2. Error context & environment check  
-3. Root cause hypothesis generation
-4. Evidence gathering & validation
-5. Solution design & risk assessment
-6. Implementation plan
-7. Verification strategy
-8. Prevention measures
-
-### Design Pattern (8-12 thoughts)  
-1. Requirements clarification
-2. Constraints & assumptions
-3. Stakeholder analysis
-4. Architecture options generation
-5. Option evaluation (pros/cons)
-6. Technology selection
-7. Design decisions & tradeoffs
-8. Implementation phases
-9. Risk mitigation
-10. Success metrics
-11. Validation plan
-12. Documentation needs
-
-### Implementation Pattern (6-10 thoughts)
-1. Feature specification & scope
-2. Technical approach selection
-3. Component/module design
-4. Dependencies & integration points
-5. Implementation sequence
-6. Testing strategy
-7. Edge case handling
-8. Performance considerations
-9. Error handling & recovery
-10. Deployment & rollback plan
-
-### Review/Optimize Pattern (4-7 thoughts)
-1. Current state analysis
-2. Bottleneck identification
-3. Improvement opportunities
-4. Solution options & feasibility
-5. Implementation priority
-6. Performance impact estimation
-7. Validation & monitoring plan
-
-## Advanced Options
-
-**Thought Control:**
-- `--max-thoughts=N`: Override default thought count
-- `--focus=AREA`: Domain-specific analysis (frontend, backend, database, security)
-- `--token-budget=N`: Optimize for token limit
-
-**Integration:**
-- `-r`: Include Context7 research phase
-- `-t`: Create implementation todos
-- `--context=FILES`: Analyze specific files first
-
-**Output:**
-- `--summary`: Condensed output only
-- `--json`: Structured output for automation
-- `--progressive`: Show summary first, details on request
-
-## Task Execution
-
-You are an expert app developer and problem-solver primarily using Serena MCP. For each request:
-
-1. **Auto-detect problem type** and select appropriate approach
-2. **Use Serena MCP**:
-   - **All development tasks**: Use Serena MCP tools (https://github.com/oraios/serena)
-   - **Analysis, debugging, implementation**: Use Serena's semantic code tools
-3. **Execute structured approach** with chosen MCP
-4. **Research relevant docs** with Context7 MCP if needed
-5. **Synthesize actionable solution** with specific next steps
-6. **Create implementation todos** if `-s` flag used
-
-**Key Guidelines:**
-- **Primary**: Use Serena MCP tools for all tasks (components, APIs, features, analysis)
-- **Leverage**: Serena's semantic code retrieval and editing capabilities
-- Start with problem analysis, end with concrete actions
-- Balance depth with token efficiency
-- Always provide specific, actionable recommendations
-- Consider security, performance, and maintainability
-
-**Token Efficiency Tips:**
-- Use `-q` for simple problems (saves ~40% tokens)
-- Use `--summary` for overview-only needs  
+- Use `-q` for simple problems (saves tokens)
+- Use `--focus=AREA` for domain-specific analysis
 - Combine related problems in single session
-- Use `--focus` to avoid irrelevant analysis
 
 ---
 Source: .ruler/shell-usage.md
@@ -1718,37 +467,6 @@ This repository uses the Fish shell for interactive commands and automation snip
 ## Compatibility Notes
 - Avoid `set -euo pipefail`; Fish handles errors differently. Use explicit checks or `status` as needed.
 - When porting Bash snippets, verify quoting and list handling.
-
----
-Source: .ruler/tmp.linear-labeling.md
----
-# Linear Issue Labeling & Assignment Rules
-
-This rule standardizes Linear issue creation by auto-assigning to `shunkakinoki` and applying capitalized default labels sourced from `devops/infra/github/src/labels.ts`.
-
-## Default Labels (capitalized)
-
-- Bug
-- Documentation
-- Duplicate
-- Enhancement
-- Good First Issue
-- Help Wanted
-- Invalid
-- Question
-- Wontfix
-- Dependabot
-- Renovate
-- Dependencies
-- Automerge
-
-Notes:
-- Capitalization follows first-letter uppercase for each word.
-- The source `labels.ts` contains lowercase names; apply capitalization at creation time.
-
-## Assignment
-
-- All newly created issues should be assigned to `shunkakinoki` by default.
 
 ---
 Source: .ruler/tool-search.md
