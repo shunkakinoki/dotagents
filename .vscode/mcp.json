@@ -2,7 +2,10 @@
   "servers": {
     "XcodeBuildMCP": {
       "command": "npx",
-      "args": ["-y", "xcodebuildmcp@latest"]
+      "args": [
+        "-y",
+        "xcodebuildmcp@latest"
+      ]
     },
     "Serena": {
       "command": "uvx",
@@ -15,32 +18,55 @@
     },
     "Linear": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"]
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.linear.app/sse"
+      ]
     },
     "GitHub": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "https://api.githubcopilot.com/mcp/"]
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://api.githubcopilot.com/mcp/"
+      ]
     },
     "Figma": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "http://127.0.0.1:3845/sse"]
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://127.0.0.1:3845/sse"
+      ]
     },
     "Beeper": {
       "command": "npx",
-      "args": ["-y", "mcp-remote", "http://localhost:23373/v0/mcp"]
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost:23373/v0/mcp"
+      ]
     },
     "Codex": {
       "type": "stdio",
       "command": "codex",
-      "args": ["mcp"]
+      "args": [
+        "mcp"
+      ]
     },
     "ChromeDevtools": {
       "command": "npx",
-      "args": ["chrome-devtools-mcp@latest"]
+      "args": [
+        "chrome-devtools-mcp@latest"
+      ]
     },
     "Context7": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
     }
   }
 }

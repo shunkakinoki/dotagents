@@ -1,2 +1,2 @@
-# rules
+# dotagents
 Rules for Agents
