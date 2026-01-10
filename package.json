@@ -1,5 +1,5 @@
 {
-  "name": "@shunkakinoki/rules",
+  "name": "@shunkakinoki/dotagents",
   "scripts": {
     "check": "bun run ruler:check && bun run biome:check",
     "lint": "bun run ruler:apply && bun run check && bun run format",
