@@ -1,3 +1,8 @@
+---
+allowed-tools: Read, Bash
+description: Apply labels to PRs based on conventional commit types
+---
+
 # /pr-label — Label pull requests
 
 Apply labels to PRs based on conventional commit types.

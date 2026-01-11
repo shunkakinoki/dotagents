@@ -1,3 +1,8 @@
+---
+allowed-tools: Read, Glob, Grep, Write, Bash, TodoWrite
+description: Generate changeset entries following Changesets semantics
+---
+
 # /changesets — Generate changeset entries
 
 Generate release documentation entries following Changesets semantics.

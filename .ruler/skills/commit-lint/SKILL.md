@@ -1,3 +1,8 @@
+---
+allowed-tools: Read, Bash, TodoWrite
+description: Validate commit messages against conventional commit format
+---
+
 # /commit-lint — Commit message validation
 
 Ensure commits follow conventional commit format and pass quality checks.
