@@ -1,4 +1,5 @@
 ---
+name: pr-label
 allowed-tools: Read, Bash
 description: Apply labels to PRs based on conventional commit types
 ---

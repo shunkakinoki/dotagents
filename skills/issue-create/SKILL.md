@@ -1,4 +1,5 @@
 ---
+name: issue-create
 allowed-tools: Read, Bash, TodoWrite, mcp__Linear__*
 description: Create Linear issues with proper assignment and labeling
 ---

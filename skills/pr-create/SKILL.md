@@ -1,4 +1,5 @@
 ---
+name: pr-create
 allowed-tools: Read, Bash, TodoWrite
 description: Create GitHub PRs with proper formatting, labeling, and quality checks
 ---
