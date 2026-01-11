@@ -1,4 +1,5 @@
 ---
+name: commit-lint
 allowed-tools: Read, Bash, TodoWrite
 description: Validate commit messages against conventional commit format
 ---

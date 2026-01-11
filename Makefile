@@ -19,7 +19,7 @@ MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 # ====================================================================================
 
 .PHONY: sync
-sync: ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
+sync: skills-copy ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
 	@make commands-sync
 	@make skills-sync
 	@make mcp-sync
