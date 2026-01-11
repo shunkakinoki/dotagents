@@ -1,4 +1,5 @@
 ---
+name: serena
 allowed-tools: Read, Glob, Grep, Edit, MultiEdit, Write, Bash, TodoWrite, mcp__serena__*, mcp__context7__*
 description: Structured problem-solving with Serena MCP
 ---

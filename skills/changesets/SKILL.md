@@ -1,4 +1,5 @@
 ---
+name: changesets
 allowed-tools: Read, Glob, Grep, Write, Bash, TodoWrite
 description: Generate changeset entries following Changesets semantics
 ---
