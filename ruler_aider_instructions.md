@@ -1,6 +1,132 @@
 ---
-Source: .ruler/changesets.md
+Source: .ruler/commit-push.md
 ---
+# /commit-push — Commit and push workflow
+
+Stage, commit with conventional format, and push with upstream tracking.
+
+## Quick Workflow
+
+```bash
+git add .
+git commit -m "feat: add new feature"
+git push -u origin <branch>   # First push
+git push                      # Subsequent pushes
+```
+
+## Commit Types
+
+| Type | Purpose |
+|------|---------|
+| `feat:` | New feature |
+| `fix:` | Bug fix |
+| `docs:` | Documentation |
+| `refactor:` | Code restructuring |
+| `chore:` | Build/tooling |
+| `perf:` | Performance |
+| `test:` | Tests |
+
+## Pre-commit (auto-detected package manager)
+
+```bash
+$PM run format && $PM run lint && $PM run check
+```
+
+## Examples
+
+```bash
+# Feature
+feat: add user authentication
+
+# Bug fix with scope
+fix(auth): resolve login error
+
+# Breaking change
+feat!: change API interface
+
+BREAKING CHANGE: Method requires email parameter
+```
+
+## Troubleshooting
+
+```bash
+git commit --amend -m "new message"  # Fix last commit
+git reset --soft HEAD~1              # Undo commit, keep changes
+```
+
+## Guidelines
+
+- Atomic commits (one logical change)
+- Present tense: "Add" not "Added"
+- Under 72 characters
+- No co-authorship in commits
+- Reference issues: `Closes #123`
+
+---
+Source: .ruler/ruler-apply.md
+---
+# /ruler-apply — Regenerate agent instructions with Ruler
+
+Use this command whenever `.ruler/` files or command documentation changes, or after pulling updates that touch repository rules.
+
+## When to Run
+- After editing any file under `.ruler/` (including `commands/` docs referenced from there)
+- Before committing changes that rely on regenerated instruction files such as `AGENTS.md`
+- After rebasing or pulling main when rules may have changed
+
+## Command Sequence
+```fish
+# Regenerate agent instruction files
+pnpm run ruler:apply
+
+# Double-check that regeneration left the tree clean
+pnpm run ruler:check
+```
+
+## What to Inspect
+- Review `git status` for modified instruction outputs (e.g., `AGENTS.md`, `.cursor/...`).
+- If files changed, skim the diff to ensure new content reflects your rule updates.
+- Commit regenerated files together with the rule change so other contributors stay in sync.
+
+## Troubleshooting
+- If `pnpm run ruler:check` reports a dirty tree, run `git status --short` to see which files still differ.
+- For merge conflicts in generated files, resolve them in the source `.ruler/` Markdown first, re-run `/ruler-apply`, then commit the regenerated outputs.
+- When `.gitignore` changes unexpectedly, confirm `[gitignore].enabled` in `.ruler/ruler.toml` matches the desired setting before re-running the command.
+
+---
+Source: .ruler/shell-usage.md
+---
+# Shell Usage Standard (Fish)
+
+This repository uses the Fish shell for interactive commands and automation snippets, aligned with the system configuration. Prefer Fish for new scripts and examples.
+
+## Policy
+- Default shell: Fish (`#!/usr/bin/env fish`).
+- Provide Fish snippets for automation examples; keep Bash as optional fallback when helpful.
+- Keep one-file, shell-agnostic command sequences unchanged when they work in both shells.
+
+## Conventions
+- Variables: `set NAME value` (no `=`). Export: `set -x NAME value`.
+- Arrays/lists: `set items a b c`; append: `set items $items d`.
+- Conditionals: `if test -f file; ...; end`; switches: `switch $var; case value; ...; end`.
+- Substitution: `set VAR (command ...)`.
+- PATH: `set -x PATH /new/bin $PATH`.
+
+## Shebangs
+- Use `#!/usr/bin/env fish` for executable scripts.
+
+## Compatibility Notes
+- Avoid `set -euo pipefail`; Fish handles errors differently. Use explicit checks or `status` as needed.
+- When porting Bash snippets, verify quoting and list handling.
+
+---
+Source: .ruler/skills/changesets/SKILL.md
+---
+---
+allowed-tools: Read, Glob, Grep, Write, Bash, TodoWrite
+description: Generate changeset entries following Changesets semantics
+---
+
 # /changesets — Generate changeset entries
 
 Generate release documentation entries following Changesets semantics.
@@ -54,23 +180,13 @@ Replaced legacy serializer with new wire format
 - Include in same commit as code changes
 
 ---
-Source: .ruler/commands.md
+Source: .ruler/skills/commit-lint/SKILL.md
 ---
-# Commands
+---
+allowed-tools: Read, Bash, TodoWrite
+description: Validate commit messages against conventional commit format
+---
 
-| Command | Description |
-|---------|-------------|
-| [/changesets](changesets.md) | Generate changeset entries |
-| [/commit-lint](commit-lint.md) | Commit message validation |
-| [/commit-push](commit-push.md) | Commit and push workflow |
-| [/issue-create](issue-create.md) | Create Linear issues |
-| [/pr-create](pr-create.md) | Create pull requests |
-| [/pr-label](pr-label.md) | Label pull requests |
-| [/serena](serena.md) | Problem-solving with Serena MCP |
-
----
-Source: .ruler/commit-lint.md
----
 # /commit-lint — Commit message validation
 
 Ensure commits follow conventional commit format and pass quality checks.
@@ -138,72 +254,13 @@ BREAKING CHANGE: Method now requires email parameter
 - AI attribution goes in PR description, not commits
 
 ---
-Source: .ruler/commit-push.md
+Source: .ruler/skills/issue-create/SKILL.md
 ---
-# /commit-push — Commit and push workflow
-
-Stage, commit with conventional format, and push with upstream tracking.
-
-## Quick Workflow
-
-```bash
-git add .
-git commit -m "feat: add new feature"
-git push -u origin <branch>   # First push
-git push                      # Subsequent pushes
-```
-
-## Commit Types
-
-| Type | Purpose |
-|------|---------|
-| `feat:` | New feature |
-| `fix:` | Bug fix |
-| `docs:` | Documentation |
-| `refactor:` | Code restructuring |
-| `chore:` | Build/tooling |
-| `perf:` | Performance |
-| `test:` | Tests |
-
-## Pre-commit (auto-detected package manager)
-
-```bash
-$PM run format && $PM run lint && $PM run check
-```
-
-## Examples
-
-```bash
-# Feature
-feat: add user authentication
-
-# Bug fix with scope
-fix(auth): resolve login error
-
-# Breaking change
-feat!: change API interface
-
-BREAKING CHANGE: Method requires email parameter
-```
-
-## Troubleshooting
-
-```bash
-git commit --amend -m "new message"  # Fix last commit
-git reset --soft HEAD~1              # Undo commit, keep changes
-```
-
-## Guidelines
-
-- Atomic commits (one logical change)
-- Present tense: "Add" not "Added"
-- Under 72 characters
-- No co-authorship in commits
-- Reference issues: `Closes #123`
-
 ---
-Source: .ruler/issue-create.md
+allowed-tools: Read, Bash, TodoWrite, mcp__Linear__*
+description: Create Linear issues with proper assignment and labeling
 ---
+
 # /issue-create — Create Linear issues
 
 Create Linear issues with proper assignment and labeling.
@@ -245,8 +302,13 @@ Assign all issues to `shunkakinoki`.
 - Close only after verifying acceptance criteria
 
 ---
-Source: .ruler/pr-create.md
+Source: .ruler/skills/pr-create/SKILL.md
 ---
+---
+allowed-tools: Read, Bash, TodoWrite
+description: Create GitHub PRs with proper formatting, labeling, and quality checks
+---
+
 # /pr-create — Create pull requests
 
 Create GitHub PRs with proper formatting, labeling, and quality checks.
@@ -270,7 +332,7 @@ gh pr create \
 ## Testing
 - All checks pass
 
-🤖 Generated with [AI_TOOL] by [AI_MODEL]" \
+Generated with [AI_TOOL] by [AI_MODEL]" \
   --base main
 ```
 
@@ -294,7 +356,7 @@ gh pr merge $(gh pr view --json number -q '.number') --squash --auto
 ## Testing
 - Verification steps
 
-🤖 Generated with [AI_TOOL] by [AI_MODEL]
+Generated with [AI_TOOL] by [AI_MODEL]
 ```
 
 ## Labeling
@@ -315,8 +377,13 @@ gh pr edit <number> --add-label documentation # docs:
 - Run quality checks before creating
 
 ---
-Source: .ruler/pr-label.md
+Source: .ruler/skills/pr-label/SKILL.md
 ---
+---
+allowed-tools: Read, Bash
+description: Apply labels to PRs based on conventional commit types
+---
+
 # /pr-label — Label pull requests
 
 Apply labels to PRs based on conventional commit types.
@@ -354,38 +421,7 @@ gh pr edit <number> --add-label <label>
 - Labels are provisioned via Pulumi from `labels.ts`
 
 ---
-Source: .ruler/ruler-apply.md
----
-# /ruler-apply — Regenerate agent instructions with Ruler
-
-Use this command whenever `.ruler/` files or command documentation changes, or after pulling updates that touch repository rules.
-
-## When to Run
-- After editing any file under `.ruler/` (including `commands/` docs referenced from there)
-- Before committing changes that rely on regenerated instruction files such as `AGENTS.md`
-- After rebasing or pulling main when rules may have changed
-
-## Command Sequence
-```fish
-# Regenerate agent instruction files
-pnpm run ruler:apply
-
-# Double-check that regeneration left the tree clean
-pnpm run ruler:check
-```
-
-## What to Inspect
-- Review `git status` for modified instruction outputs (e.g., `AGENTS.md`, `.cursor/...`).
-- If files changed, skim the diff to ensure new content reflects your rule updates.
-- Commit regenerated files together with the rule change so other contributors stay in sync.
-
-## Troubleshooting
-- If `pnpm run ruler:check` reports a dirty tree, run `git status --short` to see which files still differ.
-- For merge conflicts in generated files, resolve them in the source `.ruler/` Markdown first, re-run `/ruler-apply`, then commit the regenerated outputs.
-- When `.gitignore` changes unexpectedly, confirm `[gitignore].enabled` in `.ruler/ruler.toml` matches the desired setting before re-running the command.
-
----
-Source: .ruler/serena.md
+Source: .ruler/skills/serena/SKILL.md
 ---
 ---
 allowed-tools: Read, Glob, Grep, Edit, MultiEdit, Write, Bash, TodoWrite, mcp__serena__*, mcp__context7__*
@@ -441,32 +477,6 @@ Use Serena MCP for structured app development and debugging.
 - Use `-q` for simple problems (saves tokens)
 - Use `--focus=AREA` for domain-specific analysis
 - Combine related problems in single session
-
----
-Source: .ruler/shell-usage.md
----
-# Shell Usage Standard (Fish)
-
-This repository uses the Fish shell for interactive commands and automation snippets, aligned with the system configuration. Prefer Fish for new scripts and examples.
-
-## Policy
-- Default shell: Fish (`#!/usr/bin/env fish`).
-- Provide Fish snippets for automation examples; keep Bash as optional fallback when helpful.
-- Keep one-file, shell-agnostic command sequences unchanged when they work in both shells.
-
-## Conventions
-- Variables: `set NAME value` (no `=`). Export: `set -x NAME value`.
-- Arrays/lists: `set items a b c`; append: `set items $items d`.
-- Conditionals: `if test -f file; ...; end`; switches: `switch $var; case value; ...; end`.
-- Substitution: `set VAR (command ...)`.
-- PATH: `set -x PATH /new/bin $PATH`.
-
-## Shebangs
-- Use `#!/usr/bin/env fish` for executable scripts.
-
-## Compatibility Notes
-- Avoid `set -euo pipefail`; Fish handles errors differently. Use explicit checks or `status` as needed.
-- When porting Bash snippets, verify quoting and list handling.
 
 ---
 Source: .ruler/tool-search.md
