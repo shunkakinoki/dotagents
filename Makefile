@@ -7,6 +7,10 @@
 COMMANDS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))commands
 COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME)/.codex/prompts $(HOME)/.config/opencode/command $(HOME)/.config/amp/commands $(HOME)/.kilocode/workflows $(HOME)/Documents/Cline/Rules
 
+SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
+SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
+SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills
+
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
@@ -15,13 +19,15 @@ MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 # ====================================================================================
 
 .PHONY: sync
-sync: ## Sync project commands and MCP configuration to assistant-specific directories.
+sync: ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
 	@make commands-sync
+	@make skills-sync
 	@make mcp-sync
 
 .PHONY: prepare
 prepare: ## Prepare the project for development.
 	@make commands-copy
+	@make skills-copy
 
 # ====================================================================================
 # COMMANDS
@@ -43,6 +49,30 @@ commands-sync: ## Sync project commands to assistant-specific directories.
 commands-copy: ## Copy commands to .ruler directory.
 	@cp $(COMMANDS_SRC_DIR)/*.md .ruler/
 
+# ====================================================================================
+# SKILLS
+# ====================================================================================
+
+.PHONY: skills-copy
+skills-copy: ## Copy skills from root to .ruler/skills directory.
+	@rsync -a --delete $(SKILLS_SRC_DIR)/ $(SKILLS_RULER_DIR)/
+	@echo "Synced $(SKILLS_SRC_DIR) → $(SKILLS_RULER_DIR)"
+
+.PHONY: skills-sync
+skills-sync: ## Sync Ruler skills to agent-specific directories.
+	@for target in $(SKILLS_TARGET_DIRS); do \
+		if mkdir -p $$target && rsync -a --delete $(SKILLS_RULER_DIR)/ $$target/; then \
+			echo "Synced $(SKILLS_RULER_DIR) → $$target"; \
+		else \
+			echo "Failed syncing $(SKILLS_RULER_DIR) → $$target"; \
+			exit 1; \
+		fi; \
+	done
+
+# ====================================================================================
+# MCP
+# ====================================================================================
+
 .PHONY: mcp-sync
 mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 	@if [ ! -f $(MCP_SRC) ]; then \
@@ -62,7 +92,7 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 # HELP
 # ====================================================================================
 
-ifeq ($(RULES_SKIP_HELP),)
+ifeq ($(DOTAGENTS_SKIP_HELP),)
 .PHONY: help
 help: ## Show this help message.
 	@echo "Usage: make <target>"

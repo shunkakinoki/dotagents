@@ -1,3 +1,8 @@
+---
+allowed-tools: Read, Bash, TodoWrite
+description: Stage, commit with conventional format, and push with upstream tracking
+---
+
 # /commit-push — Commit and push workflow
 
 Stage, commit with conventional format, and push with upstream tracking.

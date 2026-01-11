@@ -90,6 +90,10 @@ enabled = true
 # MCP merge strategy: 'merge' or 'overwrite' (default: 'merge')
 merge_strategy = "merge"
 
+# --- Skills Configuration ---
+[skills]
+enabled = true
+
 # --- Global .gitignore Configuration ---
 [gitignore]
 # Enable/disable automatic .gitignore updates (default: true)

@@ -1,3 +1,8 @@
+---
+allowed-tools: Read, Bash, TodoWrite
+description: Create GitHub PRs with proper formatting, labeling, and quality checks
+---
+
 # /pr-create — Create pull requests
 
 Create GitHub PRs with proper formatting, labeling, and quality checks.
@@ -21,7 +26,7 @@ gh pr create \
 ## Testing
 - All checks pass
 
-🤖 Generated with [AI_TOOL] by [AI_MODEL]" \
+Generated with [AI_TOOL] by [AI_MODEL]" \
   --base main
 ```
 
@@ -45,7 +50,7 @@ gh pr merge $(gh pr view --json number -q '.number') --squash --auto
 ## Testing
 - Verification steps
 
-🤖 Generated with [AI_TOOL] by [AI_MODEL]
+Generated with [AI_TOOL] by [AI_MODEL]
 ```
 
 ## Labeling
