@@ -1,0 +1,61 @@
+[mcp]
+sse_servers = [ ]
+shttp_servers = [ ]
+
+  [[mcp.stdio_servers]]
+  name = "XcodeBuildMCP"
+  command = "npx"
+  args = [ "-y", "xcodebuildmcp@latest" ]
+
+  [[mcp.stdio_servers]]
+  name = "Serena"
+  command = "uvx"
+  args = [
+  "--from",
+  "git+https://github.com/oraios/serena",
+  "serena",
+  "start-mcp-server"
+]
+
+  [[mcp.stdio_servers]]
+  name = "Linear"
+  command = "npx"
+  args = [ "-y", "mcp-remote", "https://mcp.linear.app/sse" ]
+
+  [[mcp.stdio_servers]]
+  name = "GitHub"
+  command = "npx"
+  args = [ "-y", "mcp-remote", "https://api.githubcopilot.com/mcp/" ]
+
+  [[mcp.stdio_servers]]
+  name = "Figma"
+  command = "npx"
+  args = [ "-y", "mcp-remote", "http://127.0.0.1:3845/sse" ]
+
+  [[mcp.stdio_servers]]
+  name = "Beeper"
+  command = "npx"
+  args = [ "-y", "mcp-remote", "http://localhost:23373/v0/mcp" ]
+
+  [[mcp.stdio_servers]]
+  name = "Codex"
+  command = "codex"
+  args = [ "mcp" ]
+
+  [[mcp.stdio_servers]]
+  name = "ChromeDevtools"
+  command = "npx"
+  args = [ "chrome-devtools-mcp@latest" ]
+
+  [[mcp.stdio_servers]]
+  name = "Context7"
+  command = "npx"
+  args = [ "-y", "@upstash/context7-mcp@latest" ]
+
+  [[mcp.stdio_servers]]
+  name = "skillz"
+  command = "uvx"
+  args = [
+  "skillz@latest",
+  "/Users/shunkakinoki/ghq/github.com/shunkakinoki/dotagents/.skillz"
+]
