@@ -47,7 +47,7 @@ commands-sync: ## Sync project commands to assistant-specific directories.
 
 .PHONY: commands-copy
 commands-copy: ## Copy commands to .ruler directory.
-	@cp $(COMMANDS_SRC_DIR)/*.md .ruler/
+	@cp $(COMMANDS_SRC_DIR)/*.md $(dir $(lastword $(MAKEFILE_LIST))).ruler/
 
 # ====================================================================================
 # SKILLS
