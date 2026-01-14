@@ -2,7 +2,7 @@
 # See https://ai.intellectronica.net/ruler for documentation.
 
 # Default agents to use when --agents is not specified
-default_agents = ["copilot", "claude", "cursor", "codex", "aider", "amp", "windsurf", "cline", "gemini-cli", "kilocode", "firebase", "crush", "openhands", "junie", "augmentcode", "opencode", "goose", "jules"]
+default_agents = ["copilot", "claude", "cursor", "codex", "aider", "amp", "windsurf", "cline", "gemini-cli", "kilocode", "firebase", "crush", "openhands", "junie", "augmentcode", "opencode", "goose", "jules", "pi", "roo", "antigravity", "amazonqcli", "qwen", "zed", "trae", "warp", "kiro", "firebender", "agentsmd", "mistral"]
 
 # --- Agent Specific Configurations ---
 # You can enable/disable agents and override their default output paths here.
@@ -22,7 +22,7 @@ output_path = "AGENTS.md"
 output_path_config = ".codex/config.json"
 
 [agents.codex.mcp]
-enabled = false
+enabled = true
 
 [agents.cursor]
 enabled = true
@@ -33,7 +33,7 @@ enabled = true
 output_path = ".windsurf/rules/ruler_windsurf_instructions.md"
 
 [agents.windsurf.mcp]
-enabled = false
+enabled = true
 
 [agents.cline]
 enabled = true
@@ -84,6 +84,54 @@ output_path = ".goosehints"
 
 [agents.jules]
 enabled = true
+
+[agents.pi]
+enabled = true
+output_path = "AGENTS.md"
+
+[agents.roo]
+enabled = true
+output_path = "AGENTS.md"
+
+[agents.antigravity]
+enabled = true
+output_path = ".agent/rules/ruler.md"
+
+[agents.amazonqcli]
+enabled = true
+output_path = ".amazonq/rules/ruler_q_rules.md"
+
+[agents.qwen]
+enabled = true
+output_path = "AGENTS.md"
+
+[agents.zed]
+enabled = true
+output_path = "AGENTS.md"
+
+[agents.trae]
+enabled = true
+output_path = ".trae/rules/project_rules.md"
+
+[agents.warp]
+enabled = true
+output_path = "WARP.md"
+
+[agents.kiro]
+enabled = true
+output_path = ".kiro/steering/ruler_kiro_instructions.md"
+
+[agents.firebender]
+enabled = true
+output_path_config = "firebender.json"
+
+[agents.agentsmd]
+enabled = true
+output_path = "AGENTS.md"
+
+[agents.mistral]
+enabled = true
+output_path = "AGENTS.md"
 
 # --- Global Configuration ---
 [global]
