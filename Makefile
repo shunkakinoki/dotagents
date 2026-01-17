@@ -14,6 +14,10 @@ SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.cod
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
+SKILL_REPOS := \
+	better-auth/skills \
+	vercel-labs/agent-skills
+
 # ====================================================================================
 # ROOT TARGETS
 # ====================================================================================
@@ -21,6 +25,7 @@ MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 .PHONY: sync
 sync: prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
 	@make commands-sync
+	@make skills-install
 	@make skills-sync
 	@make mcp-sync
 
@@ -52,6 +57,29 @@ commands-copy: ## Copy commands to .ruler directory.
 # ====================================================================================
 # SKILLS
 # ====================================================================================
+
+.PHONY: skills-install
+skills-install: ## Install skills from external repositories using bunx.
+	@for repo in $(SKILL_REPOS); do \
+		echo "Installing skills from $$repo..."; \
+		if bunx skills add $$repo --global --yes; then \
+			echo "✓ Installed $$repo"; \
+		else \
+			echo "✗ Failed to install $$repo"; \
+			exit 1; \
+		fi; \
+	done
+	@echo "All external skills installed successfully."
+
+.PHONY: skills-install-repo
+skills-install-repo: ## Install a single skill repo. Usage: make skills-install-repo REPO=owner/repo
+	@if [ -z "$(REPO)" ]; then \
+		echo "Error: REPO is required. Usage: make skills-install-repo REPO=owner/repo"; \
+		exit 1; \
+	fi
+	@echo "Installing skills from $(REPO)..."
+	@bunx skills add $(REPO) --global --yes
+	@echo "✓ Installed $(REPO)"
 
 .PHONY: skills-copy
 skills-copy: ## Copy skills from root to .ruler/skills directory.
