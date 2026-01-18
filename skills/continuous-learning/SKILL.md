@@ -8,14 +8,29 @@ description: Extract and persist reusable knowledge from debugging sessions into
 
 Persist non-obvious solutions discovered during tasks as new skills in the skills repository.
 
+## Before Creating
+
+Check if skill already exists:
+
+```bash
+ls ~/dotfiles/dotagents/skills/
+```
+
+If a similar skill exists, consider updating it instead of creating a new one.
+
 ## Quick Workflow
 
 ```bash
-# 1. Create skill directory in dotagents repo
-mkdir -p ~/dotfiles/dotagents/skills/<skill-name>
+# 1. Check skill doesn't already exist
+ls ~/dotfiles/dotagents/skills/ | grep -i <skill-name> && echo "Skill exists!" && exit 1
 
-# 2. Write SKILL.md
-cat > ~/dotfiles/dotagents/skills/<skill-name>/SKILL.md << 'SKILL'
+# 2. Create skill directory
+cd ~/dotfiles/dotagents
+git checkout main && git pull origin main
+mkdir -p skills/<skill-name>
+
+# 3. Write SKILL.md
+cat > skills/<skill-name>/SKILL.md << 'SKILL'
 ---
 name: <skill-name>
 allowed-tools: Read, Write, Bash, TodoWrite
@@ -44,13 +59,13 @@ description: <one-line description with specific trigger words>
 - Key point 2
 SKILL
 
-# 3. Commit and create PR
-cd ~/dotfiles/dotagents
+# 4. Commit, create PR, and return to main
 git checkout -b feat/<skill-name>-skill
 git add skills/<skill-name>
 git commit -m "feat: add <skill-name> skill"
 git push -u origin feat/<skill-name>-skill
 gh pr create --title "feat: add <skill-name> skill" --body "Add skill for..."
+git checkout main
 ```
 
 ## When to Extract
@@ -66,12 +81,13 @@ gh pr create --title "feat: add <skill-name> skill" --body "Add skill for..."
 
 Ask before extracting:
 
-1. **Discovered?** — Not just read from documentation
-2. **Reusable?** — Helps in future similar situations
-3. **Non-trivial?** — Would take time to rediscover
-4. **Verifiable?** — Has clear verification steps
+1. **Exists?** — Check if skill already exists in the repository
+2. **Discovered?** — Not just read from documentation
+3. **Reusable?** — Helps in future similar situations
+4. **Non-trivial?** — Would take time to rediscover
+5. **Verifiable?** — Has clear verification steps
 
-Extract only if **all four** are yes.
+Extract only if skill doesn't exist and **all four criteria** are yes.
 
 ## Skill Format Requirements
 
@@ -94,13 +110,15 @@ description: One-line description with specific keywords
 
 ## Anti-Patterns
 
+- **Duplicate skills** — Check existing skills first
 - **Documentation lookups** — Just reading official docs
 - **Trivial fixes** — Typos, missing imports
 - **Unverified** — Hasn't been confirmed to work
 
 ## Guidelines
 
+- Check existing skills before creating new ones
 - One skill per directory with SKILL.md
 - Match format of existing skills (pr-create, changesets, etc.)
-- Create PR to add skill to repository
+- Create PR and checkout back to main
 - Run `/continuous-learning` after solving complex problems
