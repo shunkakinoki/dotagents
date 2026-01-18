@@ -8,6 +8,16 @@ description: Extract and persist reusable knowledge from debugging sessions into
 
 Persist non-obvious solutions discovered during tasks as new skills in the skills repository.
 
+## When to Use
+
+| Trigger | Example |
+|---------|---------|
+| Solved obscure bug after hours of debugging | Finally fixed that race condition no Stack Overflow mentioned |
+| Found undocumented API behavior | Discovered retry logic needed for flaky endpoint |
+| Created reusable workflow | Built a deployment pipeline others could use |
+| Discovered tool gotcha | Learned bun handles imports differently than node |
+| Session ending with valuable insight | About to close terminal with hard-won knowledge |
+
 ## Before Creating
 
 Check if skill already exists:
@@ -41,17 +51,17 @@ description: <one-line description with specific trigger words>
 
 <Brief description of what this skill does>
 
-## Quick Workflow
-
-```bash
-# Key commands or steps
-```
-
 ## When to Use
 
 | Trigger | Example |
 |---------|---------|
 | <condition> | <example> |
+
+## Quick Workflow
+
+```bash
+# Key commands or steps
+```
 
 ## Guidelines
 
@@ -67,15 +77,6 @@ git push -u origin feat/<skill-name>-skill
 gh pr create --title "feat: add <skill-name> skill" --body "Add skill for..."
 git checkout main
 ```
-
-## When to Extract
-
-| Trigger | Example |
-|---------|---------|
-| Non-obvious solution | Required investigation beyond docs |
-| Misleading error | Error didn't point to root cause |
-| Reusable pattern | Workflow applicable across projects |
-| Tool integration quirk | Undocumented behavior |
 
 ## Extraction Criteria
 
