@@ -1,38 +1,56 @@
 ---
 name: continuous-learning
 allowed-tools: Read, Write, Glob, Grep, Bash, TodoWrite
-description: Extract and persist reusable knowledge from debugging sessions into skill files
+description: Extract and persist reusable knowledge from debugging sessions into the skills repository
 ---
 
 # /continuous-learning — Extract debugging knowledge
 
-Persist non-obvious solutions discovered during tasks as reusable skill files.
+Persist non-obvious solutions discovered during tasks as new skills in the skills repository.
 
 ## Quick Workflow
 
 ```bash
-# 1. Create skill directory
-mkdir -p .claude/skills
+# 1. Create skill directory in dotagents repo
+mkdir -p ~/dotfiles/dotagents/skills/<skill-name>
 
-# 2. Write skill file
-cat > .claude/skills/my-discovery.md << 'SKILL'
+# 2. Write SKILL.md
+cat > ~/dotfiles/dotagents/skills/<skill-name>/SKILL.md << 'SKILL'
 ---
-name: my-discovery
-description: Fix for XYZ error when ABC happens
-triggers:
-  - "exact error message here"
-verified: 2025-01-18
+name: <skill-name>
+allowed-tools: Read, Write, Bash, TodoWrite
+description: <one-line description with specific trigger words>
 ---
 
-# Problem
-<What went wrong>
+# /<skill-name> — <Short title>
 
-# Solution
-<Step-by-step fix>
+<Brief description of what this skill does>
 
-# Verification
-<How to confirm it worked>
+## Quick Workflow
+
+```bash
+# Key commands or steps
+```
+
+## When to Use
+
+| Trigger | Example |
+|---------|---------|
+| <condition> | <example> |
+
+## Guidelines
+
+- Key point 1
+- Key point 2
 SKILL
+
+# 3. Commit and create PR
+cd ~/dotfiles/dotagents
+git checkout -b feat/<skill-name>-skill
+git add skills/<skill-name>
+git commit -m "feat: add <skill-name> skill"
+git push -u origin feat/<skill-name>-skill
+gh pr create --title "feat: add <skill-name> skill" --body "Add skill for..."
 ```
 
 ## When to Extract
@@ -41,7 +59,7 @@ SKILL
 |---------|---------|
 | Non-obvious solution | Required investigation beyond docs |
 | Misleading error | Error didn't point to root cause |
-| Project-specific pattern | Workaround unique to codebase |
+| Reusable pattern | Workflow applicable across projects |
 | Tool integration quirk | Undocumented behavior |
 
 ## Extraction Criteria
@@ -55,12 +73,17 @@ Ask before extracting:
 
 Extract only if **all four** are yes.
 
-## Storage Locations
+## Skill Format Requirements
 
-| Scope | Path |
-|-------|------|
-| Project | `.claude/skills/<name>.md` |
-| User | `~/.claude/skills/<name>.md` |
+Match existing skills in `~/dotfiles/dotagents/skills/`:
+
+```yaml
+---
+name: kebab-case-name
+allowed-tools: Read, Write, Bash, TodoWrite  # tools the skill needs
+description: One-line description with specific keywords
+---
+```
 
 ## Description Best Practices
 
@@ -77,7 +100,7 @@ Extract only if **all four** are yes.
 
 ## Guidelines
 
-- One skill per file, focused on single problem
-- Include exact error messages in triggers
-- Date your verification
+- One skill per directory with SKILL.md
+- Match format of existing skills (pr-create, changesets, etc.)
+- Create PR to add skill to repository
 - Run `/continuous-learning` after solving complex problems
