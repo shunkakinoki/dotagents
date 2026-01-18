@@ -41,9 +41,9 @@ prepare: ## Prepare the project for development.
 
 
 .PHONY: commands-sync
-commands-sync: ## Sync project commands to assistant-specific directories.
+commands-sync: ## Sync project commands to assistant-specific directories (overwrites, preserves other files).
 	@for target in $(COMMANDS_TARGET_DIRS); do \
-		if mkdir -p $$target && rsync -a --delete $(COMMANDS_SRC_DIR)/ $$target/; then \
+		if mkdir -p $$target && rsync -a $(COMMANDS_SRC_DIR)/ $$target/; then \
 			echo "Synced $(COMMANDS_SRC_DIR) → $$target"; \
 		else \
 			echo "Failed syncing $(COMMANDS_SRC_DIR) → $$target"; \
@@ -83,14 +83,14 @@ skills-install-repo: ## Install a single skill repo. Usage: make skills-install-
 	@echo "✓ Installed $(REPO)"
 
 .PHONY: skills-copy
-skills-copy: ## Copy skills from root to .ruler/skills directory.
-	@rsync -a --delete $(SKILLS_SRC_DIR)/ $(SKILLS_RULER_DIR)/
+skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).
+	@rsync -a $(SKILLS_SRC_DIR)/ $(SKILLS_RULER_DIR)/
 	@echo "Synced $(SKILLS_SRC_DIR) → $(SKILLS_RULER_DIR)"
 
 .PHONY: skills-sync
-skills-sync: ## Sync Ruler skills to agent-specific directories.
+skills-sync: ## Sync Ruler skills to agent-specific directories (preserves externally installed skills).
 	@for target in $(SKILLS_TARGET_DIRS); do \
-		if mkdir -p $$target && rsync -a --delete $(SKILLS_RULER_DIR)/ $$target/; then \
+		if mkdir -p $$target && rsync -a $(SKILLS_RULER_DIR)/ $$target/; then \
 			echo "Synced $(SKILLS_RULER_DIR) → $$target"; \
 		else \
 			echo "Failed syncing $(SKILLS_RULER_DIR) → $$target"; \

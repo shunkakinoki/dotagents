@@ -2,10 +2,7 @@
   "mcpServers": {
     "XcodeBuildMCP": {
       "command": "npx",
-      "args": [
-        "-y",
-        "xcodebuildmcp@latest"
-      ],
+      "args": ["-y", "xcodebuildmcp@latest"],
       "type": "stdio"
     },
     "Serena": {
@@ -20,60 +17,37 @@
     },
     "Linear": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.linear.app/sse"
-      ],
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
       "type": "stdio"
     },
     "GitHub": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://api.githubcopilot.com/mcp/"
-      ],
+      "args": ["-y", "mcp-remote", "https://api.githubcopilot.com/mcp/"],
       "type": "stdio"
     },
     "Figma": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "http://127.0.0.1:3845/sse"
-      ],
+      "args": ["-y", "mcp-remote", "http://127.0.0.1:3845/sse"],
       "type": "stdio"
     },
     "Beeper": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "http://localhost:23373/v0/mcp"
-      ],
+      "args": ["-y", "mcp-remote", "http://localhost:23373/v0/mcp"],
       "type": "stdio"
     },
     "Codex": {
       "command": "codex",
-      "args": [
-        "mcp"
-      ],
+      "args": ["mcp"],
       "type": "stdio"
     },
     "ChromeDevtools": {
       "command": "npx",
-      "args": [
-        "chrome-devtools-mcp@latest"
-      ],
+      "args": ["chrome-devtools-mcp@latest"],
       "type": "stdio"
     },
     "Context7": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp@latest"
-      ],
+      "args": ["-y", "@upstash/context7-mcp@latest"],
       "type": "stdio"
     },
     "skillz": {
