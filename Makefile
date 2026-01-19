@@ -15,6 +15,7 @@ MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
 SKILL_REPOS := \
+	anthropics/claude-plugins-official \
 	better-auth/skills \
 	trailofbits/skills \
 	vercel-labs/agent-skills
