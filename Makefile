@@ -19,11 +19,8 @@ MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
 DOTDIRS := .agent .agents .amazonq .augment .claude .codex .cursor .gemini .idx .junie .kilocode .kiro .opencode .openhands .pi .qwen .roo .skillz .trae .vibe .vscode .windsurf .zed
 
-SKILL_REPOS := \
-	anthropics/claude-plugins-official \
-	better-auth/skills \
-	trailofbits/skills \
-	vercel-labs/agent-skills
+SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
+SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
 
 # ====================================================================================
 # ROOT TARGETS
@@ -36,7 +33,7 @@ sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to a
 	@make skills-sync
 	@make mcp-sync
 	@make ruler-apply-global
-	@make ruler-dotdirs-link
+	@make ruler-dotdirs-sync
 
 .PHONY: ruler-prepare
 ruler-prepare: ## Prepare the project for development.
@@ -147,22 +144,19 @@ ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 		rsync -a "$$root/.ruler/" "$$ruler_home/"; \
 		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
 
-.PHONY: ruler-dotdirs-link
-ruler-dotdirs-link: ## Symlink repo dot directories to $HOME equivalents (gitignored).
+.PHONY: ruler-dotdirs-sync
+ruler-dotdirs-sync: ## Sync repo dot directories to $HOME equivalents.
 	@bash -c 'set -e; \
 		root="$$(pwd)"; \
 		dirs="$(DOTDIRS)"; \
 		for d in $$dirs; do \
+			src="$$root/$$d"; \
 			target="$$HOME/$$d"; \
-			link="$$root/$$d"; \
-			if [ -e "$$link" ] && [ ! -L "$$link" ]; then \
-				echo "Skipping $$link (exists and is not a symlink)" >&2; \
-				continue; \
-			fi; \
-			if [ ! -e "$$target" ]; then \
+			if [ -d "$$src" ]; then \
 				mkdir -p "$$target"; \
+				rsync -a "$$src/" "$$target/"; \
+				echo "Synced $$src → $$target"; \
 			fi; \
-			ln -sfn "$$target" "$$link"; \
 		done'
 
 # ====================================================================================
