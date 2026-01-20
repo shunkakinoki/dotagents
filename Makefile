@@ -19,12 +19,8 @@ MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
 DOTDIRS := .agent .agents .amazonq .augment .claude .codex .cursor .gemini .idx .junie .kilocode .kiro .opencode .openhands .pi .qwen .roo .skillz .trae .vibe .vscode .windsurf .zed
 
-SKILL_REPOS := \
-	anthropics/claude-plugins-official \
-	better-auth/skills \
-	subsy/ralph-tui \
-	trailofbits/skills \
-	vercel-labs/agent-skills
+SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
+SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
 
 # ====================================================================================
 # ROOT TARGETS
