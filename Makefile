@@ -22,6 +22,7 @@ DOTDIRS := .agent .agents .amazonq .augment .claude .codex .cursor .gemini .idx 
 SKILL_REPOS := \
 	anthropics/claude-plugins-official \
 	better-auth/skills \
+	subsy/ralph-tui \
 	trailofbits/skills \
 	vercel-labs/agent-skills
 
