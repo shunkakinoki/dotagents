@@ -7,12 +7,17 @@
 COMMANDS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))commands
 COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME)/.codex/prompts $(HOME)/.config/opencode/command $(HOME)/.config/amp/commands $(HOME)/.kilocode/workflows $(HOME)/Documents/Cline/Rules
 
+RULES_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))rules
+RULES_TARGET_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler
+
 SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
 SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
 SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills
 
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
+
+DOTDIRS := .agent .agents .amazonq .augment .claude .codex .cursor .gemini .idx .junie .kilocode .kiro .opencode .openhands .pi .qwen .roo .skillz .trae .vibe .vscode .windsurf .zed
 
 SKILL_REPOS := \
 	better-auth/skills \
@@ -24,16 +29,19 @@ SKILL_REPOS := \
 # ====================================================================================
 
 .PHONY: sync
-sync: prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
+sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
 	@make commands-sync
 	@make skills-install
 	@make skills-sync
 	@make mcp-sync
+	@make ruler-apply-global
+	@make ruler-dotdirs-link
 
-.PHONY: prepare
-prepare: ## Prepare the project for development.
-	@make commands-copy
-	@make skills-copy
+.PHONY: ruler-prepare
+ruler-prepare: ## Prepare the project for development.
+	@make ruler-commands-copy
+	@make ruler-rules-copy
+	@make ruler-skills-copy
 
 # ====================================================================================
 # COMMANDS
@@ -51,9 +59,18 @@ commands-sync: ## Sync project commands to assistant-specific directories (overw
 		fi; \
 	done
 
-.PHONY: commands-copy
-commands-copy: ## Copy commands to .ruler directory.
+.PHONY: ruler-commands-copy
+ruler-commands-copy: ## Copy commands to .ruler directory.
 	@cp $(COMMANDS_SRC_DIR)/*.md $(dir $(lastword $(MAKEFILE_LIST))).ruler/
+
+# ====================================================================================
+# RULES
+# ====================================================================================
+
+.PHONY: ruler-rules-copy
+ruler-rules-copy: ## Copy rules to .ruler directory.
+	@rsync -a $(RULES_SRC_DIR)/ $(RULES_TARGET_DIR)/
+	@echo "Synced $(RULES_SRC_DIR) → $(RULES_TARGET_DIR)"
 
 # ====================================================================================
 # SKILLS
@@ -82,18 +99,18 @@ skills-install-repo: ## Install a single skill repo. Usage: make skills-install-
 	@bunx skills add $(REPO) --global --yes
 	@echo "✓ Installed $(REPO)"
 
-.PHONY: skills-copy
-skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).
+.PHONY: ruler-skills-copy
+ruler-skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).
 	@rsync -a $(SKILLS_SRC_DIR)/ $(SKILLS_RULER_DIR)/
 	@echo "Synced $(SKILLS_SRC_DIR) → $(SKILLS_RULER_DIR)"
 
 .PHONY: skills-sync
-skills-sync: ## Sync Ruler skills to agent-specific directories (preserves externally installed skills).
+skills-sync: ## Sync root skills to agent-specific directories (preserves externally installed skills).
 	@for target in $(SKILLS_TARGET_DIRS); do \
-		if mkdir -p $$target && rsync -a $(SKILLS_RULER_DIR)/ $$target/; then \
-			echo "Synced $(SKILLS_RULER_DIR) → $$target"; \
+		if mkdir -p $$target && rsync -a $(SKILLS_SRC_DIR)/ $$target/; then \
+			echo "Synced $(SKILLS_SRC_DIR) → $$target"; \
 		else \
-			echo "Failed syncing $(SKILLS_RULER_DIR) → $$target"; \
+			echo "Failed syncing $(SKILLS_SRC_DIR) → $$target"; \
 			exit 1; \
 		fi; \
 	done
@@ -116,6 +133,36 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 			exit 1; \
 		fi; \
 	done
+
+# ====================================================================================
+# RULER GLOBAL
+# ====================================================================================
+
+.PHONY: ruler-apply-global
+ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
+	@bash -c 'set -e; \
+		root="$$(pwd)"; \
+		ruler_home="$$HOME/.ruler"; \
+		rsync -a "$$root/.ruler/" "$$ruler_home/"; \
+		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
+
+.PHONY: ruler-dotdirs-link
+ruler-dotdirs-link: ## Symlink repo dot directories to $HOME equivalents (gitignored).
+	@bash -c 'set -e; \
+		root="$$(pwd)"; \
+		dirs="$(DOTDIRS)"; \
+		for d in $$dirs; do \
+			target="$$HOME/$$d"; \
+			link="$$root/$$d"; \
+			if [ -e "$$link" ] && [ ! -L "$$link" ]; then \
+				echo "Skipping $$link (exists and is not a symlink)" >&2; \
+				continue; \
+			fi; \
+			if [ ! -e "$$target" ]; then \
+				mkdir -p "$$target"; \
+			fi; \
+			ln -sfn "$$target" "$$link"; \
+		done'
 
 # ====================================================================================
 # HELP

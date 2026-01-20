@@ -14,7 +14,7 @@ output_path = ".github/copilot-instructions.md"
 
 [agents.claude]
 enabled = true
-output_path = "CLAUDE.md"
+output_path = ".claude/CLAUDE.md"
 
 [agents.codex]
 enabled = true

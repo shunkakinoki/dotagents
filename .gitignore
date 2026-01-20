@@ -384,3 +384,45 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local agent outputs
+.agent/
+.agents/
+.amazonq/
+.augment/
+.claude/
+.codex/
+.cursor/
+.gemini/
+.idx/
+.junie/
+.kilocode/
+.kiro/
+.opencode/
+.openhands/
+.pi/
+.qwen/
+.roo/
+.skillz/
+.trae/
+.vibe/
+.vscode/
+.windsurf/
+.zed/
+.aider.conf.yml
+.clinerules
+.crush.json
+.goosehints
+.github/copilot-instructions.md
+.mcp.json
+.ruler/*.md
+.ruler/skills/
+AGENTS.md
+CLAUDE.md
+CRUSH.md
+GEMINI.md
+WARP.md
+config.toml
+firebender.json
+ruler_aider_instructions.md
+opencode.json
