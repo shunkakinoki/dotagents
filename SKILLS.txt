@@ -2,4 +2,7 @@ anthropics/claude-plugins-official
 better-auth/skills
 subsy/ralph-tui
 trailofbits/skills
+vercel/ai
+vercel/turborepo
+vercel-labs/agent-browser
 vercel-labs/agent-skills
