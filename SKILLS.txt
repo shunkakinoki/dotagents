@@ -1,5 +1,6 @@
 anthropics/claude-plugins-official
 better-auth/skills
+remotion-dev/skills
 subsy/ralph-tui
 trailofbits/skills
 vercel/ai
