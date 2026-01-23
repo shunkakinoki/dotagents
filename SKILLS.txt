@@ -3,5 +3,7 @@ better-auth/skills
 remotion-dev/skills
 subsy/ralph-tui
 trailofbits/skills
+vercel/ai
+vercel/turborepo
 vercel-labs/agent-browser
 vercel-labs/agent-skills
