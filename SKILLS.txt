@@ -7,3 +7,4 @@ vercel/ai
 vercel/turborepo
 vercel-labs/agent-browser
 vercel-labs/agent-skills
+vercel-labs/next-skills
