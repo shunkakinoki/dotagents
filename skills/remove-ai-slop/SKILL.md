@@ -35,3 +35,7 @@ Before editing a file, read the full file to understand its existing style. Only
 ## Output
 
 Report at the end with only a 1-3 sentence summary of what you changed.
+
+## References
+
+- https://cursor.com/link/command?name=deslop
