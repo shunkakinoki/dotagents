@@ -6,6 +6,8 @@ description: Fix all merge conflicts non-interactively and make the repo buildab
 
 # /resolve-merge-conflicts — Automated merge conflict resolution
 
+<!-- Reference: https://cursor.com/link/command?name=fix-merge-conflict -->
+
 Fix all merge conflicts on the current Git branch non-interactively and make the repo buildable and tested.
 
 ## Prerequisites
