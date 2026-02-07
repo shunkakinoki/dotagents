@@ -29,14 +29,14 @@ Use `screen_record` with minimal duration (1ms) to capture a single frame:
 }
 ```
 
-Returns: `FILE:/tmp/clawdbot-screen-record-<uuid>.mp4`
+Returns: `FILE:/tmp/openclaw-screen-record-<uuid>.mp4`
 
 ### Step 2: Extract Frame
 
 Use ffmpeg on the gateway host to extract a PNG frame:
 
 ```bash
-ffmpeg -i /tmp/clawdbot-screen-record-<uuid>.mp4 \
+ffmpeg -i /tmp/openclaw-screen-record-<uuid>.mp4 \
   -frames:v 1 -update 1 -y /tmp/screenshot.png 2>/dev/null
 ```
 
@@ -58,10 +58,10 @@ Send the image file directly via the message tool:
 ```python
 # 1. Capture
 result = nodes(action="screen_record", node="mac-xxx", durationMs=1)
-# Returns: FILE:/tmp/clawdbot-screen-record-abc123.mp4
+# Returns: FILE:/tmp/openclaw-screen-record-abc123.mp4
 
 # 2. Extract frame
-exec("ffmpeg -i /tmp/clawdbot-screen-record-abc123.mp4 -frames:v 1 -update 1 -y /tmp/mac-ss.png 2>/dev/null")
+exec("ffmpeg -i /tmp/openclaw-screen-record-abc123.mp4 -frames:v 1 -update 1 -y /tmp/mac-ss.png 2>/dev/null")
 
 # 3. Send to user
 message(action="send", channel="telegram", target="123456", media="/tmp/mac-ss.png")
