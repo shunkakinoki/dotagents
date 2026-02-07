@@ -17,7 +17,9 @@ SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.cod
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
 
-DOTDIRS := .agent .agents .amazonq .augment .claude .codex .cursor .gemini .idx .junie .kilocode .kiro .opencode .openhands .pi .qwen .roo .skillz .trae .vibe .vscode .windsurf .zed
+# NOTE: Do not sync `.codex/` wholesale. It's runtime state (auth, history, sessions) and
+# can clobber Nix-managed `~/.codex/config.toml` during `make switch` (dotfiles repo).
+DOTDIRS := .agent .agents .amazonq .augment .claude .cursor .gemini .idx .junie .kilocode .kiro .opencode .openhands .pi .qwen .roo .skillz .trae .vibe .vscode .windsurf .zed
 
 SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
