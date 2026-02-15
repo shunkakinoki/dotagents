@@ -34,7 +34,6 @@ sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to a
 	@make skills-install
 	@make skills-sync
 	@make mcp-sync
-	@make ruler-apply-global
 	@make ruler-dotdirs-sync
 
 .PHONY: ruler-prepare
