@@ -91,8 +91,11 @@ enabled = true
 merge_strategy = "merge"
 
 # --- Skills Configuration ---
+# Skills are synced natively to each agent's skills directory (e.g. ~/.claude/skills/)
+# via `make skills-sync`. Disabling Ruler expansion avoids 26k+ of redundant verbose
+# content in generated instruction files (CLAUDE.md, etc.).
 [skills]
-enabled = true
+enabled = false
 
 # --- Global .gitignore Configuration ---
 [gitignore]
