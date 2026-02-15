@@ -426,3 +426,10 @@ config.toml
 firebender.json
 ruler_aider_instructions.md
 opencode.json
+
+
+# START Ruler Generated Files
+/.claude/CLAUDE.md
+/.claude/CLAUDE.md.bak
+/.claude/skills
+# END Ruler Generated Files
