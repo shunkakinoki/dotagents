@@ -2,6 +2,7 @@ anthropics/claude-plugins-official
 better-auth/skills
 remotion-dev/skills
 subsy/ralph-tui
+tobi/qmd
 trailofbits/skills
 vercel/ai
 vercel/turborepo
