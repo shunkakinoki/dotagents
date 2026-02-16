@@ -439,8 +439,6 @@ opencode.json
 /.clinerules.bak
 /.codex/config.json
 /.codex/config.json.bak
-/.codex/config.toml
-/.codex/config.toml.bak
 /.crush.json
 /.crush.json.bak
 /.cursor/mcp.json
