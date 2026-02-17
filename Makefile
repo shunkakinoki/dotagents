@@ -132,6 +132,15 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 			exit 1; \
 		fi; \
 	done
+	@keys=$$(jq -c '.mcpServers | keys' $(MCP_SRC)); \
+	for target in $(MCP_TARGET_DIRS); do \
+		settings="$$target/settings.local.json"; \
+		if [ -f "$$settings" ]; then \
+			jq --argjson keys "$$keys" '.enabledMcpjsonServers = $$keys' "$$settings" > "$$settings.tmp" && \
+			mv "$$settings.tmp" "$$settings"; \
+			echo "Updated enabledMcpjsonServers in $$settings"; \
+		fi; \
+	done
 
 # ====================================================================================
 # RULER GLOBAL
