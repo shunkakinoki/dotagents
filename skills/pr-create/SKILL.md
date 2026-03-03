@@ -31,14 +31,6 @@ Generated with [AI_TOOL] by [AI_MODEL]" \
   --base main
 ```
 
-## Variant: `/pr-create auto`
-
-Enable auto-merge after creation:
-
-```bash
-gh pr merge $(gh pr view --json number -q '.number') --squash --auto
-```
-
 ## PR Description Template
 
 ```markdown
