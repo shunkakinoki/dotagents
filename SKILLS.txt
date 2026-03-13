@@ -1,6 +1,7 @@
 antfu/skills
 anthropics/claude-plugins-official
 better-auth/skills
+cloudflare/skills
 coreyhaines31/marketingskills
 garrytan/gstack
 github/awesome-copilot
