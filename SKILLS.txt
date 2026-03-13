@@ -2,6 +2,7 @@ anthropics/claude-plugins-official
 better-auth/skills
 coreyhaines31/marketingskills
 garrytan/gstack
+github/awesome-copilot
 inference-sh/skills
 obra/superpowers
 nextlevelbuilder/ui-ux-pro-max-skill
