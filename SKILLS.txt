@@ -4,6 +4,7 @@ better-auth/skills
 coreyhaines31/marketingskills
 garrytan/gstack
 github/awesome-copilot
+googleworkspace/cli
 inference-sh/skills
 obra/superpowers
 nextlevelbuilder/ui-ux-pro-max-skill
