@@ -1,3 +1,4 @@
+antfu/skills
 anthropics/claude-plugins-official
 better-auth/skills
 coreyhaines31/marketingskills
