@@ -1,5 +1,6 @@
 antfu/skills
 anthropics/claude-plugins-official
+anthropics/knowledge-work-plugins
 better-auth/skills
 cloudflare/skills
 coreyhaines31/marketingskills
