@@ -2,6 +2,7 @@ anthropics/claude-plugins-official
 better-auth/skills
 coreyhaines31/marketingskills
 garrytan/gstack
+obra/superpowers
 nextlevelbuilder/ui-ux-pro-max-skill
 remotion-dev/skills
 schpet/linear-cli
