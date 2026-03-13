@@ -3,6 +3,7 @@ better-auth/skills
 coreyhaines31/marketingskills
 garrytan/gstack
 remotion-dev/skills
+schpet/linear-cli
 subsy/ralph-tui
 tobi/qmd
 trailofbits/skills
