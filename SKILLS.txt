@@ -14,6 +14,7 @@ subsy/ralph-tui
 tobi/qmd
 trailofbits/skills
 vercel/ai
+vercel/ai-elements
 vercel/turborepo
 vercel-labs/agent-browser
 vercel-labs/agent-skills
