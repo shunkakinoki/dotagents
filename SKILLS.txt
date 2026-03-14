@@ -9,6 +9,7 @@ github/awesome-copilot
 googleworkspace/cli
 inference-sh/skills
 obra/superpowers
+PaulRBerg/agent-skills
 nextlevelbuilder/ui-ux-pro-max-skill
 remotion-dev/skills
 schpet/linear-cli
