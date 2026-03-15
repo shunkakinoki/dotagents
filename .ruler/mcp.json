@@ -24,7 +24,7 @@
     },
     "ChromeDevtools": {
       "command": "npx",
-      "args": ["chrome-devtools-mcp@latest"]
+      "args": ["chrome-devtools-mcp@latest", "--autoConnect", "--channel=beta"]
     },
     "Context7": {
       "command": "npx",
