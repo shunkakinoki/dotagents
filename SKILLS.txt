@@ -5,6 +5,7 @@ better-auth/skills
 cloudflare/skills
 coreyhaines31/marketingskills
 garrytan/gstack
+getsentry/skills
 github/awesome-copilot
 googleworkspace/cli
 inference-sh/skills
