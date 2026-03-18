@@ -13,6 +13,7 @@ obra/superpowers
 PaulRBerg/agent-skills
 mattpocock/skills
 max-sixty/worktrunk
+Merit-Systems/agentcash-skills
 nextlevelbuilder/ui-ux-pro-max-skill
 remotion-dev/skills
 schpet/linear-cli
