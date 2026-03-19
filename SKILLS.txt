@@ -23,6 +23,7 @@ tobi/qmd
 trailofbits/skills
 vercel/ai
 vercel/ai-elements
+vercel/chat
 vercel/turborepo
 vercel-labs/agent-browser
 vercel-labs/agent-skills
