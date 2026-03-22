@@ -16,6 +16,7 @@ SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.cod
 
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
+MCP_SETTINGS_TARGETS := $(addsuffix /settings.local.json,$(MCP_TARGET_DIRS)) $(dir $(lastword $(MAKEFILE_LIST)))../.claude/settings.local.json
 
 # NOTE: Do not sync `.codex/` wholesale. It's runtime state (auth, history, sessions) and
 # can clobber Nix-managed `~/.codex/config.toml` during `make switch` (dotfiles repo).
@@ -133,8 +134,7 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 		fi; \
 	done
 	@keys=$$(jq -c '.mcpServers | keys' $(MCP_SRC)); \
-	for target in $(MCP_TARGET_DIRS); do \
-		settings="$$target/settings.local.json"; \
+	for settings in $(MCP_SETTINGS_TARGETS); do \
 		if [ -f "$$settings" ]; then \
 			jq --argjson keys "$$keys" '.enabledMcpjsonServers = $$keys' "$$settings" > "$$settings.tmp" && \
 			mv "$$settings.tmp" "$$settings"; \
