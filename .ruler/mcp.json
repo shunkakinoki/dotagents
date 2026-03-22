@@ -1,21 +1,16 @@
 {
   "mcpServers": {
     "XcodeBuildMCP": {
-      "command": "npx",
-      "args": ["-y", "xcodebuildmcp@latest"]
+      "command": "xcodebuildmcp",
+      "args": ["mcp"]
     },
     "Serena": {
-      "command": "uvx",
-      "args": [
-        "--from",
-        "git+https://github.com/oraios/serena",
-        "serena",
-        "start-mcp-server"
-      ]
+      "command": "serena",
+      "args": ["start-mcp-server"]
     },
     "GitHub": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://api.githubcopilot.com/mcp/"]
+      "command": "mcp-remote",
+      "args": ["https://api.githubcopilot.com/mcp/"]
     },
     "Codex": {
       "type": "stdio",
@@ -23,12 +18,12 @@
       "args": ["mcp"]
     },
     "ChromeDevtools": {
-      "command": "npx",
-      "args": ["chrome-devtools-mcp@latest", "--autoConnect", "--channel=beta"]
+      "command": "chrome-devtools-mcp",
+      "args": ["--autoConnect", "--channel=beta"]
     },
     "Context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"]
+      "command": "context7-mcp",
+      "args": []
     }
   }
 }
