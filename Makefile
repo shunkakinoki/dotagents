@@ -21,6 +21,7 @@ MCP_SETTINGS_TARGETS := $(addsuffix /settings.local.json,$(MCP_TARGET_DIRS)) $(d
 # NOTE: Do not sync `.codex/` wholesale. It's runtime state (auth, history, sessions) and
 # can clobber Nix-managed `~/.codex/config.toml` during `make switch` (dotfiles repo).
 DOTDIRS := .agent .agents .amazonq .augment .claude .cursor .gemini .idx .junie .kilocode .kiro .opencode .openhands .pi .qwen .roo .skillz .trae .vibe .vscode .windsurf .zed
+DOTDIRS_SRC_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
@@ -157,7 +158,7 @@ ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 .PHONY: ruler-dotdirs-sync
 ruler-dotdirs-sync: ## Sync repo dot directories to $HOME equivalents.
 	@bash -c 'set -e; \
-		root="$$(pwd)"; \
+		root="$(DOTDIRS_SRC_DIR)"; \
 		dirs="$(DOTDIRS)"; \
 		for d in $$dirs; do \
 			src="$$root/$$d"; \
