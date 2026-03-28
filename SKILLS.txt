@@ -3,6 +3,7 @@ anthropics/claude-plugins-official
 anthropics/knowledge-work-plugins
 austintgriffith/ethskills
 better-auth/skills
+blader/humanizer
 cloudflare/skills
 coreyhaines31/marketingskills
 garrytan/gstack
