@@ -1,33 +1,101 @@
-antfu/skills
-anthropics/claude-plugins-official
-anthropics/knowledge-work-plugins
+# Format: repo [skill1,skill2,...] (omit skills list to install all from repo)
+# Lines starting with # are comments
+
+# antfu/skills (17 total) - keep tooling, drop vue ecosystem
+antfu/skills antfu,pnpm,slidev,tsdown,turborepo,vite,vitest
+
+# anthropics/claude-plugins-official (19 total) - keep Claude/MCP dev skills
+anthropics/claude-plugins-official claude-automation-recommender,claude-md-improver,frontend-design,writing-hookify-rules,build-mcp-app,build-mcp-server,build-mcpb,playground,agent-development,command-development,hook-development,mcp-integration,plugin-settings,plugin-structure,skill-development,skill-creator
+
+# anthropics/knowledge-work-plugins (114 total) - keep dev/planning/search
+anthropics/knowledge-work-plugins memory-management,start,task-management,update,knowledge-synthesis,search,search-strategy,source-management,architecture,code-review,debug,deploy-checklist,documentation,incident-response,standup,system-design,tech-debt,testing-strategy,analyze,build-dashboard,create-viz,data-visualization,explore-data,view-pdf
+
+# austintgriffith/ethskills (1 total) - keep all
 austintgriffith/ethskills
+
+# better-auth/skills (6 total) - keep all
 better-auth/skills
+
+# blader/humanizer (1 total) - keep all
 blader/humanizer
+
+# cloudflare/skills (9 total) - keep all
 cloudflare/skills
-coreyhaines31/marketingskills
+
+# coreyhaines31/marketingskills (34 total) - keep analytics only
+coreyhaines31/marketingskills analytics-tracking
+
+# garrytan/gstack (1 total) - keep all
 garrytan/gstack
-getsentry/skills
-github/awesome-copilot
-googleworkspace/cli
-inference-sh/skills
-obra/superpowers
-PaulRBerg/agent-skills
-mattpocock/skills
+
+# getsentry/skills (24 total) - keep dev workflow skills
+getsentry/skills agents-md,claude-settings-audit,code-review,code-simplifier,commit,create-branch,create-pr,find-bugs,gh-review-requests,gha-security-review,iterate-pr,pr-writer,security-review
+
+# github/awesome-copilot (257 total) - keep essential dev/infra skills
+github/awesome-copilot chrome-devtools,conventional-commit,create-implementation-plan,create-readme,create-specification,dependabot,doublecheck,editorconfig,eval-driven-dev,git-commit,github-issues,make-repo-contribution,multi-stage-dockerfile,my-issues,my-pull-requests,playwright-generate-test,prd,pytest-coverage,refactor,refactor-plan,secret-scanning,security-review,typescript-mcp-server-generator,update-implementation-plan,webapp-testing
+
+# googleworkspace/cli (93 total) - keep core gmail/calendar/drive
+googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-docs,gws-docs-write,gws-drive,gws-drive-upload,gws-gmail,gws-gmail-read,gws-gmail-send,gws-sheets,gws-sheets-read,gws-tasks
+
+# inference-sh/skills (78 total) - keep core tools
+inference-sh/skills web-search,web-research,ai-sdk,agent-browser,agent-ui
+
+# obra/superpowers (14 total) - keep dev workflow
+obra/superpowers dispatching-parallel-agents,executing-plans,finishing-a-development-branch,receiving-code-review,requesting-code-review,systematic-debugging,test-driven-development,using-git-worktrees,verification-before-completion,writing-plans,writing-skills
+
+# PaulRBerg/agent-skills (23 total) - keep dev tools
+PaulRBerg/agent-skills biome-js,bump-deps,bump-release,cli-gh,code-polish,code-review,code-simplify,effect-ts,md-docs,tailwind-css,yeet
+
+# mattpocock/skills (18 total) - keep dev workflow
+mattpocock/skills improve-codebase-architecture,prd-to-issues,prd-to-plan,qa,request-refactor-plan,tdd,triage-issue,write-a-prd
+
+# max-sixty/worktrunk (1 total) - keep all
 max-sixty/worktrunk
-Merit-Systems/agentcash-skills
-nextlevelbuilder/ui-ux-pro-max-skill
+
+# Merit-Systems/agentcash-skills (13 total) - keep core
+Merit-Systems/agentcash-skills agentcash,web-research
+
+# nextlevelbuilder/ui-ux-pro-max-skill (7 total) - keep design only
+nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
+
+# remotion-dev/skills (1 total) - keep all
 remotion-dev/skills
+
+# schpet/linear-cli (2 total) - keep all
 schpet/linear-cli
+
+# subsy/ralph-tui (4 total) - keep all
 subsy/ralph-tui
+
+# tobi/qmd (2 total) - keep all
 tobi/qmd
-trailofbits/skills
+
+# trailofbits/skills (61 total) - keep security essentials
+trailofbits/skills gh-cli,ask-questions-if-underspecified,code-maturity-assessor,secure-workflow-guide,semgrep,codeql,modern-python,insecure-defaults,supply-chain-risk-auditor,agentic-actions-auditor,fp-check
+
+# vercel/ai (1 total) - keep all
 vercel/ai
+
+# vercel/ai-elements (1 total) - keep all
 vercel/ai-elements
+
+# vercel/chat (1 total) - keep all
 vercel/chat
+
+# vercel/turborepo (1 total) - keep all
 vercel/turborepo
-vercel-labs/agent-browser
-vercel-labs/agent-skills
+
+# vercel-labs/agent-browser (5 total) - keep core
+vercel-labs/agent-browser agent-browser,vercel-sandbox
+
+# vercel-labs/agent-skills (6 total) - keep core
+vercel-labs/agent-skills vercel-composition-patterns,deploy-to-vercel,vercel-react-best-practices,vercel-cli-with-tokens
+
+# vercel-labs/next-browser (1 total) - keep all
 vercel-labs/next-browser
+
+# vercel-labs/next-skills (3 total) - keep all
 vercel-labs/next-skills
+
+# vercel-labs/portless (3 total) - keep all
 vercel-labs/portless

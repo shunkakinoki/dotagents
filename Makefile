@@ -24,7 +24,6 @@ DOTDIRS := .agent .agents .amazonq .augment .claude .cursor .gemini .idx .junie 
 DOTDIRS_SRC_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
-SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
 
 # ====================================================================================
 # ROOT TARGETS
@@ -32,7 +31,9 @@ SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
 
 .PHONY: sync
 sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
+	@make ruler-apply-global
 	@make commands-sync
+	@make skills-clean
 	@make skills-install
 	@make skills-sync
 	@make mcp-sync
@@ -77,27 +78,53 @@ ruler-rules-copy: ## Copy rules to .ruler directory.
 # SKILLS
 # ====================================================================================
 
+.PHONY: skills-clean
+skills-clean: ## Remove all globally installed skills for a clean reinstall.
+	@for target in $(SKILLS_TARGET_DIRS); do \
+		if [ -d "$$target" ]; then \
+			rm -rf "$$target"/*; \
+			echo "Cleaned $$target"; \
+		fi; \
+	done
+
 .PHONY: skills-install
-skills-install: ## Install skills from external repositories using bunx.
-	@for repo in $(SKILL_REPOS); do \
-		echo "Installing skills from $$repo..."; \
-		if bunx skills add $$repo --global --yes; then \
-			echo "✓ Installed $$repo"; \
+skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selection).
+	@grep -v '^\s*#' $(SKILLS_FILE) | grep -v '^\s*$$' | while IFS= read -r line; do \
+		repo=$$(echo "$$line" | awk '{print $$1}'); \
+		skills=$$(echo "$$line" | awk '{print $$2}'); \
+		if [ -n "$$skills" ]; then \
+			echo "Installing selected skills from $$repo ($$skills)..."; \
+			if bunx skills add $$repo --global --yes --skill "$$skills"; then \
+				echo "✓ Installed $$repo (selective)"; \
+			else \
+				echo "✗ Failed to install $$repo"; \
+				exit 1; \
+			fi; \
 		else \
-			echo "✗ Failed to install $$repo"; \
-			exit 1; \
+			echo "Installing all skills from $$repo..."; \
+			if bunx skills add $$repo --global --yes; then \
+				echo "✓ Installed $$repo (all)"; \
+			else \
+				echo "✗ Failed to install $$repo"; \
+				exit 1; \
+			fi; \
 		fi; \
 	done
 	@echo "All external skills installed successfully."
 
 .PHONY: skills-install-repo
-skills-install-repo: ## Install a single skill repo. Usage: make skills-install-repo REPO=owner/repo
+skills-install-repo: ## Install a single skill repo. Usage: make skills-install-repo REPO=owner/repo [SKILLS=a,b,c]
 	@if [ -z "$(REPO)" ]; then \
 		echo "Error: REPO is required. Usage: make skills-install-repo REPO=owner/repo"; \
 		exit 1; \
 	fi
-	@echo "Installing skills from $(REPO)..."
-	@bunx skills add $(REPO) --global --yes
+	@if [ -n "$(SKILLS)" ]; then \
+		echo "Installing selected skills from $(REPO) ($(SKILLS))..."; \
+		bunx skills add $(REPO) --global --yes --skill "$(SKILLS)"; \
+	else \
+		echo "Installing all skills from $(REPO)..."; \
+		bunx skills add $(REPO) --global --yes; \
+	fi
 	@echo "✓ Installed $(REPO)"
 
 .PHONY: ruler-skills-copy
