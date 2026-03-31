@@ -32,6 +32,7 @@ SKILL_REPOS := $(shell cat $(SKILLS_FILE) 2>/dev/null)
 
 .PHONY: sync
 sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
+	@make ruler-apply-global
 	@make commands-sync
 	@make skills-install
 	@make skills-sync
