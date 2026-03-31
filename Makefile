@@ -91,10 +91,14 @@ skills-clean: ## Remove all globally installed skills for a clean reinstall.
 skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selection).
 	@grep -v '^\s*#' $(SKILLS_FILE) | grep -v '^\s*$$' | while IFS= read -r line; do \
 		repo=$$(echo "$$line" | awk '{print $$1}'); \
-		skills=$$(echo "$$line" | awk '{print $$2}'); \
+		skills=$$(echo "$$line" | awk '{$$1=""; print}' | xargs); \
 		if [ -n "$$skills" ]; then \
-			echo "Installing selected skills from $$repo ($$skills)..."; \
-			if bunx skills add $$repo --global --yes --skill "$$skills"; then \
+			skill_flags=""; \
+			for s in $$skills; do \
+				skill_flags="$$skill_flags --skill $$s"; \
+			done; \
+			echo "Installing selected skills from $$repo..."; \
+			if bunx skills add $$repo --global --yes $$skill_flags; then \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
 				echo "✗ Failed to install $$repo"; \
@@ -112,15 +116,42 @@ skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selec
 	done
 	@echo "All external skills installed successfully."
 
+.PHONY: skills-validate
+skills-validate: ## Validate SKILLS.txt entries against remote repos (CI check).
+	@echo "Validating SKILLS.txt..."; \
+	errors=0; \
+	grep -v '^\s*#' $(SKILLS_FILE) | grep -v '^\s*$$' | while IFS= read -r line; do \
+		repo=$$(echo "$$line" | awk '{print $$1}'); \
+		skills=$$(echo "$$line" | awk '{$$1=""; print}' | xargs); \
+		if [ -n "$$skills" ]; then \
+			available=$$(bunx skills add $$repo --global --list 2>&1 | grep -E '^\│\s{4}\S' | sed 's/│    //'); \
+			for s in $$skills; do \
+				if ! echo "$$available" | grep -qx "$$s"; then \
+					echo "✗ $$repo: skill '$$s' not found"; \
+					errors=$$((errors + 1)); \
+				fi; \
+			done; \
+		fi; \
+	done; \
+	if [ "$$errors" -gt 0 ]; then \
+		echo "Validation failed: $$errors invalid skill(s)"; \
+		exit 1; \
+	fi; \
+	echo "✓ All SKILLS.txt entries valid"
+
 .PHONY: skills-install-repo
-skills-install-repo: ## Install a single skill repo. Usage: make skills-install-repo REPO=owner/repo [SKILLS=a,b,c]
+skills-install-repo: ## Install a single skill repo. Usage: make skills-install-repo REPO=owner/repo [SKILLS="a b c"]
 	@if [ -z "$(REPO)" ]; then \
 		echo "Error: REPO is required. Usage: make skills-install-repo REPO=owner/repo"; \
 		exit 1; \
 	fi
 	@if [ -n "$(SKILLS)" ]; then \
-		echo "Installing selected skills from $(REPO) ($(SKILLS))..."; \
-		bunx skills add $(REPO) --global --yes --skill "$(SKILLS)"; \
+		skill_flags=""; \
+		for s in $(SKILLS); do \
+			skill_flags="$$skill_flags --skill $$s"; \
+		done; \
+		echo "Installing selected skills from $(REPO)..."; \
+		bunx skills add $(REPO) --global --yes $$skill_flags; \
 	else \
 		echo "Installing all skills from $(REPO)..."; \
 		bunx skills add $(REPO) --global --yes; \
