@@ -153,7 +153,7 @@ ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 	@bash -c 'set -e; \
 		root="$$(pwd)"; \
 		ruler_home="$$HOME/.ruler"; \
-		rsync -a "$$root/.ruler/" "$$ruler_home/"; \
+		rsync -a --delete "$$root/.ruler/" "$$ruler_home/"; \
 		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
 
 .PHONY: ruler-dotdirs-sync
