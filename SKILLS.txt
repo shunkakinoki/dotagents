@@ -67,6 +67,9 @@ remotion-dev/skills
 # schpet/linear-cli (2 total) - keep all
 schpet/linear-cli
 
+# ShawnPana/smux (1 total) - keep all
+ShawnPana/smux
+
 # subsy/ralph-tui (4 total) - keep all
 subsy/ralph-tui
 
