@@ -91,10 +91,10 @@ skills-clean: ## Remove all globally installed skills for a clean reinstall.
 skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selection).
 	@grep -v '^\s*#' $(SKILLS_FILE) | grep -v '^\s*$$' | while IFS= read -r line; do \
 		repo=$$(echo "$$line" | awk '{print $$1}'); \
-		skills=$$(echo "$$line" | awk '{print $$2}'); \
+		skills=$$(echo "$$line" | awk '{print $$2}' | tr ',' ' '); \
 		if [ -n "$$skills" ]; then \
 			echo "Installing selected skills from $$repo ($$skills)..."; \
-			if bunx skills add $$repo --global --yes --skill "$$skills"; then \
+			if bunx skills add $$repo --global --yes --skill $$skills; then \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
 				echo "✗ Failed to install $$repo"; \
@@ -120,7 +120,7 @@ skills-install-repo: ## Install a single skill repo. Usage: make skills-install-
 	fi
 	@if [ -n "$(SKILLS)" ]; then \
 		echo "Installing selected skills from $(REPO) ($(SKILLS))..."; \
-		bunx skills add $(REPO) --global --yes --skill "$(SKILLS)"; \
+		bunx skills add $(REPO) --global --yes --skill $(shell echo "$(SKILLS)" | tr ',' ' '); \
 	else \
 		echo "Installing all skills from $(REPO)..."; \
 		bunx skills add $(REPO) --global --yes; \
