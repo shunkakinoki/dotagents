@@ -89,7 +89,8 @@ skills-clean: ## Remove all globally installed skills for a clean reinstall.
 
 .PHONY: skills-install
 skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selection).
-	@grep -v '^\s*#' $(SKILLS_FILE) | grep -v '^\s*$$' | while IFS= read -r line; do \
+	@failed=0; \
+	grep -v '^\s*#' $(SKILLS_FILE) | grep -v '^\s*$$' | while IFS= read -r line; do \
 		repo=$$(echo "$$line" | awk '{print $$1}'); \
 		skill_args=$$(echo "$$line" | awk '{print $$2}' | tr ',' '\n' | sed '/^$$/d' | while read -r s; do printf " --skill $$s"; done); \
 		if [ -n "$$skill_args" ]; then \
@@ -97,20 +98,24 @@ skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selec
 			if bunx skills add $$repo --global --yes $$skill_args </dev/null; then \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
-				echo "✗ Failed to install $$repo"; \
-				exit 1; \
+				echo "✗ Failed to install $$repo (continuing...)"; \
+				failed=1; \
 			fi; \
 		else \
 			echo "Installing all skills from $$repo..."; \
 			if bunx skills add $$repo --global --yes </dev/null; then \
 				echo "✓ Installed $$repo (all)"; \
 			else \
-				echo "✗ Failed to install $$repo"; \
-				exit 1; \
+				echo "✗ Failed to install $$repo (continuing...)"; \
+				failed=1; \
 			fi; \
 		fi; \
-	done
-	@echo "All external skills installed successfully."
+	done; \
+	if [ "$$failed" = "1" ]; then \
+		echo "Some skills failed to install (see above)."; \
+	else \
+		echo "All external skills installed successfully."; \
+	fi
 
 .PHONY: skills-install-repo
 skills-install-repo: ## Install a single skill repo. Usage: make skills-install-repo REPO=owner/repo [SKILLS=a,b,c]
