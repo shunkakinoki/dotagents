@@ -94,7 +94,7 @@ skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selec
 		skill_args=$$(echo "$$line" | awk '{print $$2}' | tr ',' '\n' | sed '/^$$/d' | while read -r s; do printf " --skill $$s"; done); \
 		if [ -n "$$skill_args" ]; then \
 			echo "Installing selected skills from $$repo..."; \
-			if bunx skills add $$repo --global --yes $$skill_args; then \
+			if bunx skills add $$repo --global --yes $$skill_args </dev/null; then \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
 				echo "✗ Failed to install $$repo"; \
@@ -102,7 +102,7 @@ skills-install: ## Install skills from SKILLS.txt (supports per-repo skill selec
 			fi; \
 		else \
 			echo "Installing all skills from $$repo..."; \
-			if bunx skills add $$repo --global --yes; then \
+			if bunx skills add $$repo --global --yes </dev/null; then \
 				echo "✓ Installed $$repo (all)"; \
 			else \
 				echo "✗ Failed to install $$repo"; \
