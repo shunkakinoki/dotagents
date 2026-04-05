@@ -182,9 +182,9 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 .PHONY: ruler-apply-global
 ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 	@bash -c 'set -e; \
-		root="$$(pwd)"; \
+		ruler_src="$(abspath $(dir $(lastword $(MAKEFILE_LIST)))).ruler"; \
 		ruler_home="$$HOME/.ruler"; \
-		rsync -a --delete "$$root/.ruler/" "$$ruler_home/"; \
+		rsync -a --delete "$$ruler_src/" "$$ruler_home/"; \
 		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
 
 .PHONY: ruler-dotdirs-sync
