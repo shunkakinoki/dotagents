@@ -29,6 +29,7 @@ SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 # ROOT TARGETS
 # ====================================================================================
 
+ifeq ($(DOTAGENTS_SKIP_SYNC),)
 .PHONY: sync
 sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
 	@make ruler-apply-global
@@ -38,6 +39,7 @@ sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to a
 	@make skills-sync
 	@make mcp-sync
 	@make ruler-dotdirs-sync
+endif
 
 .PHONY: ruler-prepare
 ruler-prepare: ## Prepare the project for development.
@@ -182,7 +184,7 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 .PHONY: ruler-apply-global
 ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 	@bash -c 'set -e; \
-		ruler_src="$(abspath $(dir $(lastword $(MAKEFILE_LIST)))).ruler"; \
+		ruler_src="$(abspath $(dir $(lastword $(MAKEFILE_LIST))))/.ruler"; \
 		ruler_home="$$HOME/.ruler"; \
 		rsync -a --delete "$$ruler_src/" "$$ruler_home/"; \
 		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
