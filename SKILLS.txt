@@ -58,6 +58,9 @@ max-sixty/worktrunk
 # Merit-Systems/agentcash-skills (13 total) - keep core
 Merit-Systems/agentcash-skills agentcash,web-research
 
+# NousResearch/hermes-agent (creative) - keep manim-video
+NousResearch/hermes-agent manim-video
+
 # nextlevelbuilder/ui-ux-pro-max-skill (7 total) - keep design only
 nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
 
