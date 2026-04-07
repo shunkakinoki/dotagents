@@ -11,6 +11,7 @@ RULES_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))rules
 RULES_TARGET_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler
 
 SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
+SKILLS_PRIVATE_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))private/skills
 SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
 SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills $(HOME)/.config/opencode/skills
 
@@ -135,18 +136,30 @@ skills-install-repo: ## Install a single skill repo. Usage: make skills-install-
 	@echo "✓ Installed $(REPO)"
 
 .PHONY: ruler-skills-copy
-ruler-skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).
+ruler-skills-copy: ## Copy skills (and private/skills if present) to .ruler/skills directory.
 	@rsync -a $(SKILLS_SRC_DIR)/ $(SKILLS_RULER_DIR)/
 	@echo "Synced $(SKILLS_SRC_DIR) → $(SKILLS_RULER_DIR)"
+	@if [ -d $(SKILLS_PRIVATE_SRC_DIR) ]; then \
+		rsync -a $(SKILLS_PRIVATE_SRC_DIR)/ $(SKILLS_RULER_DIR)/; \
+		echo "Synced $(SKILLS_PRIVATE_SRC_DIR) → $(SKILLS_RULER_DIR)"; \
+	fi
 
 .PHONY: skills-sync
-skills-sync: ## Sync root skills to agent-specific directories (preserves externally installed skills).
+skills-sync: ## Sync root skills (and private/skills if present) to agent-specific directories.
 	@for target in $(SKILLS_TARGET_DIRS); do \
 		if mkdir -p $$target && rsync -a $(SKILLS_SRC_DIR)/ $$target/; then \
 			echo "Synced $(SKILLS_SRC_DIR) → $$target"; \
 		else \
 			echo "Failed syncing $(SKILLS_SRC_DIR) → $$target"; \
 			exit 1; \
+		fi; \
+		if [ -d $(SKILLS_PRIVATE_SRC_DIR) ]; then \
+			if rsync -a $(SKILLS_PRIVATE_SRC_DIR)/ $$target/; then \
+				echo "Synced $(SKILLS_PRIVATE_SRC_DIR) → $$target"; \
+			else \
+				echo "Failed syncing $(SKILLS_PRIVATE_SRC_DIR) → $$target"; \
+				exit 1; \
+			fi; \
 		fi; \
 	done
 
