@@ -76,6 +76,9 @@ schpet/linear-cli
 # ShawnPana/smux (1 total) - keep all
 ShawnPana/smux
 
+# shunkakinoki/private-skills (ALL)
+shunkakinoki/private-skills
+
 # subsy/ralph-tui (4 total) - keep all
 subsy/ralph-tui
 
