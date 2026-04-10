@@ -168,7 +168,8 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 			skill_args=$$(printf '%s\n' "$$normalized_skills" | tr ',' '\n' | sed '/^$$/d' | while IFS= read -r s; do printf " --skill %s" "$$s"; done); \
 			echo "Installing selected skills from $$repo..."; \
 			if bunx skills add $$repo --global --yes $$skill_args </dev/null; then \
-				printf '%s\n' "$$normalized_skills" | tr ',' '\n' | sed '/^$$/d' > "$$manifest_file"; \
+				list_external_skills > "$$after_file"; \
+				comm -13 "$$before_file" "$$after_file" > "$$manifest_file"; \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
 				echo "✗ Failed to install $$repo (continuing...)"; \
@@ -226,16 +227,6 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 					if [ ! -e "$$external_source/$$skill" ] && [ ! -L "$$external_source/$$skill" ]; then \
 						reinstall_repo=1; \
 						echo "Reinstalling $$repo (missing $$external_source/$$skill)"; \
-						break; \
-					fi; \
-					for target in $(SKILLS_TARGET_DIRS); do \
-						if [ ! -e "$$target/$$skill" ] && [ ! -L "$$target/$$skill" ]; then \
-							reinstall_repo=1; \
-							echo "Reinstalling $$repo (missing $$target/$$skill)"; \
-							break; \
-						fi; \
-					done; \
-					if [ "$$reinstall_repo" = "1" ]; then \
 						break; \
 					fi; \
 				done < "$$manifest_file"; \
