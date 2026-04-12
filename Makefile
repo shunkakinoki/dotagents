@@ -153,23 +153,28 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 			done; \
 		done < "$$manifest_file"; \
 	}; \
+	list_repo_skills() { \
+		repo="$$1"; \
+		bunx skills add $$repo --global --yes --list </dev/null 2>&1 \
+			| sed 's/\x1b\[[0-9;]*m//g' \
+			| sed 's/\x1b\[?25[hl]//g' \
+			| sed 's/\x1b\[999D\x1b\[J//g' \
+			| grep -E '^│[[:space:]]{4}[a-z]' \
+			| sed 's/^│[[:space:]]*//'; \
+	}; \
 	install_repo() { \
 		repo="$$1"; \
 		normalized_skills="$$2"; \
 		manifest_file="$$3"; \
 		cleanup_old="$$4"; \
-		before_file=$$(mktemp); \
-		after_file=$$(mktemp); \
 		if [ "$$cleanup_old" = "1" ]; then \
 			remove_repo_skills "$$manifest_file"; \
 		fi; \
-		list_external_skills > "$$before_file"; \
 		if [ -n "$$normalized_skills" ]; then \
 			skill_args=$$(printf '%s\n' "$$normalized_skills" | tr ',' '\n' | sed '/^$$/d' | while IFS= read -r s; do printf " --skill %s" "$$s"; done); \
 			echo "Installing selected skills from $$repo..."; \
 			if bunx skills add $$repo --global --yes $$skill_args </dev/null; then \
-				list_external_skills > "$$after_file"; \
-				comm -13 "$$before_file" "$$after_file" > "$$manifest_file"; \
+				printf '%s\n' "$$normalized_skills" | tr ',' '\n' | sed '/^$$/d' | LC_ALL=C sort > "$$manifest_file"; \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
 				echo "✗ Failed to install $$repo (continuing...)"; \
@@ -178,15 +183,13 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 		else \
 			echo "Installing all skills from $$repo..."; \
 			if bunx skills add $$repo --global --yes </dev/null; then \
-				list_external_skills > "$$after_file"; \
-				comm -13 "$$before_file" "$$after_file" > "$$manifest_file"; \
+				list_repo_skills "$$repo" | LC_ALL=C sort > "$$manifest_file"; \
 				echo "✓ Installed $$repo (all)"; \
 			else \
 				echo "✗ Failed to install $$repo (continuing...)"; \
 				failed=1; \
 			fi; \
 		fi; \
-		rm -f "$$before_file" "$$after_file"; \
 	}; \
 	while IFS= read -r raw_line || [ -n "$$raw_line" ]; do \
 		line=$$(printf '%s' "$$raw_line" | sed 's/^[[:space:]]*//; s/[[:space:]]*$$//'); \
@@ -216,9 +219,9 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 		while IFS='|' read -r repo normalized_skills || [ -n "$$repo$$normalized_skills" ]; do \
 			manifest_file="$$manifest_dir/$$(printf '%s' "$$repo" | sed 's#[^A-Za-z0-9_.-]#_#g').skills"; \
 			reinstall_repo=0; \
-			if [ ! -f "$$manifest_file" ]; then \
+			if [ ! -f "$$manifest_file" ] || [ ! -s "$$manifest_file" ]; then \
 				reinstall_repo=1; \
-				echo "Reinstalling $$repo (missing manifest)"; \
+				echo "Reinstalling $$repo (missing or empty manifest)"; \
 			else \
 				while IFS= read -r skill || [ -n "$$skill" ]; do \
 					if [ -z "$$skill" ]; then \
