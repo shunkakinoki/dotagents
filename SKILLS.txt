@@ -35,7 +35,7 @@ Dicklesworthstone/coding_agent_session_search
 garrytan/gstack
 
 # getsentry/skills (24 total) - keep dev workflow skills
-getsentry/skills agents-md,claude-settings-audit,code-review,code-simplifier,commit,create-branch,create-pr,find-bugs,gh-review-requests,gha-security-review,iterate-pr,pr-writer,security-review
+getsentry/skills agents-md,claude-settings-audit,code-review,code-simplifier,commit,create-branch,find-bugs,gh-review-requests,gha-security-review,iterate-pr,pr-writer,security-review
 
 # github/awesome-copilot (257 total) - keep essential dev/infra skills
 github/awesome-copilot chrome-devtools,conventional-commit,create-implementation-plan,create-readme,create-specification,dependabot,doublecheck,editorconfig,eval-driven-dev,git-commit,github-issues,make-repo-contribution,multi-stage-dockerfile,my-issues,my-pull-requests,playwright-generate-test,prd,pytest-coverage,refactor,refactor-plan,secret-scanning,security-review,typescript-mcp-server-generator,update-implementation-plan,webapp-testing
@@ -68,7 +68,7 @@ max-sixty/worktrunk
 Merit-Systems/agentcash-skills agentcash,web-research
 
 # NousResearch/hermes-agent (creative) - keep manim-video
-NousResearch/hermes-agent manim-video
+NousResearch/hermes-agent dogfood
 
 # nextlevelbuilder/ui-ux-pro-max-skill (7 total) - keep design only
 nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
