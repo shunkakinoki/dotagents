@@ -16,6 +16,9 @@ austintgriffith/ethskills
 # better-auth/skills (6 total) - keep all
 better-auth/skills
 
+# better-context/skills - keep btca-local
+better-context/skills btca-local
+
 # blader/humanizer (1 total) - keep all
 blader/humanizer
 
