@@ -46,6 +46,9 @@ inference-sh/skills web-search,web-research,ai-sdk,agent-browser,agent-ui
 # juxt/allium - keep all
 juxt/allium
 
+# kunchenguid/axi (1 total) - keep all
+kunchenguid/axi
+
 # obra/superpowers (14 total) - keep dev workflow
 obra/superpowers dispatching-parallel-agents,executing-plans,finishing-a-development-branch,receiving-code-review,requesting-code-review,systematic-debugging,test-driven-development,using-git-worktrees,verification-before-completion,writing-plans,writing-skills
 
