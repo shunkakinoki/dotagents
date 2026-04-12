@@ -202,13 +202,7 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 		printf '%s|%s\n' "$$repo" "$$normalized_skills" >> "$$tmp_spec"; \
 	done < "$(SKILLS_FILE)"; \
 	if [ "$${DOTAGENTS_FORCE_SKILLS_INSTALL:-0}" = "1" ]; then \
-		spec_changed=1; \
 		echo "Forcing managed external skill reinstall..."; \
-	elif [ ! -f "$$spec_state" ] || ! cmp -s "$$tmp_spec" "$$spec_state"; then \
-		spec_changed=1; \
-		echo "Detected SKILLS.txt changes; refreshing managed external skills..."; \
-	fi; \
-	if [ "$$spec_changed" = "1" ]; then \
 		$(MAKE) skills-managed-clean; \
 		mkdir -p "$$state_dir" "$$manifest_dir" "$$external_source"; \
 		while IFS='|' read -r repo normalized_skills || [ -n "$$repo$$normalized_skills" ]; do \
@@ -216,23 +210,44 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 			install_repo "$$repo" "$$normalized_skills" "$$manifest_file" 0; \
 		done < "$$tmp_spec"; \
 	else \
+		if [ -f "$$spec_state" ] && ! cmp -s "$$tmp_spec" "$$spec_state"; then \
+			echo "Detected SKILLS.txt changes; applying incremental update..."; \
+			while IFS='|' read -r old_repo old_skills || [ -n "$$old_repo$$old_skills" ]; do \
+				if ! grep -qF "$$old_repo|" "$$tmp_spec"; then \
+					echo "Removing $$old_repo (deleted from SKILLS.txt)..."; \
+					manifest_file="$$manifest_dir/$$(printf '%s' "$$old_repo" | sed 's#[^A-Za-z0-9_.-]#_#g').skills"; \
+					remove_repo_skills "$$manifest_file"; \
+					rm -f "$$manifest_file"; \
+				fi; \
+			done < "$$spec_state"; \
+		fi; \
 		while IFS='|' read -r repo normalized_skills || [ -n "$$repo$$normalized_skills" ]; do \
 			manifest_file="$$manifest_dir/$$(printf '%s' "$$repo" | sed 's#[^A-Za-z0-9_.-]#_#g').skills"; \
 			reinstall_repo=0; \
-			if [ ! -f "$$manifest_file" ] || [ ! -s "$$manifest_file" ]; then \
-				reinstall_repo=1; \
-				echo "Reinstalling $$repo (missing or empty manifest)"; \
-			else \
-				while IFS= read -r skill || [ -n "$$skill" ]; do \
-					if [ -z "$$skill" ]; then \
-						continue; \
-					fi; \
-					if [ ! -e "$$external_source/$$skill" ] && [ ! -L "$$external_source/$$skill" ]; then \
-						reinstall_repo=1; \
-						echo "Reinstalling $$repo (missing $$external_source/$$skill)"; \
-						break; \
-					fi; \
-				done < "$$manifest_file"; \
+			if [ -f "$$spec_state" ]; then \
+				old_line=$$(grep "^$$repo|" "$$spec_state" 2>/dev/null || true); \
+				new_line="$$repo|$$normalized_skills"; \
+				if [ -n "$$old_line" ] && [ "$$old_line" != "$$new_line" ]; then \
+					reinstall_repo=1; \
+					echo "Reinstalling $$repo (skills selection changed)"; \
+				fi; \
+			fi; \
+			if [ "$$reinstall_repo" = "0" ]; then \
+				if [ ! -f "$$manifest_file" ] || [ ! -s "$$manifest_file" ]; then \
+					reinstall_repo=1; \
+					echo "Reinstalling $$repo (missing or empty manifest)"; \
+				else \
+					while IFS= read -r skill || [ -n "$$skill" ]; do \
+						if [ -z "$$skill" ]; then \
+							continue; \
+						fi; \
+						if [ ! -e "$$external_source/$$skill" ] && [ ! -L "$$external_source/$$skill" ]; then \
+							reinstall_repo=1; \
+							echo "Reinstalling $$repo (missing $$external_source/$$skill)"; \
+							break; \
+						fi; \
+					done < "$$manifest_file"; \
+				fi; \
 			fi; \
 			if [ "$$reinstall_repo" = "1" ]; then \
 				install_repo "$$repo" "$$normalized_skills" "$$manifest_file" 1; \
