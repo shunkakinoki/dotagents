@@ -53,7 +53,7 @@ obra/superpowers dispatching-parallel-agents,executing-plans,finishing-a-develop
 PaulRBerg/agent-skills biome-js,bump-deps,bump-release,cli-gh,code-polish,code-review,code-simplify,effect-ts,md-docs,tailwind-css,yeet
 
 # mattpocock/skills (18 total) - keep dev workflow
-mattpocock/skills grill-me,improve-codebase-architecture,obsidian,prd-to-issues,prd-to-plan,qa,request-refactor-plan,tdd,triage-issue,write-a-prd
+mattpocock/skills grill-me,improve-codebase-architecture,obsidian-vault,prd-to-issues,prd-to-plan,qa,request-refactor-plan,tdd,triage-issue,write-a-prd
 
 # max-sixty/worktrunk (1 total) - keep all
 max-sixty/worktrunk
