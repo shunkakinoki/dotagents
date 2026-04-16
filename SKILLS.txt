@@ -77,6 +77,9 @@ nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
 paperclipai/paperclip paperclip,paperclip-create-agent,paperclip-create-plugin
 
 # remotion-dev/skills (1 total) - keep all
+redwoodjs/agent-ci agent-ci
+
+# remotion-dev/skills (1 total) - keep all
 remotion-dev/skills
 
 # schpet/linear-cli (2 total) - keep all
