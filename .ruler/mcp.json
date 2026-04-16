@@ -15,7 +15,7 @@
     "Codex": {
       "type": "stdio",
       "command": "codex",
-      "args": ["mcp"]
+      "args": ["mcp-server"]
     },
     "ChromeDevtools": {
       "command": "chrome-devtools-mcp",

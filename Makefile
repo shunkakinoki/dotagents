@@ -311,22 +311,10 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 		echo "Error: $(MCP_SRC) not found"; \
 		exit 1; \
 	fi
-	@for target in $(MCP_TARGET_DIRS); do \
-		if mkdir -p $$target && cp $(MCP_SRC) $$target/mcp.json; then \
-			echo "Synced $(MCP_SRC) → $$target/mcp.json"; \
-		else \
-			echo "Failed syncing $(MCP_SRC) → $$target/mcp.json"; \
-			exit 1; \
-		fi; \
-	done
-	@keys=$$(jq -c '.mcpServers | keys' $(MCP_SRC)); \
-	for settings in $(MCP_SETTINGS_TARGETS); do \
-		if [ -f "$$settings" ]; then \
-			jq --argjson keys "$$keys" '.enabledMcpjsonServers = $$keys' "$$settings" > "$$settings.tmp" && \
-			mv "$$settings.tmp" "$$settings"; \
-			echo "Updated enabledMcpjsonServers in $$settings"; \
-		fi; \
-	done
+	@MCP_SRC="$(MCP_SRC)" \
+	MCP_TARGET_DIRS="$(MCP_TARGET_DIRS)" \
+	MCP_SETTINGS_TARGETS="$(MCP_SETTINGS_TARGETS)" \
+	bash "$(dir $(lastword $(MAKEFILE_LIST)))scripts/hydrate-mcp.sh"
 
 # ====================================================================================
 # RULER GLOBAL
