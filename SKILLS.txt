@@ -76,6 +76,9 @@ nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
 # paperclipai/paperclip (4 total) - keep core
 paperclipai/paperclip paperclip,paperclip-create-agent,paperclip-create-plugin
 
+# redwoodjs/agent-ci (1 total) - keep all
+redwoodjs/agent-ci agent-ci
+
 # remotion-dev/skills (1 total) - keep all
 remotion-dev/skills
 
