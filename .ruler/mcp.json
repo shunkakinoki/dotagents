@@ -1,29 +1,33 @@
 {
   "mcpServers": {
-    "XcodeBuildMCP": {
-      "command": "xcodebuildmcp",
-      "args": ["mcp"]
-    },
-    "Serena": {
-      "command": "serena",
-      "args": ["start-mcp-server"]
-    },
-    "GitHub": {
-      "command": "sh",
-      "args": ["-c", "exec mcp-remote 'https://api.githubcopilot.com/mcp/' --header \"Authorization:Bearer $(gh auth token)\""]
+    "ChromeDevtools": {
+      "command": "chrome-devtools-mcp",
+      "args": ["--autoConnect", "--channel=beta"]
     },
     "Codex": {
       "type": "stdio",
       "command": "codex",
       "args": ["mcp-server"]
     },
-    "ChromeDevtools": {
-      "command": "chrome-devtools-mcp",
-      "args": ["--autoConnect", "--channel=beta"]
-    },
     "Context7": {
       "command": "context7-mcp",
       "args": []
+    },
+    "GitHub": {
+      "command": "sh",
+      "args": ["-c", "exec mcp-remote 'https://api.githubcopilot.com/mcp/' --header \"Authorization:Bearer $(gh auth token)\""]
+    },
+    "MemPalace": {
+      "command": "python3-mempalace",
+      "args": ["-m", "mempalace.mcp_server"]
+    },
+    "Serena": {
+      "command": "serena",
+      "args": ["start-mcp-server"]
+    },
+    "XcodeBuildMCP": {
+      "command": "xcodebuildmcp",
+      "args": ["mcp"]
     }
   }
 }
