@@ -9,13 +9,13 @@
       "args": ["start-mcp-server"]
     },
     "GitHub": {
-      "command": "mcp-remote",
-      "args": ["https://api.githubcopilot.com/mcp/"]
+      "command": "sh",
+      "args": ["-c", "exec mcp-remote 'https://api.githubcopilot.com/mcp/' --header \"Authorization:Bearer $(gh auth token)\""]
     },
     "Codex": {
       "type": "stdio",
       "command": "codex",
-      "args": ["mcp"]
+      "args": ["mcp-server"]
     },
     "ChromeDevtools": {
       "command": "chrome-devtools-mcp",
