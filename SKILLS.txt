@@ -67,6 +67,9 @@ max-sixty/worktrunk
 # Merit-Systems/agentcash-skills (13 total) - keep core
 Merit-Systems/agentcash-skills agentcash,web-research
 
+# multica-ai/andrej-karpathy-skills (1 total) - keep all
+multica-ai/andrej-karpathy-skills
+
 # NousResearch/hermes-agent (creative) - keep manim-video
 NousResearch/hermes-agent dogfood
 
