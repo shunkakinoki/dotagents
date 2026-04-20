@@ -25,6 +25,9 @@ blader/humanizer
 # cloudflare/skills (9 total) - keep all
 cloudflare/skills
 
+# coinbase/agentic-wallet-skills (8 total) - keep all
+coinbase/agentic-wallet-skills
+
 # coreyhaines31/marketingskills (34 total) - keep analytics only
 coreyhaines31/marketingskills analytics-tracking
 
