@@ -55,6 +55,9 @@ juxt/allium
 # kunchenguid/axi (1 total) - keep all
 kunchenguid/axi
 
+# Leonxlnx/taste-skill (8 total) - keep frontend design skills, skip gpt/stitch/brutalist
+Leonxlnx/taste-skill design-taste-frontend,high-end-visual-design,minimalist-ui,redesign-existing-projects,full-output-enforcement
+
 # obra/superpowers (14 total) - keep dev workflow
 obra/superpowers dispatching-parallel-agents,executing-plans,finishing-a-development-branch,receiving-code-review,requesting-code-review,systematic-debugging,test-driven-development,using-git-worktrees,verification-before-completion,writing-plans,writing-skills
 
