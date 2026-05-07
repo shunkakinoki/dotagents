@@ -34,6 +34,9 @@ coreyhaines31/marketingskills analytics-tracking
 # Dicklesworthstone/coding_agent_session_search (1 total) - keep all
 Dicklesworthstone/coding_agent_session_search
 
+# emilkowalski/skill (1 total) - keep all
+emilkowalski/skill
+
 # garrytan/gstack (1 total) - keep all
 garrytan/gstack
 
