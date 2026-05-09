@@ -1,6 +1,9 @@
 # Format: repo [skill1,skill2,...] (omit skills list to install all from repo)
 # Lines starting with # are comments
 
+# addyosmani/agent-skills (22 total) - keep all
+addyosmani/agent-skills
+
 # antfu/skills (17 total) - keep tooling, drop vue ecosystem
 antfu/skills antfu,pnpm,slidev,tsdown,turborepo,vite,vitest
 
