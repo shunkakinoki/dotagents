@@ -34,6 +34,9 @@ coinbase/agentic-wallet-skills
 # coreyhaines31/marketingskills (34 total) - keep analytics only
 coreyhaines31/marketingskills analytics-tracking
 
+# cursor/plugins (cursor-team-kit/skills, 18 total) - keep all
+cursor/plugins check-compiler-errors,control-cli,control-ui,deslop,fix-ci,fix-merge-conflicts,get-pr-comments,loop-on-ci,make-pr-easy-to-review,new-branch-and-pr,pr-review-canvas,review-and-ship,run-smoke-tests,thermo-nuclear-code-quality-review,verify-this,weekly-review,what-did-i-get-done,workflow-from-chats
+
 # Dicklesworthstone/coding_agent_session_search (1 total) - keep all
 Dicklesworthstone/coding_agent_session_search
 
