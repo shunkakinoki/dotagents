@@ -10,6 +10,9 @@ antfu/skills antfu,pnpm,slidev,tsdown,turborepo,vite,vitest
 # anthropics/claude-plugins-official (19 total) - keep Claude/MCP dev skills
 anthropics/claude-plugins-official claude-automation-recommender,claude-md-improver,frontend-design,writing-hookify-rules,build-mcp-app,build-mcp-server,build-mcpb,playground,agent-development,command-development,hook-development,mcp-integration,plugin-settings,plugin-structure,skill-development,skill-creator
 
+# anthropics/defending-code-reference-harness (6 total) - keep all security skills
+anthropics/defending-code-reference-harness customize,patch,quickstart,threat-model,triage,vuln-scan
+
 # anthropics/knowledge-work-plugins (114 total) - keep dev/planning/search
 anthropics/knowledge-work-plugins memory-management,start,task-management,update,knowledge-synthesis,search,search-strategy,source-management,architecture,code-review,debug,deploy-checklist,documentation,incident-response,standup,system-design,tech-debt,testing-strategy,analyze,build-dashboard,create-viz,data-visualization,explore-data,view-pdf
 
