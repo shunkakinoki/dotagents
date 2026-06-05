@@ -58,6 +58,9 @@ googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-doc
 # inference-sh/skills (78 total) - keep core tools
 inference-sh/skills web-search,web-research,ai-sdk,agent-browser,agent-ui
 
+# jasonswett/llm-skills (5 total) - keep all
+jasonswett/llm-skills
+
 # juxt/allium - keep all
 juxt/allium
 
