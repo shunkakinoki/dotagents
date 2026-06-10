@@ -58,6 +58,9 @@ github/awesome-copilot chrome-devtools,conventional-commit,create-implementation
 # googleworkspace/cli (93 total) - keep core gmail/calendar/drive
 googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-docs,gws-docs-write,gws-drive,gws-drive-upload,gws-gmail,gws-gmail-read,gws-gmail-send,gws-sheets,gws-sheets-read,gws-tasks
 
+# index.how/to/articulate - keep all
+https://index.how/to/articulate
+
 # inference-sh/skills (78 total) - keep core tools
 inference-sh/skills web-search,web-research,ai-sdk,agent-browser,agent-ui
 
