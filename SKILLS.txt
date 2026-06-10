@@ -43,6 +43,9 @@ cursor/plugins check-compiler-errors,control-cli,control-ui,deslop,fix-ci,fix-me
 # Dicklesworthstone/coding_agent_session_search (1 total) - keep all
 Dicklesworthstone/coding_agent_session_search
 
+# donnfelker/donnfelker-plugin-marketplace (7 total) - keep all
+donnfelker/donnfelker-plugin-marketplace
+
 # emilkowalski/skill (1 total) - keep all
 emilkowalski/skill
 
