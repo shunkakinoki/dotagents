@@ -112,6 +112,9 @@ remotion-dev/skills
 # schpet/linear-cli (2 total) - keep all
 schpet/linear-cli
 
+# shadcn/improve (1 total) - keep all
+shadcn/improve
+
 # ShawnPana/smux (1 total) - keep all
 ShawnPana/smux
 
