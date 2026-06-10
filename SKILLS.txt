@@ -55,6 +55,9 @@ getsentry/skills agents-md,claude-settings-audit,code-review,code-simplifier,com
 # github/awesome-copilot (257 total) - keep essential dev/infra skills
 github/awesome-copilot chrome-devtools,conventional-commit,create-implementation-plan,create-readme,create-specification,dependabot,doublecheck,editorconfig,eval-driven-dev,git-commit,github-issues,make-repo-contribution,multi-stage-dockerfile,my-issues,my-pull-requests,playwright-generate-test,prd,pytest-coverage,refactor,refactor-plan,secret-scanning,security-review,typescript-mcp-server-generator,update-implementation-plan,webapp-testing
 
+# google/skills (30 total) - keep all
+google/skills
+
 # googleworkspace/cli (93 total) - keep core gmail/calendar/drive
 googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-docs,gws-docs-write,gws-drive,gws-drive-upload,gws-gmail,gws-gmail-read,gws-gmail-send,gws-sheets,gws-sheets-read,gws-tasks
 
