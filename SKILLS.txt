@@ -49,6 +49,9 @@ Dicklesworthstone/coding_agent_session_search
 # donnfelker/donnfelker-plugin-marketplace (7 total) - keep all
 donnfelker/donnfelker-plugin-marketplace
 
+# elvisun/newsjack (19 total) - keep all
+elvisun/newsjack
+
 # emilkowalski/skill (1 total) - keep all
 emilkowalski/skill
 
