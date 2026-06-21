@@ -29,6 +29,9 @@ DOTDIRS_SRC_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 
 SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 
+# Pin Ruler: 0.3.43 dropped the [global] config section and broke aider MCP merge.
+RULER_VERSION := 0.3.42
+
 # ====================================================================================
 # ROOT TARGETS
 # ====================================================================================
@@ -338,7 +341,7 @@ ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 		ruler_src="$(abspath $(dir $(lastword $(MAKEFILE_LIST))))/.ruler"; \
 		ruler_home="$$HOME/.ruler"; \
 		rsync -a --delete "$$ruler_src/" "$$ruler_home/"; \
-		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
+		bunx @intellectronica/ruler@$(RULER_VERSION) apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
 
 .PHONY: ruler-dotdirs-sync
 ruler-dotdirs-sync: ## Sync repo dot directories to $HOME equivalents.
