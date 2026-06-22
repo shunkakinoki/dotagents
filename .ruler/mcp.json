@@ -21,6 +21,10 @@
       "command": "python3-mempalace",
       "args": ["-m", "mempalace.mcp_server"]
     },
+    "Sentry": {
+      "command": "mcp-remote",
+      "args": ["https://mcp.sentry.dev/mcp"]
+    },
     "Serena": {
       "command": "serena",
       "args": ["start-mcp-server"]
