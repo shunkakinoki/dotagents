@@ -82,6 +82,9 @@ Jakubantalik/transitions.dev
 # juxt/allium - keep all
 juxt/allium
 
+# kitlangton/motel (1 total) - keep all
+kitlangton/motel
+
 # kunchenguid/axi (1 total) - keep all
 kunchenguid/axi
 
