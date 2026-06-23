@@ -55,6 +55,9 @@ elvisun/newsjack
 # emilkowalski/skill (1 total) - keep all
 emilkowalski/skill
 
+# Forward-Future/loop-library (1 total) - keep all
+Forward-Future/loop-library
+
 # garrytan/gstack (1 total) - keep all
 garrytan/gstack
 
