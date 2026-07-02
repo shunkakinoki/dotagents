@@ -44,6 +44,11 @@ enabled = true
 output_path_instructions = "ruler_aider_instructions.md"
 output_path_config = ".aider.conf.yml"
 
+# Aider's MCP config lives in the same YAML file as its instructions, which
+# Ruler writes then tries to re-parse as JSON, failing the apply. Disable it.
+[agents.aider.mcp]
+enabled = false
+
 [agents.firebase]
 enabled = true
 output_path = ".idx/airules.md"
@@ -85,8 +90,8 @@ output_path = ".goosehints"
 [agents.jules]
 enabled = true
 
-# --- Global Configuration ---
-[global]
+# --- MCP Configuration ---
+[mcp]
 # MCP merge strategy: 'merge' or 'overwrite' (default: 'merge')
 merge_strategy = "merge"
 
