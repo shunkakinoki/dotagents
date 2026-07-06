@@ -155,7 +155,7 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 	}; \
 	list_repo_skills() { \
 		repo="$$1"; \
-		bunx skills add $$repo --global --yes --list </dev/null 2>&1 \
+		bun x skills add $$repo --global --yes --list </dev/null 2>&1 \
 			| sed 's/\x1b\[[0-9;]*m//g' \
 			| sed 's/\x1b\[?25[hl]//g' \
 			| sed 's/\x1b\[999D\x1b\[J//g' \
@@ -173,7 +173,7 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 		if [ -n "$$normalized_skills" ]; then \
 			skill_args=$$(printf '%s\n' "$$normalized_skills" | tr ',' '\n' | sed '/^$$/d' | while IFS= read -r s; do printf " --skill %s" "$$s"; done); \
 			echo "Installing selected skills from $$repo..."; \
-			if bunx skills add $$repo --global --yes $$skill_args </dev/null; then \
+			if bun x skills add $$repo --global --yes $$skill_args </dev/null; then \
 				printf '%s\n' "$$normalized_skills" | tr ',' '\n' | sed '/^$$/d' | LC_ALL=C sort > "$$manifest_file"; \
 				echo "✓ Installed $$repo (selective)"; \
 			else \
@@ -182,7 +182,7 @@ skills-install: ## Ensure skills from SKILLS.txt are installed and reconcile man
 			fi; \
 		else \
 			echo "Installing all skills from $$repo..."; \
-			if bunx skills add $$repo --global --yes </dev/null; then \
+			if bun x skills add $$repo --global --yes </dev/null; then \
 				list_repo_skills "$$repo" | LC_ALL=C sort > "$$manifest_file"; \
 				echo "✓ Installed $$repo (all)"; \
 			else \
@@ -278,10 +278,10 @@ skills-install-repo: ## Install a single skill repo. Usage: make skills-install-
 	fi
 	@if [ -n "$(SKILLS)" ]; then \
 		echo "Installing selected skills from $(REPO) ($(SKILLS))..."; \
-		bunx skills add $(REPO) --global --yes $(shell echo "$(SKILLS)" | tr ',' '\n' | sed '/^$$/d' | while read -r s; do printf " --skill $$s"; done); \
+		bun x skills add $(REPO) --global --yes $(shell echo "$(SKILLS)" | tr ',' '\n' | sed '/^$$/d' | while read -r s; do printf " --skill $$s"; done); \
 	else \
 		echo "Installing all skills from $(REPO)..."; \
-		bunx skills add $(REPO) --global --yes; \
+		bun x skills add $(REPO) --global --yes; \
 	fi
 	@echo "✓ Installed $(REPO)"
 
@@ -338,7 +338,7 @@ ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 		ruler_src="$(abspath $(dir $(lastword $(MAKEFILE_LIST))))/.ruler"; \
 		ruler_home="$$HOME/.ruler"; \
 		rsync -a --delete "$$ruler_src/" "$$ruler_home/"; \
-		bunx @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
+		bun x @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
 
 .PHONY: ruler-dotdirs-sync
 ruler-dotdirs-sync: ## Sync repo dot directories to $HOME equivalents.
