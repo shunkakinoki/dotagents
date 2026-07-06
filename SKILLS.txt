@@ -1,8 +1,8 @@
 # Format: repo [skill1,skill2,...] (omit skills list to install all from repo)
 # Lines starting with # are comments
 
-# addyosmani/agent-skills (22 total) - keep all
-addyosmani/agent-skills
+# addyosmani/agent-skills (24 total) - keep all
+addyosmani/agent-skills api-and-interface-design,browser-testing-with-devtools,ci-cd-and-automation,code-review-and-quality,code-simplification,context-engineering,debugging-and-error-recovery,deprecation-and-migration,documentation-and-adrs,doubt-driven-development,frontend-ui-engineering,git-workflow-and-versioning,idea-refine,incremental-implementation,interview-me,observability-and-instrumentation,performance-optimization,planning-and-task-breakdown,security-and-hardening,shipping-and-launch,source-driven-development,spec-driven-development,test-driven-development,using-agent-skills
 
 # antfu/skills (17 total) - keep tooling, drop vue ecosystem
 antfu/skills antfu,pnpm,slidev,tsdown,turborepo,vite,vitest
@@ -17,25 +17,25 @@ anthropics/defending-code-reference-harness customize,patch,quickstart,threat-mo
 anthropics/knowledge-work-plugins memory-management,start,task-management,update,knowledge-synthesis,search,search-strategy,source-management,architecture,code-review,debug,deploy-checklist,documentation,incident-response,standup,system-design,tech-debt,testing-strategy,analyze,build-dashboard,create-viz,data-visualization,explore-data,view-pdf
 
 # austintgriffith/ethskills (1 total) - keep all
-austintgriffith/ethskills
+austintgriffith/ethskills ethskills
 
-# better-auth/skills (6 total) - keep all
-better-auth/skills
+# better-auth/skills (5 total) - keep all
+better-auth/skills better-auth-best-practices,create-auth-skill,email-and-password-best-practices,organization-best-practices,two-factor-authentication-best-practices
 
 # better-context/skills - keep btca-local
 better-context/skills btca-local
 
 # blader/arbitrage (1 total) - keep all
-blader/arbitrage
+blader/arbitrage arbitrage
 
 # blader/humanizer (1 total) - keep all
-blader/humanizer
+blader/humanizer humanizer
 
-# cloudflare/skills (9 total) - keep all
-cloudflare/skills
+# cloudflare/skills (11 total) - keep all
+cloudflare/skills agents-sdk,cloudflare,cloudflare-email-service,cloudflare-one,cloudflare-one-migrations,durable-objects,sandbox-sdk,turnstile-spin,web-perf,workers-best-practices,wrangler
 
-# coinbase/agentic-wallet-skills (8 total) - keep all
-coinbase/agentic-wallet-skills
+# coinbase/agentic-wallet-skills (1 total) - keep all
+coinbase/agentic-wallet-skills agentic-wallet
 
 # coreyhaines31/marketingskills (34 total) - keep analytics only
 coreyhaines31/marketingskills analytics-tracking
@@ -44,22 +44,22 @@ coreyhaines31/marketingskills analytics-tracking
 cursor/plugins check-compiler-errors,control-cli,control-ui,deslop,fix-ci,fix-merge-conflicts,get-pr-comments,loop-on-ci,make-pr-easy-to-review,new-branch-and-pr,pr-review-canvas,review-and-ship,run-smoke-tests,thermo-nuclear-code-quality-review,verify-this,weekly-review,what-did-i-get-done,workflow-from-chats
 
 # Dicklesworthstone/coding_agent_session_search (1 total) - keep all
-Dicklesworthstone/coding_agent_session_search
+Dicklesworthstone/coding_agent_session_search cass
 
-# donnfelker/donnfelker-plugin-marketplace (7 total) - keep all
-donnfelker/donnfelker-plugin-marketplace
+# donnfelker/donnfelker-plugin-marketplace (3 total) - keep all
+donnfelker/donnfelker-plugin-marketplace codebase-analyzer,find-past-conversation,generate-release-notes
 
-# elvisun/newsjack (19 total) - keep all
-elvisun/newsjack
+# elvisun/newsjack (21 total) - keep all
+elvisun/newsjack angle-generator,coverage-tracker,coverage-tracker-setup,crisis-holding,fact-check,find-journalists,headline-generator,journalist-fit-check,meanest-editor,news-search,newsjack-detector,newsjack-monitor-setup,newsjack-triage,newsworthiness-check,pr-calendar,pr-strategist,press-clip,reactive-comment,relevance-coarse-filter,story-origin-check,voice-extractor
 
-# emilkowalski/skill (1 total) - keep all
-emilkowalski/skill
+# emilkowalski/skill (3 total) - keep all
+emilkowalski/skill animation-vocabulary,emil-design-eng,review-animations
 
-# Forward-Future/loop-library (1 total) - keep all
-Forward-Future/loop-library
+# Forward-Future/loop-library (2 total) - keep all
+Forward-Future/loop-library loop-library,loopy
 
 # garrytan/gstack (1 total) - keep all
-garrytan/gstack
+garrytan/gstack gstack
 
 # getsentry/skills (24 total) - keep dev workflow skills
 getsentry/skills agents-md,claude-settings-audit,code-review,code-simplifier,commit,create-branch,find-bugs,gh-review-requests,gha-security-review,iterate-pr,pr-writer,security-review
@@ -67,29 +67,29 @@ getsentry/skills agents-md,claude-settings-audit,code-review,code-simplifier,com
 # github/awesome-copilot (257 total) - keep essential dev/infra skills
 github/awesome-copilot chrome-devtools,conventional-commit,create-implementation-plan,create-readme,create-specification,dependabot,doublecheck,editorconfig,eval-driven-dev,git-commit,github-issues,make-repo-contribution,multi-stage-dockerfile,my-issues,my-pull-requests,playwright-generate-test,prd,pytest-coverage,refactor,refactor-plan,secret-scanning,security-review,typescript-mcp-server-generator,update-implementation-plan,webapp-testing
 
-# google/skills (30 total) - keep all
-google/skills
+# google/skills (58 total) - keep all
+google/skills agent-platform-alert-configuration,agent-platform-deploy,agent-platform-endpoint-management,agent-platform-eval-flywheel,agent-platform-inference,agent-platform-migrate-from-ai-studio,agent-platform-model-registry,agent-platform-prompt-management,agent-platform-rag-engine-management,agent-platform-skill-registry,agent-platform-tuning,agent-platform-tuning-management,alloydb-basics,bigquery-ai-ml,bigquery-basics,bigquery-bigframes,bigtable-basics,cloud-run-basics,cloud-sql-basics,datalineage-bigquery-asset-impact-analysis,detection-engineering-coverage-evaluation,firebase-basics,gcloud,gemini-agents-api,gemini-api,gemini-interactions-api,gke-app-onboarding,gke-backup-dr,gke-basics,gke-batch-hpc,gke-cluster-creation,gke-compute-classes,gke-cost,gke-golden-path,gke-inference,gke-multitenancy,gke-networking,gke-observability,gke-reliability,gke-scaling,gke-security,gke-storage,gke-upgrades,google-agents-cli-onboarding,google-analytics-admin-api-basics,google-analytics-data-api-basics,google-cloud-networking-observability,google-cloud-recipe-auth,google-cloud-recipe-foundation-builder,google-cloud-recipe-onboarding,google-cloud-waf-cost-optimization,google-cloud-waf-operational-excellence,google-cloud-waf-performance-optimization,google-cloud-waf-reliability,google-cloud-waf-security,google-cloud-waf-sustainability,iam-recommendations-fetcher,workload-manager-basics
 
 # googleworkspace/cli (93 total) - keep core gmail/calendar/drive
 googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-docs,gws-docs-write,gws-drive,gws-drive-upload,gws-gmail,gws-gmail-read,gws-gmail-send,gws-sheets,gws-sheets-read,gws-tasks
 
-# index.how/to/articulate - keep all
+# index.how/to/articulate - keep all (install-all; URL endpoint currently exposes no skills)
 https://index.how/to/articulate
 
 # inference-sh/skills (78 total) - keep core tools
 inference-sh/skills web-search,web-research,ai-sdk,agent-browser,agent-ui
 
-# Jakubantalik/transitions.dev - keep all
-Jakubantalik/transitions.dev
+# Jakubantalik/transitions.dev (1 total) - keep all
+Jakubantalik/transitions.dev transitions-dev
 
-# juxt/allium - keep all
-juxt/allium
+# juxt/allium (6 total) - keep all
+juxt/allium allium,distill,elicit,propagate,tend,weed
 
 # kitlangton/motel (1 total) - keep all
-kitlangton/motel
+kitlangton/motel motel-debug
 
-# kunchenguid/axi (1 total) - keep all
-kunchenguid/axi
+# kunchenguid/axi (2 total) - keep all
+kunchenguid/axi axi,no-mistakes
 
 # Leonxlnx/taste-skill (8 total) - keep frontend design skills, skip gpt/stitch/brutalist
 Leonxlnx/taste-skill design-taste-frontend,high-end-visual-design,minimalist-ui,redesign-existing-projects,full-output-enforcement
@@ -104,16 +104,16 @@ openclaw/agent-skills autoreview
 PaulRBerg/agent-skills biome-js,bump-deps,bump-release,cli-gh,code-polish,code-review,code-simplify,effect-ts,md-docs,tailwind-css,yeet
 
 # mattpocock/skills (38 total) - keep all
-mattpocock/skills
+mattpocock/skills ask-matt,claude-handoff,code-review,codebase-design,design-an-interface,diagnosing-bugs,domain-modeling,edit-article,git-guardrails-claude-code,grill-me,grill-with-docs,grilling,handoff,implement,improve-codebase-architecture,loop-me,migrate-to-shoehorn,obsidian-vault,prototype,qa,request-refactor-plan,research,resolving-merge-conflicts,scaffold-exercises,setup-matt-pocock-skills,setup-pre-commit,tdd,teach,to-issues,to-prd,triage,ubiquitous-language,wayfinder,wizard,writing-beats,writing-fragments,writing-great-skills,writing-shape
 
-# max-sixty/worktrunk (1 total) - keep all
-max-sixty/worktrunk
+# max-sixty/worktrunk (2 total) - keep all
+max-sixty/worktrunk worktrunk,wt-switch-create
 
 # Merit-Systems/agentcash-skills (13 total) - keep core
 Merit-Systems/agentcash-skills agentcash,web-research
 
 # multica-ai/andrej-karpathy-skills (1 total) - keep all
-multica-ai/andrej-karpathy-skills
+multica-ai/andrej-karpathy-skills karpathy-guidelines
 
 # NousResearch/hermes-agent (creative) - keep manim-video
 NousResearch/hermes-agent dogfood
@@ -128,40 +128,40 @@ paperclipai/paperclip paperclip,paperclip-create-agent,paperclip-create-plugin
 redwoodjs/agent-ci agent-ci
 
 # remotion-dev/skills (1 total) - keep all
-remotion-dev/skills
+remotion-dev/skills remotion-best-practices
 
 # schpet/linear-cli (2 total) - keep all
-schpet/linear-cli
+schpet/linear-cli linear-cli,release
 
 # shadcn/improve (1 total) - keep all
-shadcn/improve
+shadcn/improve improve
 
 # ShawnPana/smux (1 total) - keep all
-ShawnPana/smux
+ShawnPana/smux smux
 
-# shunkakinoki/private-skills (ALL)
+# shunkakinoki/private-skills (ALL) - install-all; private repo, not enumerable here
 shunkakinoki/private-skills
 
 # subsy/ralph-tui (4 total) - keep all
-subsy/ralph-tui
+subsy/ralph-tui ralph-tui-create-beads,ralph-tui-create-beads-rust,ralph-tui-create-json,ralph-tui-prd
 
 # tobi/qmd (2 total) - keep all
-tobi/qmd
+tobi/qmd qmd,release
 
 # trailofbits/skills (61 total) - keep security essentials
 trailofbits/skills gh-cli,ask-questions-if-underspecified,code-maturity-assessor,secure-workflow-guide,semgrep,codeql,modern-python,insecure-defaults,supply-chain-risk-auditor,agentic-actions-auditor,fp-check
 
-# vercel/ai (1 total) - keep all
-vercel/ai
+# vercel/ai (2 total) - keep all
+vercel/ai ai-sdk,migrate-ai-sdk-v6-to-v7
 
 # vercel/ai-elements (1 total) - keep all
-vercel/ai-elements
+vercel/ai-elements ai-elements
 
-# vercel/chat (1 total) - keep all
-vercel/chat
+# vercel/chat (2 total) - keep all
+vercel/chat add-adapter,chat-sdk
 
 # vercel/turborepo (1 total) - keep all
-vercel/turborepo
+vercel/turborepo turborepo
 
 # vercel-labs/agent-browser (5 total) - keep core
 vercel-labs/agent-browser agent-browser,vercel-sandbox
@@ -169,11 +169,11 @@ vercel-labs/agent-browser agent-browser,vercel-sandbox
 # vercel-labs/agent-skills (6 total) - keep core
 vercel-labs/agent-skills vercel-composition-patterns,deploy-to-vercel,vercel-react-best-practices,vercel-cli-with-tokens
 
-# vercel-labs/next-browser (1 total) - keep all
+# vercel-labs/next-browser - keep all (install-all; upstream currently has no SKILL.md)
 vercel-labs/next-browser
 
-# vercel-labs/next-skills (3 total) - keep all
+# vercel-labs/next-skills - keep all (install-all; upstream currently has no SKILL.md)
 vercel-labs/next-skills
 
-# vercel-labs/portless (3 total) - keep all
-vercel-labs/portless
+# vercel-labs/portless (2 total) - keep all
+vercel-labs/portless oauth,portless
