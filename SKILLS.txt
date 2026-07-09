@@ -94,6 +94,9 @@ kitlangton/motel motel-debug
 # kunchenguid/axi (2 total) - keep all
 kunchenguid/axi axi,no-mistakes
 
+# kunchenguid/no-mistakes (1 total) - keep all
+kunchenguid/no-mistakes
+
 # Leonxlnx/taste-skill (8 total) - keep frontend design skills, skip gpt/stitch/brutalist
 Leonxlnx/taste-skill design-taste-frontend,high-end-visual-design,minimalist-ui,redesign-existing-projects,full-output-enforcement
 
