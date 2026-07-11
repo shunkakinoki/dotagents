@@ -52,8 +52,8 @@ donnfelker/donnfelker-plugin-marketplace codebase-analyzer,find-past-conversatio
 # elvisun/newsjack (21 total) - keep all
 elvisun/newsjack angle-generator,coverage-tracker,coverage-tracker-setup,crisis-holding,fact-check,find-journalists,headline-generator,journalist-fit-check,meanest-editor,news-search,newsjack-detector,newsjack-monitor-setup,newsjack-triage,newsworthiness-check,pr-calendar,pr-strategist,press-clip,reactive-comment,relevance-coarse-filter,story-origin-check,voice-extractor
 
-# emilkowalski/skill (3 total) - keep all
-emilkowalski/skill animation-vocabulary,emil-design-eng,review-animations
+# emilkowalski/skills (5 total) - keep all (renamed from emilkowalski/skill; adds apple-design, improve-animations)
+emilkowalski/skills animation-vocabulary,apple-design,emil-design-eng,improve-animations,review-animations
 
 # Forward-Future/loop-library (2 total) - keep all
 Forward-Future/loop-library loop-library,loopy
