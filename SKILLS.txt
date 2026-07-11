@@ -73,6 +73,9 @@ google/skills agent-platform-alert-configuration,agent-platform-deploy,agent-pla
 # googleworkspace/cli (93 total) - keep core gmail/calendar/drive
 googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-docs,gws-docs-write,gws-drive,gws-drive-upload,gws-gmail,gws-gmail-read,gws-gmail-send,gws-sheets,gws-sheets-read,gws-tasks
 
+# Graphify-Labs/graphify (1 total) - keep all
+Graphify-Labs/graphify
+
 # higgsfield-ai/skills (5 total) - keep all
 higgsfield-ai/skills higgsfield-generate,higgsfield-marketplace-cards,higgsfield-product-photoshoot,higgsfield-soul-id,higgsfield-websites
 
