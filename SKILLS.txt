@@ -121,6 +121,9 @@ max-sixty/worktrunk worktrunk,wt-switch-create
 # Merit-Systems/agentcash-skills (13 total) - keep core
 Merit-Systems/agentcash-skills agentcash,web-research
 
+# millionco/react-doctor (2 total) - keep improve-react
+millionco/react-doctor improve-react
+
 # multica-ai/andrej-karpathy-skills (1 total) - keep all
 multica-ai/andrej-karpathy-skills karpathy-guidelines
 
