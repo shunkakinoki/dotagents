@@ -112,6 +112,9 @@ Leonxlnx/taste-skill design-taste-frontend,high-end-visual-design,minimalist-ui,
 # obra/superpowers (14 total) - keep dev workflow
 obra/superpowers dispatching-parallel-agents,executing-plans,finishing-a-development-branch,receiving-code-review,requesting-code-review,systematic-debugging,test-driven-development,using-git-worktrees,verification-before-completion,writing-plans,writing-skills
 
+# ogulcancelik/herdr (1 total) - keep all
+ogulcancelik/herdr herdr
+
 # openclaw/agent-skills - keep autoreview
 openclaw/agent-skills autoreview
 
