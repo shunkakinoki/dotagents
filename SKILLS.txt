@@ -100,6 +100,9 @@ kitlangton/motel motel-debug
 # kitlangton/skills (1 total) - keep all
 kitlangton/skills effect
 
+# kucherenko/jscpd (2 total) - keep all
+kucherenko/jscpd dry-refactoring,jscpd
+
 # kunchenguid/axi (2 total) - keep all
 kunchenguid/axi axi,no-mistakes
 
