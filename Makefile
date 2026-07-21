@@ -40,8 +40,11 @@ sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to a
 	@$(MAKE) commands-sync
 	@$(MAKE) skills-install
 	@$(MAKE) skills-sync
-	@$(MAKE) mcp-sync
 	@$(MAKE) ruler-dotdirs-sync
+	# mcp-sync must run after ruler-dotdirs-sync: the latter rsyncs
+	# `.cursor/mcp.json` (and peers) into $HOME and would otherwise
+	# clobber the canonical MCP config written from `.ruler/mcp.json`.
+	@$(MAKE) mcp-sync
 endif
 
 .PHONY: ruler-prepare
@@ -319,6 +322,14 @@ mcp-sync: ## Sync MCP configuration from .ruler/mcp.json to CLI tools.
 			exit 1; \
 		fi; \
 	done
+	# Keep gitignored local mirrors aligned so a later ruler-dotdirs-sync
+	# cannot revive a stale `.cursor/mcp.json` / `.mcp.json`.
+	@root="$(abspath $(dir $(lastword $(MAKEFILE_LIST))))"; \
+	for mirror in "$$root/.cursor/mcp.json" "$$root/.mcp.json"; do \
+		mkdir -p "$$(dirname "$$mirror")"; \
+		cp $(MCP_SRC) "$$mirror"; \
+		echo "Synced $(MCP_SRC) → $$mirror"; \
+	done
 	@keys=$$(jq -c '.mcpServers | keys' $(MCP_SRC)); \
 	for settings in $(MCP_SETTINGS_TARGETS); do \
 		if [ -f "$$settings" ]; then \
@@ -350,7 +361,10 @@ ruler-dotdirs-sync: ## Sync repo dot directories to $HOME equivalents.
 			target="$$HOME/$$d"; \
 			if [ -d "$$src" ]; then \
 				mkdir -p "$$target"; \
-				rsync -a "$$src/" "$$target/"; \
+				rsync -a \
+					--exclude mcp.json \
+					--exclude mcp.json.bak \
+					"$$src/" "$$target/"; \
 				echo "Synced $$src → $$target"; \
 			fi; \
 		done'
