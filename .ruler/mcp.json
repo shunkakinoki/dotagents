@@ -22,8 +22,8 @@
       "args": ["-m", "mempalace.mcp_server"]
     },
     "Sentry": {
-      "command": "mcp-remote",
-      "args": ["https://mcp.sentry.dev/mcp"]
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
     },
     "Serena": {
       "command": "serena",
