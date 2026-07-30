@@ -21,6 +21,10 @@
       "command": "python3-mempalace",
       "args": ["-m", "mempalace.mcp_server"]
     },
+    "Paybox": {
+      "type": "http",
+      "url": "https://api.paybox.sh/mcp"
+    },
     "Sentry": {
       "type": "http",
       "url": "https://mcp.sentry.dev/mcp"
