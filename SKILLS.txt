@@ -34,8 +34,8 @@ cloudflare/skills agents-sdk,cloudflare,cloudflare-email-service,cloudflare-one,
 # coinbase/agentic-wallet-skills (1 total) - keep all
 coinbase/agentic-wallet-skills agentic-wallet
 
-# coreyhaines31/marketingskills (34 total) - keep analytics only
-coreyhaines31/marketingskills analytics-tracking
+# coreyhaines31/marketingskills (49 total) - keep analytics only
+coreyhaines31/marketingskills analytics
 
 # cursor/plugins (75 total) - keep cursor-team-kit + cursor SDK/plugin + pstack skills (excl. poteto-mode, benny automations)
 cursor/plugins check-compiler-errors,control-cli,control-ui,deslop,fix-ci,fix-merge-conflicts,get-pr-comments,loop-on-ci,make-pr-easy-to-review,new-branch-and-pr,pr-review-canvas,review-and-ship,run-smoke-tests,thermo-nuclear-code-quality-review,verify-this,weekly-review,what-did-i-get-done,workflow-from-chats,cli-for-agents,continual-learning,create-plugin-scaffold,review-plugin-submission,cursor-sdk,docs-canvas,orchestrate,architect,arena,automate-me,blast-radius,create-verification-skill,figure-it-out,how,interrogate,maintain-verification-skill,recall,reflect,setup-pstack,show-me-your-work,tdd,teach,typescript-best-practices,unslop,why,principle-boundary-discipline,principle-build-the-lever,principle-encode-lessons-in-structure,principle-exhaust-the-design-space,principle-experience-first,principle-fix-root-causes,principle-foundational-thinking,principle-guard-the-context-window,principle-laziness-protocol,principle-make-operations-idempotent,principle-migrate-callers-then-delete-legacy-apis,principle-minimize-reader-load,principle-model-the-domain,principle-never-block-on-the-human,principle-outcome-oriented-execution,principle-prove-it-works,principle-redesign-from-first-principles,principle-separate-before-serializing-shared-state,principle-sequence-verifiable-units,principle-subtract-before-you-add,principle-type-system-discipline
@@ -72,9 +72,6 @@ google/skills agent-platform-alert-configuration,agent-platform-deploy,agent-pla
 
 # googleworkspace/cli (93 total) - keep core gmail/calendar/drive
 googleworkspace/cli gws-calendar,gws-calendar-agenda,gws-calendar-insert,gws-docs,gws-docs-write,gws-drive,gws-drive-upload,gws-gmail,gws-gmail-read,gws-gmail-send,gws-sheets,gws-sheets-read,gws-tasks
-
-# Graphify-Labs/graphify (1 total) - keep all
-Graphify-Labs/graphify
 
 # higgsfield-ai/skills (5 total) - keep all
 higgsfield-ai/skills higgsfield-generate,higgsfield-marketplace-cards,higgsfield-product-photoshoot,higgsfield-soul-id,higgsfield-websites
@@ -192,12 +189,6 @@ vercel-labs/agent-browser agent-browser
 
 # vercel-labs/agent-skills (6 total) - keep core
 vercel-labs/agent-skills vercel-composition-patterns,deploy-to-vercel,vercel-react-best-practices,vercel-cli-with-tokens
-
-# vercel-labs/next-browser - keep all (install-all; upstream currently has no SKILL.md)
-vercel-labs/next-browser
-
-# vercel-labs/next-skills - keep all (install-all; upstream currently has no SKILL.md)
-vercel-labs/next-skills
 
 # vercel-labs/portless (2 total) - keep all
 vercel-labs/portless oauth,portless

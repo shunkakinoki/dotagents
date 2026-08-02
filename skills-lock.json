@@ -232,12 +232,12 @@
       "skillPath": "skills/cloud/alloydb-basics/SKILL.md",
       "skillFolderHash": "1ce7947392394106cd2272802061c2c39f2d96e9"
     },
-    "analytics-tracking": {
+    "analytics": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/coreyhaines31/marketingskills.git",
-      "skillPath": "skills/analytics-tracking/SKILL.md",
-      "skillFolderHash": "d6d50fd2bd4440bb0f075b4f2818a70667991f8b"
+      "skillPath": "skills/analytics/SKILL.md",
+      "skillFolderHash": "cbb8b810847072efe55e8de9c0dd42ddbcc5f91e"
     },
     "analyze": {
       "source": "anthropics/knowledge-work-plugins",
@@ -1758,13 +1758,6 @@
       "skillPath": "skills/cloud/google-cloud-waf-sustainability/SKILL.md",
       "skillFolderHash": "fd7ed477c4f5acb4ca98910b85cf90dc3ffa31f0"
     },
-    "graphify": {
-      "source": "Graphify-Labs/graphify",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/Graphify-Labs/graphify.git",
-      "skillPath": "graphify/SKILL.md",
-      "skillFolderHash": "a65104d74d49ef0ea34a98c4dea74da6cba038c8"
-    },
     "grill-me": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -2324,34 +2317,6 @@
       "sourceUrl": "https://github.com/elvisun/newsjack.git",
       "skillPath": "skills/newsworthiness-check/SKILL.md",
       "skillFolderHash": "1b385139b4d17d258414b1024a9438cccb70775f"
-    },
-    "next-best-practices": {
-      "source": "vercel-labs/next-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/next-skills.git",
-      "skillPath": "skills/next-best-practices/SKILL.md",
-      "skillFolderHash": "ad17eb27952b39a6ab0061bd50e8a2213b63a3ec"
-    },
-    "next-browser": {
-      "source": "vercel-labs/next-browser",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/next-browser.git",
-      "skillPath": "skills/next-browser/SKILL.md",
-      "skillFolderHash": "9d8c0b32cbc8c81f085feb0eb73b50650fe9cef3"
-    },
-    "next-cache-components": {
-      "source": "vercel-labs/next-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/next-skills.git",
-      "skillPath": "skills/next-cache-components/SKILL.md",
-      "skillFolderHash": "a6f29564b9228af553737bd437c7016fc3dc44e0"
-    },
-    "next-upgrade": {
-      "source": "vercel-labs/next-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/vercel-labs/next-skills.git",
-      "skillPath": "skills/next-upgrade/SKILL.md",
-      "skillFolderHash": "962598faa417cf3b6c03ec2e5cbe0aa0aeb2c4a9"
     },
     "no-ai-slop": {
       "source": "petergyang/no-ai-slop",
