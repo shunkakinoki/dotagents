@@ -11,12 +11,15 @@
     "lefthook:install": "lefthook install",
     "lefthook:uninstall": "lefthook uninstall",
     "lefthook:run": "lefthook run",
+    "skills:install": "bun run scripts/skills-install.ts",
+    "skills:lock": "bun run scripts/skills-lock.ts",
     "prepare": "make ruler-prepare"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",
     "@intellectronica/ruler": "^0.3.23",
-    "lefthook": "^2.0.15"
+    "lefthook": "^2.0.15",
+    "skills": "^1.5.20"
   },
   "packageManager": "bun@1.2.22"
 }
