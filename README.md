@@ -22,12 +22,13 @@ make skills-install
 make skills-update
 
 # Regenerate skills-lock.json from SKILLS.txt without installing
+# (requires ~/.agents/.skill-lock.json, created by the first global install)
 make skills-lock
 
 # Force a reinstall of everything in the lock
 make skills-refresh
 ```
 
-To add skills: edit `SKILLS.txt`, run `make skills-install`, and commit both files. To remove: delete from `SKILLS.txt`, run `bunx skills remove <name> --global --yes`, then `make skills-lock`.
+To add skills: edit `SKILLS.txt`, run `make skills-install`, and commit both files. Install-all repos (no selection) need a one-time bootstrap before they appear in the lock: `bunx skills add owner/repo --global --yes --skill '*'` (the `make skills-lock` warning prints the exact command), then `make skills-lock`. To remove: delete from `SKILLS.txt`, run `bunx skills remove <name> --global --yes`, then `make skills-lock`.
 
 Installs track each source's default branch: the skills CLI does not record commit SHAs in its lock yet, so entries are not pinned to a commit.
