@@ -46,3 +46,5 @@ cd dotagents && make skills-install
 - Idempotent: skips skills already present in `~/.agents/skills`
 - `make skills-refresh` reinstalls everything
 - `make sync` runs `make skills-install` automatically
+- Installs track each source's default branch; the skills CLI does not record
+  commit SHAs in its lock yet, so entries are not pinned to a commit
