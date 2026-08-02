@@ -349,7 +349,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/openclaw/agent-skills.git",
       "skillPath": "skills/autoreview/SKILL.md",
-      "skillFolderHash": "e762c8107228f8e809bd7bd383ce95e8dc27f2e4"
+      "skillFolderHash": "a77ccd1182390c818cc0636ba7ecac1980fd458b"
     },
     "axi": {
       "source": "kunchenguid/axi",

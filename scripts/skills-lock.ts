@@ -20,12 +20,18 @@ const root = join(import.meta.dir, "..");
 const agentsDir = join(homedir(), ".agents");
 
 const globalLockPath = join(agentsDir, ".skill-lock.json");
+if (!existsSync(globalLockPath)) {
+  console.error(
+    `${globalLockPath} not found; install a skill first (bunx skills add ... --global) to initialize it.`,
+  );
+  process.exit(1);
+}
 let globalLock: { version: number; skills: Record<string, Entry> };
 try {
   globalLock = await Bun.file(globalLockPath).json();
-} catch {
+} catch (error) {
   console.error(
-    `Cannot read ${globalLockPath}; install a skill first (bunx skills add ... --global) to initialize it.`,
+    `Cannot read ${globalLockPath}: ${error instanceof Error ? error.message : String(error)}`,
   );
   process.exit(1);
 }
