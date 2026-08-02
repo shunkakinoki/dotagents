@@ -13,7 +13,10 @@ RULES_TARGET_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler
 SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
 SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
 SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills $(HOME)/.config/opencode/skills
-SKILLS_SCRIPTS_DIR := $(dir $(lastword $(MAKEFILE_LIST)))scripts
+SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
+SKILLS_LOCK_FILE := $(dir $(lastword $(MAKEFILE_LIST)))skills-lock.json
+SKILLS_EXTERNAL_SOURCE_DIR := $(HOME)/.agents/skills
+SKILLS_GLOBAL_LOCK := $(HOME)/.agents/.skill-lock.json
 
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
@@ -81,15 +84,73 @@ ruler-rules-copy: ## Copy rules to .ruler directory.
 
 .PHONY: skills-install
 skills-install: ## Install external skills from skills-lock.json (skips already installed).
-	@bun run $(SKILLS_SCRIPTS_DIR)/skills-install.ts
+	@lock="$(SKILLS_LOCK_FILE)"; \
+	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
+	force="$${DOTAGENTS_FORCE_SKILLS_INSTALL:-0}"; \
+	if [ ! -f "$$lock" ]; then \
+		echo "Error: $$lock not found"; \
+		exit 1; \
+	fi; \
+	tmp_missing=$$(mktemp); \
+	jq -r '.skills | to_entries[] | [(.value.sourceUrl // .value.source) + (if .value.ref then "#" + .value.ref else "" end), .key] | @tsv' "$$lock" \
+	| while read -r source name; do \
+		if [ "$$force" = "1" ] || { [ ! -e "$$skills_dir/$$name" ] && [ ! -L "$$skills_dir/$$name" ]; }; then \
+			printf '%s\t%s\n' "$$source" "$$name"; \
+		fi; \
+	done | LC_ALL=C sort > "$$tmp_missing"; \
+	if [ ! -s "$$tmp_missing" ]; then \
+		rm -f "$$tmp_missing"; \
+		echo "All skills from skills-lock.json are installed."; \
+		exit 0; \
+	fi; \
+	failed=0; \
+	for source in $$(cut -f1 "$$tmp_missing" | uniq); do \
+		names=$$(awk -F'\t' -v s="$$source" '$$1 == s {print $$2}' "$$tmp_missing"); \
+		skill_args=$$(printf '%s\n' "$$names" | while IFS= read -r n; do printf ' --skill %s' "$$n"; done); \
+		count=$$(printf '%s\n' "$$names" | wc -l | tr -d ' '); \
+		echo "Installing $$count skill(s) from $$source..."; \
+		bun x skills add "$$source" --global --yes $$skill_args </dev/null; \
+		status=$$?; \
+		still_missing=$$(printf '%s\n' "$$names" | while IFS= read -r n; do \
+			if [ ! -e "$$skills_dir/$$n" ] && [ ! -L "$$skills_dir/$$n" ]; then printf ' %s' "$$n"; fi; \
+		done); \
+		if [ -n "$$still_missing" ] || { [ "$$force" = "1" ] && [ "$$status" != "0" ]; }; then \
+			echo "Failed to install from $$source:$$still_missing"; \
+			failed=1; \
+		fi; \
+	done; \
+	rm -f "$$tmp_missing"; \
+	exit $$failed
 
 .PHONY: skills-refresh
 skills-refresh: ## Force a reinstall of all external skills from skills-lock.json.
-	@bun run $(SKILLS_SCRIPTS_DIR)/skills-install.ts --force
+	@DOTAGENTS_FORCE_SKILLS_INSTALL=1 $(MAKE) skills-install
 
 .PHONY: skills-lock
 skills-lock: ## Regenerate skills-lock.json from SKILLS.txt.
-	@bun run $(SKILLS_SCRIPTS_DIR)/skills-lock.ts
+	@global_lock="$(SKILLS_GLOBAL_LOCK)"; \
+	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
+	if [ ! -f "$$global_lock" ]; then \
+		echo "Error: $$global_lock not found; install a skill first (bun x skills add ... --global) to initialize it."; \
+		exit 1; \
+	fi; \
+	if ! jq -e '(.version | type == "number") and (.skills | type == "object")' "$$global_lock" >/dev/null; then \
+		echo "Error: $$global_lock is missing version/skills fields"; \
+		exit 1; \
+	fi; \
+	ondisk=$$(find "$$skills_dir" -mindepth 1 -maxdepth 1 \( -type d -o -type l \) -exec basename {} \; 2>/dev/null | jq -R . | jq -s .); \
+	spec=$$(awk '!/^[[:space:]]*(\#|$$)/ {print $$1 "\t" $$2}' "$(SKILLS_FILE)" | jq -R -s 'split("\n") | map(select(length > 0) | split("\t") | {repo: .[0], names: (if (.[1] // "") == "" then [] else (.[1] | split(",") | map(select(length > 0))) end)})'); \
+	jq --argjson ondisk "$$ondisk" --argjson spec "$$spec" '. as $$lock | ($$lock.skills | with_entries(select(.key as $$k | $$ondisk | index($$k))) | with_entries(.value |= ({source, sourceType, sourceUrl, ref, skillPath, skillFolderHash} | with_entries(select(.value != null))))) as $$inst | reduce $$spec[] as $$s ({}; if ($$s.names | length) == 0 then . + ($$inst | with_entries(select(.value.source | ascii_downcase == ($$s.repo | ascii_downcase)))) else reduce $$s.names[] as $$n (.; ($$inst[$$n] // null) as $$hit | .[$$n] = (if $$hit != null and (($$hit.source | ascii_downcase) == ($$s.repo | ascii_downcase)) then $$hit elif .[$$n] != null then .[$$n] elif ($$s.repo | test("^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$$")) then {source: $$s.repo, sourceType: "github", sourceUrl: "https://github.com/\($$s.repo).git"} else {source: $$s.repo} end)) end) | {version: $$lock.version, skills: (to_entries | sort_by(.key) | from_entries)}' "$$global_lock" > "$(SKILLS_LOCK_FILE).tmp" && mv "$(SKILLS_LOCK_FILE).tmp" "$(SKILLS_LOCK_FILE)"; \
+	for repo in $$(printf '%s' "$$spec" | jq -r '.[] | select(.names | length == 0) | .repo'); do \
+		if ! jq -e --arg repo "$$repo" '[.skills[] | select(.source | ascii_downcase == ($$repo | ascii_downcase))] | length > 0' "$(SKILLS_LOCK_FILE)" >/dev/null; then \
+			echo "warn: no installed skills for install-all repo $$repo; run: bun x skills add $$repo --global --yes --skill '*'"; \
+		fi; \
+	done; \
+	undeclared=$$(jq -r --argjson ondisk "$$ondisk" --slurpfile out "$(SKILLS_LOCK_FILE)" '.skills | keys[] | . as $$k | select(($$ondisk | index($$k)) and ($$out[0].skills | has($$k) | not))' "$$global_lock" | paste -sd, -); \
+	if [ -n "$$undeclared" ]; then \
+		echo "warn: installed but not declared in SKILLS.txt: $$undeclared"; \
+	fi; \
+	jq -r --argjson ondisk "$$ondisk" '.skills | "skills-lock.json: \(length) skills (\([keys[] | select(. as $$k | $$ondisk | index($$k) | not)] | length) not yet installed)"' "$(SKILLS_LOCK_FILE)"
 
 .PHONY: ruler-skills-copy
 ruler-skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).
