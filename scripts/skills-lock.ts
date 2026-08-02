@@ -18,7 +18,21 @@ type Entry = {
 
 const root = join(import.meta.dir, "..");
 const agentsDir = join(homedir(), ".agents");
-const globalLock = await Bun.file(join(agentsDir, ".skill-lock.json")).json();
+
+const globalLockPath = join(agentsDir, ".skill-lock.json");
+let globalLock: { version: number; skills: Record<string, Entry> };
+try {
+  globalLock = await Bun.file(globalLockPath).json();
+} catch {
+  console.error(
+    `Cannot read ${globalLockPath}; install a skill first (bunx skills add ... --global) to initialize it.`,
+  );
+  process.exit(1);
+}
+if (typeof globalLock.version !== "number" || !globalLock.skills) {
+  console.error(`${globalLockPath} is missing version/skills fields.`);
+  process.exit(1);
+}
 
 // CLI-managed skills actually present on disk, keyed by name.
 const installed = new Map<string, Entry>();

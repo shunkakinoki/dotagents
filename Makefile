@@ -13,6 +13,7 @@ RULES_TARGET_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler
 SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
 SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
 SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills $(HOME)/.config/opencode/skills
+SKILLS_SCRIPTS_DIR := $(dir $(lastword $(MAKEFILE_LIST)))scripts
 
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
@@ -32,7 +33,7 @@ ifeq ($(DOTAGENTS_SKIP_SYNC),)
 sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
 	@$(MAKE) ruler-apply-global
 	@$(MAKE) commands-sync
-	@bun run skills:install
+	@$(MAKE) skills-install
 	@$(MAKE) skills-sync
 	@$(MAKE) mcp-sync
 	@$(MAKE) ruler-dotdirs-sync
@@ -77,7 +78,18 @@ ruler-rules-copy: ## Copy rules to .ruler directory.
 # SKILLS
 # ====================================================================================
 # External skills are declared in SKILLS.txt and locked in skills-lock.json.
-# Regenerate lock: `bun run skills:lock` / install: `bun run skills:install`.
+
+.PHONY: skills-install
+skills-install: ## Install external skills from skills-lock.json (skips already installed).
+	@bun run $(SKILLS_SCRIPTS_DIR)/skills-install.ts
+
+.PHONY: skills-refresh
+skills-refresh: ## Force a reinstall of all external skills from skills-lock.json.
+	@bun run $(SKILLS_SCRIPTS_DIR)/skills-install.ts --force
+
+.PHONY: skills-lock
+skills-lock: ## Regenerate skills-lock.json from SKILLS.txt.
+	@bun run $(SKILLS_SCRIPTS_DIR)/skills-lock.ts
 
 .PHONY: ruler-skills-copy
 ruler-skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).

@@ -43,13 +43,21 @@ for (const [source, names] of bySource) {
   for (const name of names) {
     args.push("--skill", name);
   }
-  const result = Bun.spawnSync(["bun", ...args], {
+  Bun.spawnSync(["bun", ...args], {
     stdin: "ignore",
     stdout: "inherit",
     stderr: "inherit",
   });
-  if (!result.success) {
-    console.error(`Failed to install from ${source}`);
+  // The CLI exits non-zero for per-agent adapter quirks (e.g. "PromptScript
+  // does not support global skill installation") even when the skill landed
+  // on disk, so trust the directory instead of the exit code.
+  const stillMissing = names.filter(
+    (name) => !existsSync(join(skillsDir, name)),
+  );
+  if (stillMissing.length > 0) {
+    console.error(
+      `Failed to install from ${source}: ${stillMissing.join(", ")}`,
+    );
     failed = true;
   }
 }

@@ -11,8 +11,6 @@
     "lefthook:install": "lefthook install",
     "lefthook:uninstall": "lefthook uninstall",
     "lefthook:run": "lefthook run",
-    "skills:install": "bun run scripts/skills-install.ts",
-    "skills:lock": "bun run scripts/skills-lock.ts",
     "prepare": "make ruler-prepare"
   },
   "devDependencies": {
