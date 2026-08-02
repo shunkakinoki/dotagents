@@ -23,8 +23,8 @@ bunx skills add owner/repo --global --list
 # Repos with <10 skills: install all (no selection)
 # Repos with 10+ skills: always specify selections
 
-# 3. Regenerate the lock, install, then re-lock to capture resolved metadata
-cd dotagents && make skills-lock && make skills-install && make skills-lock
+# 3. Install (regenerates skills-lock.json from SKILLS.txt automatically)
+cd dotagents && make skills-install
 
 # 4. Commit SKILLS.txt and skills-lock.json together
 ```
@@ -36,6 +36,15 @@ cd dotagents && make skills-lock && make skills-install && make skills-lock
 bunx skills remove <name> --global --yes
 cd dotagents && make skills-lock
 ```
+
+## Updating Installed Skills
+
+```bash
+cd dotagents && make skills-update
+```
+
+Runs `bun x skills update --global` and refreshes `skills-lock.json`; commit
+the resulting diff.
 
 ## Restoring (fresh machine or CI)
 
