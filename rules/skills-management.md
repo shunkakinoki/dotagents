@@ -26,6 +26,9 @@ bunx skills add owner/repo --global --list
 # 3. Install (regenerates skills-lock.json from SKILLS.txt automatically)
 cd dotagents && make skills-install
 
+# Install-all repos (no selection) need a one-time bootstrap to enter the lock:
+# bunx skills add owner/repo --global --yes --skill '*'
+
 # 4. Commit SKILLS.txt and skills-lock.json together
 ```
 

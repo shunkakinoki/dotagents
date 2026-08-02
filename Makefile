@@ -124,7 +124,7 @@ skills-install: ## Install external skills declared in SKILLS.txt (skips already
 	done; \
 	rm -f "$$tmp_missing"; \
 	if [ -f "$(SKILLS_GLOBAL_LOCK)" ]; then \
-		$(MAKE) skills-lock; \
+		$(MAKE) skills-lock || failed=1; \
 	fi; \
 	exit $$failed
 
