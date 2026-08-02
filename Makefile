@@ -83,7 +83,10 @@ ruler-rules-copy: ## Copy rules to .ruler directory.
 # External skills are declared in SKILLS.txt and locked in skills-lock.json.
 
 .PHONY: skills-install
-skills-install: ## Install external skills from skills-lock.json (skips already installed).
+skills-install: ## Install external skills declared in SKILLS.txt (skips already installed).
+	@if [ -f "$(SKILLS_GLOBAL_LOCK)" ]; then \
+		$(MAKE) skills-lock; \
+	fi
 	@lock="$(SKILLS_LOCK_FILE)"; \
 	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
 	force="$${DOTAGENTS_FORCE_SKILLS_INSTALL:-0}"; \
@@ -120,11 +123,19 @@ skills-install: ## Install external skills from skills-lock.json (skips already 
 		fi; \
 	done; \
 	rm -f "$$tmp_missing"; \
+	if [ -f "$(SKILLS_GLOBAL_LOCK)" ]; then \
+		$(MAKE) skills-lock; \
+	fi; \
 	exit $$failed
 
 .PHONY: skills-refresh
 skills-refresh: ## Force a reinstall of all external skills from skills-lock.json.
 	@DOTAGENTS_FORCE_SKILLS_INSTALL=1 $(MAKE) skills-install
+
+.PHONY: skills-update
+skills-update: ## Update installed external skills to latest and refresh the lock.
+	@bun x skills update --global --yes </dev/null
+	@$(MAKE) skills-lock
 
 .PHONY: skills-lock
 skills-lock: ## Regenerate skills-lock.json from SKILLS.txt.
