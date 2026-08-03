@@ -1,7 +1,7 @@
 {
   "name": "@shunkakinoki/dotagents",
   "scripts": {
-    "check": "bun run ruler:check && bun run biome:check",
+    "check": "bun run test && bun run ruler:check && bun run biome:check",
     "lint": "bun run ruler:apply && bun run check && bun run format",
     "format": "bun run biome:format",
     "biome:check": "bun biome check --write .",
@@ -11,7 +11,8 @@
     "lefthook:install": "lefthook install",
     "lefthook:uninstall": "lefthook uninstall",
     "lefthook:run": "lefthook run",
-    "prepare": "make ruler-prepare"
+    "prepare": "make ruler-prepare",
+    "test": "bash tests/with-committed-skills-lock.sh"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.11",

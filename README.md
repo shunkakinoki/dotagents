@@ -7,7 +7,12 @@ Rules for Agents
 make sync
 ```
 
-This runs the full pipeline: prepares `.ruler/`, generates agent instruction files (`~/.claude/CLAUDE.md`, etc.) via Ruler, installs external skills from `skills-lock.json`, then syncs commands, local repo skills, MCP config, and dot directories to `$HOME`.
+This runs the full pipeline: prepares `.ruler/`, generates agent instruction
+files (`~/.claude/CLAUDE.md`, etc.) via Ruler, installs external skills from
+the committed `skills-lock.json`, then syncs commands, local repo skills, MCP
+config, and dot directories to `$HOME`. The sync uses a temporary lock so
+deployment does not rewrite a user-modified checkout; use the explicit skills
+maintenance targets below when intentionally updating the committed lock.
 
 ## External skills
 

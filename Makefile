@@ -14,7 +14,7 @@ SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
 SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
 SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills $(HOME)/.config/opencode/skills
 SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
-SKILLS_LOCK_FILE := $(dir $(lastword $(MAKEFILE_LIST)))skills-lock.json
+SKILLS_LOCK_FILE ?= $(dir $(lastword $(MAKEFILE_LIST)))skills-lock.json
 SKILLS_EXTERNAL_SOURCE_DIR := $(HOME)/.agents/skills
 SKILLS_GLOBAL_LOCK := $(HOME)/.agents/.skill-lock.json
 
@@ -32,8 +32,11 @@ DOTDIRS_SRC_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 # ====================================================================================
 
 ifeq ($(DOTAGENTS_SKIP_SYNC),)
-.PHONY: sync
-sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
+.PHONY: sync sync-internal
+sync: ## Sync project commands, skills, and MCP configuration without rewriting the committed lock.
+	@./scripts/with-committed-skills-lock.sh $(MAKE) sync-internal
+
+sync-internal: ruler-prepare
 	@$(MAKE) ruler-apply-global
 	@$(MAKE) commands-sync
 	@$(MAKE) skills-install
