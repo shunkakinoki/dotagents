@@ -232,12 +232,12 @@
       "skillPath": "skills/cloud/alloydb-basics/SKILL.md",
       "skillFolderHash": "1ce7947392394106cd2272802061c2c39f2d96e9"
     },
-    "analytics": {
+    "analytics-tracking": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/coreyhaines31/marketingskills.git",
-      "skillPath": "skills/analytics/SKILL.md",
-      "skillFolderHash": "cbb8b810847072efe55e8de9c0dd42ddbcc5f91e"
+      "skillPath": "skills/analytics-tracking/SKILL.md",
+      "skillFolderHash": "d6d50fd2bd4440bb0f075b4f2818a70667991f8b"
     },
     "analyze": {
       "source": "anthropics/knowledge-work-plugins",
@@ -315,13 +315,6 @@
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/ask-matt/SKILL.md",
       "skillFolderHash": "c7d57789b230d6f88d26ca81ab9d03bad160171f"
-    },
-    "ask-questions-if-underspecified": {
-      "source": "trailofbits/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/trailofbits/skills.git",
-      "skillPath": "plugins/ask-questions-if-underspecified/skills/ask-questions-if-underspecified/SKILL.md",
-      "skillFolderHash": "87fa7ff4bb3429b0bb835547fd7f10005d8eae4e"
     },
     "asupersync-mega-skill": {
       "source": "shunkakinoki/private-skills",

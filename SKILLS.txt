@@ -34,8 +34,8 @@ cloudflare/skills agents-sdk,cloudflare,cloudflare-email-service,cloudflare-one,
 # coinbase/agentic-wallet-skills (1 total) - keep all
 coinbase/agentic-wallet-skills agentic-wallet
 
-# coreyhaines31/marketingskills (49 total) - keep analytics only
-coreyhaines31/marketingskills analytics
+# coreyhaines31/marketingskills (49 total) - keep analytics-tracking only
+coreyhaines31/marketingskills analytics-tracking
 
 # cursor/plugins (75 total) - keep cursor-team-kit + cursor SDK/plugin + pstack skills (excl. poteto-mode, benny automations)
 cursor/plugins check-compiler-errors,control-cli,control-ui,deslop,fix-ci,fix-merge-conflicts,get-pr-comments,loop-on-ci,make-pr-easy-to-review,new-branch-and-pr,pr-review-canvas,review-and-ship,run-smoke-tests,thermo-nuclear-code-quality-review,verify-this,weekly-review,what-did-i-get-done,workflow-from-chats,cli-for-agents,continual-learning,create-plugin-scaffold,review-plugin-submission,cursor-sdk,docs-canvas,orchestrate,architect,arena,automate-me,blast-radius,create-verification-skill,figure-it-out,how,interrogate,maintain-verification-skill,recall,reflect,setup-pstack,show-me-your-work,tdd,teach,typescript-best-practices,unslop,why,principle-boundary-discipline,principle-build-the-lever,principle-encode-lessons-in-structure,principle-exhaust-the-design-space,principle-experience-first,principle-fix-root-causes,principle-foundational-thinking,principle-guard-the-context-window,principle-laziness-protocol,principle-make-operations-idempotent,principle-migrate-callers-then-delete-legacy-apis,principle-minimize-reader-load,principle-model-the-domain,principle-never-block-on-the-human,principle-outcome-oriented-execution,principle-prove-it-works,principle-redesign-from-first-principles,principle-separate-before-serializing-shared-state,principle-sequence-verifiable-units,principle-subtract-before-you-add,principle-type-system-discipline
@@ -170,7 +170,7 @@ subsy/ralph-tui ralph-tui-create-beads,ralph-tui-create-beads-rust,ralph-tui-cre
 tobi/qmd qmd,release
 
 # trailofbits/skills (61 total) - keep security essentials
-trailofbits/skills gh-cli,ask-questions-if-underspecified,code-maturity-assessor,secure-workflow-guide,semgrep,codeql,modern-python,insecure-defaults,supply-chain-risk-auditor,agentic-actions-auditor,fp-check
+trailofbits/skills gh-cli,code-maturity-assessor,secure-workflow-guide,semgrep,codeql,modern-python,insecure-defaults,supply-chain-risk-auditor,agentic-actions-auditor,fp-check
 
 # vercel/ai (2 total) - keep all
 vercel/ai ai-sdk,migrate-ai-sdk-v6-to-v7
