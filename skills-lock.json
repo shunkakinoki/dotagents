@@ -358,6 +358,13 @@
       "skillPath": ".agents/skills/axi/SKILL.md",
       "skillFolderHash": "9a238ca5757ff4d7931adafb8d3747c93d0f8eb6"
     },
+    "batch-grill-me": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/in-progress/batch-grill-me/SKILL.md",
+      "skillFolderHash": "f2c0125db05db4d8f905a9423af308c476e2e4d5"
+    },
     "bd-to-br-migration": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -3088,6 +3095,13 @@
       "skillPath": "pstack/skills/setup-pstack/SKILL.md",
       "skillFolderHash": "8fd669f0bab6c8807e06696d80220943f8c16226"
     },
+    "setup-ts-deep-modules": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/in-progress/setup-ts-deep-modules/SKILL.md",
+      "skillFolderHash": "706cd1617d53587b0c4e6df5a8c56974f54cacd2"
+    },
     "shipping-and-launch": {
       "source": "addyosmani/agent-skills",
       "sourceType": "github",
@@ -3388,6 +3402,13 @@
       "sourceUrl": "https://github.com/anthropics/defending-code-reference-harness.git",
       "skillPath": ".claude/skills/threat-model/SKILL.md",
       "skillFolderHash": "e32a9e833f45a3e6e24330ee11bf7ab74c87182a"
+    },
+    "to-questionnaire": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/in-progress/to-questionnaire/SKILL.md",
+      "skillFolderHash": "7c4d04fb4d77824d7d98433ee7a8b17dde5efa13"
     },
     "to-spec": {
       "source": "mattpocock/skills",
