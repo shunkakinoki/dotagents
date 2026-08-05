@@ -23,13 +23,17 @@ bunx skills add owner/repo --global --list
 # Repos with <10 skills: install all (no selection)
 # Repos with 10+ skills: always specify selections
 
-# 3. Install (regenerates skills-lock.json from SKILLS.txt automatically)
+# 3. Bootstrap into the global lock, then regenerate the committed lock
+bunx skills add owner/repo --global --yes --skill name
+# Install-all repos (no selection):
+# bunx skills add owner/repo --global --yes --skill '*'
+cd dotagents && make skills-lock
+
+# 4. Install any still-missing skills from the lock (does not rewrite the lock
+#    when everything is already installed; make sync relies on that)
 cd dotagents && make skills-install
 
-# Install-all repos (no selection) need a one-time bootstrap to enter the lock:
-# bunx skills add owner/repo --global --yes --skill '*'
-
-# 4. Commit SKILLS.txt and skills-lock.json together
+# 5. Commit SKILLS.txt and skills-lock.json together
 ```
 
 ## Removing Skills
