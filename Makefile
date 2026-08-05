@@ -83,10 +83,7 @@ ruler-rules-copy: ## Copy rules to .ruler directory.
 # External skills are declared in SKILLS.txt and locked in skills-lock.json.
 
 .PHONY: skills-install
-skills-install: ## Install external skills declared in SKILLS.txt (skips already installed).
-	@if [ -f "$(SKILLS_GLOBAL_LOCK)" ]; then \
-		$(MAKE) skills-lock; \
-	fi
+skills-install: ## Install external skills from skills-lock.json (skips already installed; does not rewrite the lock).
 	@lock="$(SKILLS_LOCK_FILE)"; \
 	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
 	force="$${DOTAGENTS_FORCE_SKILLS_INSTALL:-0}"; \
@@ -123,7 +120,7 @@ skills-install: ## Install external skills declared in SKILLS.txt (skips already
 		fi; \
 	done; \
 	rm -f "$$tmp_missing"; \
-	if [ -f "$(SKILLS_GLOBAL_LOCK)" ]; then \
+	if [ "$$failed" = "0" ] && [ -f "$(SKILLS_GLOBAL_LOCK)" ]; then \
 		$(MAKE) skills-lock || failed=1; \
 	fi; \
 	exit $$failed
