@@ -232,12 +232,12 @@
       "skillPath": "skills/cloud/alloydb-basics/SKILL.md",
       "skillFolderHash": "1ce7947392394106cd2272802061c2c39f2d96e9"
     },
-    "analytics-tracking": {
+    "analytics": {
       "source": "coreyhaines31/marketingskills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/coreyhaines31/marketingskills.git",
-      "skillPath": "skills/analytics-tracking/SKILL.md",
-      "skillFolderHash": "d6d50fd2bd4440bb0f075b4f2818a70667991f8b"
+      "skillPath": "skills/analytics/SKILL.md",
+      "skillFolderHash": "cbb8b810847072efe55e8de9c0dd42ddbcc5f91e"
     },
     "analyze": {
       "source": "anthropics/knowledge-work-plugins",
@@ -490,20 +490,6 @@
       "sourceUrl": "https://github.com/anthropics/claude-plugins-official.git",
       "skillPath": "plugins/mcp-server-dev/skills/build-mcpb/SKILL.md",
       "skillFolderHash": "34c04c20e477303f31e2cbe38f76ba822e21ee29"
-    },
-    "bump-deps": {
-      "source": "PaulRBerg/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/PaulRBerg/agent-skills.git",
-      "skillPath": "skills/bump-deps/SKILL.md",
-      "skillFolderHash": "1b401a8b861446ee4da82e047aea8f1402af3397"
-    },
-    "bump-release": {
-      "source": "PaulRBerg/agent-skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/PaulRBerg/agent-skills.git",
-      "skillPath": "skills/bump-release/SKILL.md",
-      "skillFolderHash": "dbea48d246ed1988a9ad0864119698e194ea968e"
     },
     "caam": {
       "source": "shunkakinoki/private-skills",
@@ -2332,6 +2318,13 @@
       "skillPath": "skills/no-mistakes/SKILL.md",
       "skillFolderHash": "a1274305088c44be644f89557a57780d8a605df2"
     },
+    "node-deps-bumper": {
+      "source": "PaulRBerg/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/PaulRBerg/agent-skills.git",
+      "skillPath": "skills/node-deps-bumper/SKILL.md",
+      "skillFolderHash": "e3afca7961641fd66d0220769d307efcdd8a5724"
+    },
     "ntm": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -2849,6 +2842,13 @@
       "sourceUrl": "https://github.com/tobi/qmd.git",
       "skillPath": "skills/release/SKILL.md",
       "skillFolderHash": "2decbece577b93b1b5b63a177d9c88acd2a872e3"
+    },
+    "release-bumper": {
+      "source": "PaulRBerg/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/PaulRBerg/agent-skills.git",
+      "skillPath": "skills/release-bumper/SKILL.md",
+      "skillFolderHash": "17af737cb060492002dbe57cf1aac447043fff88"
     },
     "release-preparations": {
       "source": "shunkakinoki/private-skills",
