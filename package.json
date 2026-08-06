@@ -17,7 +17,7 @@
     "@biomejs/biome": "2.3.11",
     "@intellectronica/ruler": "^0.3.23",
     "lefthook": "^2.0.15",
-    "skills": "^1.5.20"
+    "skills": "^1.5.22"
   },
   "packageManager": "bun@1.2.22"
 }

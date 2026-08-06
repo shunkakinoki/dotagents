@@ -17,6 +17,8 @@ SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 SKILLS_LOCK_FILE := $(dir $(lastword $(MAKEFILE_LIST)))skills-lock.json
 SKILLS_EXTERNAL_SOURCE_DIR := $(HOME)/.agents/skills
 SKILLS_GLOBAL_LOCK := $(HOME)/.agents/.skill-lock.json
+SKILLS_PROJECT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+SKILLS_CLI := $(SKILLS_PROJECT_DIR)/node_modules/.bin/skills
 
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
@@ -87,6 +89,10 @@ skills-install: ## Install external skills from skills-lock.json (skips already 
 	@lock="$(SKILLS_LOCK_FILE)"; \
 	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
 	force="$${DOTAGENTS_FORCE_SKILLS_INSTALL:-0}"; \
+	if ! (cd "$(SKILLS_PROJECT_DIR)" && bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null); then \
+		echo "Error: failed to install the skills SDK from bun.lock"; \
+		exit 1; \
+	fi; \
 	if [ ! -f "$$lock" ]; then \
 		echo "Error: $$lock not found"; \
 		exit 1; \
@@ -109,7 +115,7 @@ skills-install: ## Install external skills from skills-lock.json (skips already 
 		skill_args=$$(printf '%s\n' "$$names" | while IFS= read -r n; do printf ' --skill %s' "$$n"; done); \
 		count=$$(printf '%s\n' "$$names" | wc -l | tr -d ' '); \
 		echo "Installing $$count skill(s) from $$source..."; \
-		bun x skills add "$$source" --global --yes $$skill_args </dev/null; \
+		$(SKILLS_CLI) add "$$source" --global --yes $$skill_args </dev/null; \
 		status=$$?; \
 		still_missing=$$(printf '%s\n' "$$names" | while IFS= read -r n; do \
 			if [ ! -e "$$skills_dir/$$n" ] && [ ! -L "$$skills_dir/$$n" ]; then printf ' %s' "$$n"; fi; \
@@ -131,7 +137,8 @@ skills-refresh: ## Force a reinstall of all external skills from skills-lock.jso
 
 .PHONY: skills-update
 skills-update: ## Update installed external skills to latest and refresh the lock.
-	@bun x skills update --global --yes </dev/null
+	@cd "$(SKILLS_PROJECT_DIR)" && bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null
+	@$(SKILLS_CLI) update --global --yes </dev/null
 	@$(MAKE) skills-lock
 
 .PHONY: skills-lock
@@ -139,7 +146,7 @@ skills-lock: ## Regenerate skills-lock.json from SKILLS.txt.
 	@global_lock="$(SKILLS_GLOBAL_LOCK)"; \
 	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
 	if [ ! -f "$$global_lock" ]; then \
-		echo "Error: $$global_lock not found; install a skill first (bun x skills add ... --global) to initialize it."; \
+		echo "Error: $$global_lock not found; install a skill first ($(SKILLS_CLI) add ... --global) to initialize it."; \
 		exit 1; \
 	fi; \
 	if ! jq -e '(.version | type == "number") and (.skills | type == "object")' "$$global_lock" >/dev/null; then \
@@ -151,7 +158,7 @@ skills-lock: ## Regenerate skills-lock.json from SKILLS.txt.
 	jq --argjson ondisk "$$ondisk" --argjson spec "$$spec" '. as $$lock | ($$lock.skills | with_entries(select(.key as $$k | $$ondisk | index($$k))) | with_entries(.value |= ({source, sourceType, sourceUrl, ref, skillPath, skillFolderHash} | with_entries(select(.value != null))))) as $$inst | reduce $$spec[] as $$s ({}; if ($$s.names | length) == 0 then . + ($$inst | with_entries(select(.value.source | ascii_downcase == ($$s.repo | ascii_downcase)))) else reduce $$s.names[] as $$n (.; ($$inst[$$n] // null) as $$hit | .[$$n] = (if $$hit != null and (($$hit.source | ascii_downcase) == ($$s.repo | ascii_downcase)) then $$hit elif .[$$n] != null then .[$$n] elif ($$s.repo | test("^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$$")) then {source: $$s.repo, sourceType: "github", sourceUrl: "https://github.com/\($$s.repo).git"} else {source: $$s.repo} end)) end) | {version: $$lock.version, skills: (to_entries | sort_by(.key) | from_entries)}' "$$global_lock" > "$(SKILLS_LOCK_FILE).tmp" && mv "$(SKILLS_LOCK_FILE).tmp" "$(SKILLS_LOCK_FILE)"; \
 	for repo in $$(printf '%s' "$$spec" | jq -r '.[] | select(.names | length == 0) | .repo'); do \
 		if ! jq -e --arg repo "$$repo" '[.skills[] | select(.source | ascii_downcase == ($$repo | ascii_downcase))] | length > 0' "$(SKILLS_LOCK_FILE)" >/dev/null; then \
-			echo "warn: no installed skills for install-all repo $$repo; run: bun x skills add $$repo --global --yes --skill '*'"; \
+			echo "warn: no installed skills for install-all repo $$repo; run: bun install --frozen-lockfile --minimum-release-age 0 && $(SKILLS_CLI) add $$repo --global --yes --skill '*'"; \
 		fi; \
 	done; \
 	undeclared=$$(jq -r --argjson ondisk "$$ondisk" --slurpfile out "$(SKILLS_LOCK_FILE)" '.skills | keys[] | . as $$k | select(($$ondisk | index($$k)) and ($$out[0].skills | has($$k) | not))' "$$global_lock" | paste -sd, -); \
