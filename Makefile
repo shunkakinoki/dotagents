@@ -17,7 +17,8 @@ SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 SKILLS_LOCK_FILE := $(dir $(lastword $(MAKEFILE_LIST)))skills-lock.json
 SKILLS_EXTERNAL_SOURCE_DIR := $(HOME)/.agents/skills
 SKILLS_GLOBAL_LOCK := $(HOME)/.agents/.skill-lock.json
-SKILLS_CLI := ./node_modules/.bin/skills
+SKILLS_PROJECT_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+SKILLS_CLI := $(SKILLS_PROJECT_DIR)/node_modules/.bin/skills
 
 MCP_SRC := $(dir $(lastword $(MAKEFILE_LIST))).ruler/mcp.json
 MCP_TARGET_DIRS := $(HOME)/.cursor $(HOME)/.claude $(HOME)/.codex
@@ -88,7 +89,7 @@ skills-install: ## Install external skills from skills-lock.json (skips already 
 	@lock="$(SKILLS_LOCK_FILE)"; \
 	skills_dir="$(SKILLS_EXTERNAL_SOURCE_DIR)"; \
 	force="$${DOTAGENTS_FORCE_SKILLS_INSTALL:-0}"; \
-	if ! bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null; then \
+	if ! (cd "$(SKILLS_PROJECT_DIR)" && bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null); then \
 		echo "Error: failed to install the skills SDK from bun.lock"; \
 		exit 1; \
 	fi; \
@@ -136,7 +137,7 @@ skills-refresh: ## Force a reinstall of all external skills from skills-lock.jso
 
 .PHONY: skills-update
 skills-update: ## Update installed external skills to latest and refresh the lock.
-	@bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null
+	@cd "$(SKILLS_PROJECT_DIR)" && bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null
 	@$(SKILLS_CLI) update --global --yes </dev/null
 	@$(MAKE) skills-lock
 
