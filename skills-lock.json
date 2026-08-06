@@ -3620,6 +3620,13 @@
       "skillPath": ".claude/skills/vuln-scan/SKILL.md",
       "skillFolderHash": "454be5b040c4809fa05ce4091880af4ff1a14f96"
     },
+    "wait-what": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/wait-what/SKILL.md",
+      "skillFolderHash": "6abe708f1bf253158a037ac49faea2944e2809dc"
+    },
     "wayfinder": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -3752,6 +3759,13 @@
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/in-progress/writing-beats/SKILL.md",
       "skillFolderHash": "545d05c3fdbfdd094dd88900b0ef8c9a823eac90"
+    },
+    "writing-for-agents": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/writing-for-agents/SKILL.md",
+      "skillFolderHash": "bd9c9c4762db0a9a094fd419316ebd4b0444d06e"
     },
     "writing-fragments": {
       "source": "mattpocock/skills",
