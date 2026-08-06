@@ -314,7 +314,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/ask-matt/SKILL.md",
-      "skillFolderHash": "c7d57789b230d6f88d26ca81ab9d03bad160171f"
+      "skillFolderHash": "c9c83b11b1a0c91c555ed6ade5ba67f6d6b103d4"
     },
     "asupersync-mega-skill": {
       "source": "shunkakinoki/private-skills",
@@ -350,13 +350,6 @@
       "sourceUrl": "https://github.com/kunchenguid/axi.git",
       "skillPath": ".agents/skills/axi/SKILL.md",
       "skillFolderHash": "9a238ca5757ff4d7931adafb8d3747c93d0f8eb6"
-    },
-    "batch-grill-me": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/batch-grill-me/SKILL.md",
-      "skillFolderHash": "f2c0125db05db4d8f905a9423af308c476e2e4d5"
     },
     "bd-to-br-migration": {
       "source": "shunkakinoki/private-skills",
@@ -573,7 +566,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/in-progress/claude-handoff/SKILL.md",
-      "skillFolderHash": "5a245865fed8cc05df59f8a15a31acf6871ba729"
+      "skillFolderHash": "b312afac556f7229717dbd9b786d77bc160c8649"
     },
     "claude-md-improver": {
       "source": "anthropics/claude-plugins-official",
@@ -988,13 +981,6 @@
       "skillPath": "skills/deps-update/SKILL.md",
       "skillFolderHash": "f84202d359b3523c022e018475a7928721a07c81"
     },
-    "design-an-interface": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/deprecated/design-an-interface/SKILL.md",
-      "skillFolderHash": "080dd14b88424aea0c6aca72357c617d6ab42625"
-    },
     "design-taste-frontend": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",
@@ -1141,13 +1127,6 @@
       "sourceUrl": "https://github.com/shunkakinoki/private-skills.git",
       "skillPath": "skills/e2e-testing-for-webapps/SKILL.md",
       "skillFolderHash": "fb874b129913887b64957a4dba7063a12d5765d7"
-    },
-    "edit-article": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/personal/edit-article/SKILL.md",
-      "skillFolderHash": "19ce34c6f4afcb58788e8e525dbb80c79a45a4a0"
     },
     "editorconfig": {
       "source": "github/awesome-copilot",
@@ -1763,7 +1742,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/productivity/grilling/SKILL.md",
-      "skillFolderHash": "10b0db61f9b3869243db8a1a0ee84f862139b94e"
+      "skillFolderHash": "fd99bcbb818f7ef766b83656fb5fac0b58e223ad"
     },
     "gstack": {
       "source": "garrytan/gstack",
@@ -2113,7 +2092,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/in-progress/loop-me/SKILL.md",
-      "skillFolderHash": "e487ef6954cbf6f2d96991cf79332c98354df9ef"
+      "skillFolderHash": "6364da007c562d9f6ad3f54524dbc42465d9893a"
     },
     "loop-on-ci": {
       "source": "cursor/plugins",
@@ -2352,13 +2331,6 @@
       "sourceUrl": "https://github.com/addyosmani/agent-skills.git",
       "skillPath": "skills/observability-and-instrumentation/SKILL.md",
       "skillFolderHash": "e970a55caf9ef4128bdb04af83b4a4dd08045b37"
-    },
-    "obsidian-vault": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/personal/obsidian-vault/SKILL.md",
-      "skillFolderHash": "5fdd257588fefa400e8a0d505aac555a0b52311a"
     },
     "og-share-images": {
       "source": "shunkakinoki/private-skills",
@@ -2701,7 +2673,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/prototype/SKILL.md",
-      "skillFolderHash": "dd3d782b69ccb67493fbe76b84149399da3c9fee"
+      "skillFolderHash": "57569dda16077a016b8fb82494dbf9f6430d7cc4"
     },
     "pytest-coverage": {
       "source": "github/awesome-copilot",
@@ -2709,13 +2681,6 @@
       "sourceUrl": "https://github.com/github/awesome-copilot.git",
       "skillPath": "skills/pytest-coverage/SKILL.md",
       "skillFolderHash": "abd9a3fb4ce4642bcc016982cbf0afba0c8f7222"
-    },
-    "qa": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/deprecated/qa/SKILL.md",
-      "skillFolderHash": "f63fde811a0215ab15f5b83bcaae9627ecacbe8e"
     },
     "qmd": {
       "source": "tobi/qmd",
@@ -2877,13 +2842,6 @@
       "sourceUrl": "https://github.com/shunkakinoki/private-skills.git",
       "skillPath": "skills/repeatedly-apply-skill/SKILL.md",
       "skillFolderHash": "c23247f46ca198d2850f1348fbe8a2d4eda838bf"
-    },
-    "request-refactor-plan": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/deprecated/request-refactor-plan/SKILL.md",
-      "skillFolderHash": "603d197e4306ad8f1d8c4595d5aab4296b2d1f82"
     },
     "requesting-code-review": {
       "source": "obra/superpowers",
@@ -3072,7 +3030,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
-      "skillFolderHash": "634cf9b010bca5701642aca736dce899822f08f7"
+      "skillFolderHash": "abf20c04a4aa8a37ff20aa7286f28857150f8b8d"
     },
     "setup-pre-commit": {
       "source": "mattpocock/skills",
@@ -3400,7 +3358,7 @@
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/to-questionnaire/SKILL.md",
+      "skillPath": "skills/productivity/to-questionnaire/SKILL.md",
       "skillFolderHash": "7c4d04fb4d77824d7d98433ee7a8b17dde5efa13"
     },
     "to-spec": {
@@ -3408,7 +3366,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/to-spec/SKILL.md",
-      "skillFolderHash": "bf698b96b5d8798d110d9872e32b9310728555b0"
+      "skillFolderHash": "dc32a36159f99c854cb470f371106cd38513a15f"
     },
     "to-tickets": {
       "source": "mattpocock/skills",
@@ -3486,13 +3444,6 @@
       "sourceUrl": "https://github.com/github/awesome-copilot.git",
       "skillPath": "skills/typescript-mcp-server-generator/SKILL.md",
       "skillFolderHash": "8fc0445a86cf64e8f73e044364c7636c59ea58d3"
-    },
-    "ubiquitous-language": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/deprecated/ubiquitous-language/SKILL.md",
-      "skillFolderHash": "8e138d6b06a52aeaf5f329be7a0c8298e06f62e5"
     },
     "ubs": {
       "source": "shunkakinoki/private-skills",
@@ -3669,12 +3620,19 @@
       "skillPath": ".claude/skills/vuln-scan/SKILL.md",
       "skillFolderHash": "454be5b040c4809fa05ce4091880af4ff1a14f96"
     },
+    "wait-what": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/wait-what/SKILL.md",
+      "skillFolderHash": "6abe708f1bf253158a037ac49faea2944e2809dc"
+    },
     "wayfinder": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/wayfinder/SKILL.md",
-      "skillFolderHash": "33ed747fb30668c0e7b61698af5268c25c0d75cb"
+      "skillFolderHash": "48c3a8b0a9705d6310d37f7f9b53bcb2c55955c7"
     },
     "web-perf": {
       "source": "cloudflare/skills",
@@ -3750,8 +3708,8 @@
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/in-progress/wizard/SKILL.md",
-      "skillFolderHash": "e4dc85309aebecd9759f6c4cb3fdcb7c4f69544c"
+      "skillPath": "skills/engineering/wizard/SKILL.md",
+      "skillFolderHash": "3b367a2a8b77590f38612c9b02dcd8b71387689f"
     },
     "workers-best-practices": {
       "source": "cloudflare/skills",
@@ -3802,19 +3760,19 @@
       "skillPath": "skills/in-progress/writing-beats/SKILL.md",
       "skillFolderHash": "545d05c3fdbfdd094dd88900b0ef8c9a823eac90"
     },
+    "writing-for-agents": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/mattpocock/skills.git",
+      "skillPath": "skills/productivity/writing-for-agents/SKILL.md",
+      "skillFolderHash": "bd9c9c4762db0a9a094fd419316ebd4b0444d06e"
+    },
     "writing-fragments": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/in-progress/writing-fragments/SKILL.md",
       "skillFolderHash": "ce7d2741a30df8a488f6248c84cf954cff98393f"
-    },
-    "writing-great-skills": {
-      "source": "mattpocock/skills",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/mattpocock/skills.git",
-      "skillPath": "skills/productivity/writing-great-skills/SKILL.md",
-      "skillFolderHash": "81d36946d48842f90358d8af54e3cdcc141f8e01"
     },
     "writing-hookify-rules": {
       "source": "anthropics/claude-plugins-official",

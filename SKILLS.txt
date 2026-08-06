@@ -115,8 +115,8 @@ openclaw/agent-skills autoreview
 # PaulRBerg/agent-skills - keep dev tools (renamed: bump-deps→node-deps-bumper, bump-release→release-bumper)
 PaulRBerg/agent-skills cli-gh,code-polish,effect-ts,node-deps-bumper,release-bumper,tailwind-css,yeet
 
-# mattpocock/skills (41 total) - keep all
-mattpocock/skills ask-matt,batch-grill-me,claude-handoff,code-review,codebase-design,design-an-interface,diagnosing-bugs,domain-modeling,edit-article,git-guardrails-claude-code,grill-me,grill-with-docs,grilling,handoff,implement,improve-codebase-architecture,loop-me,migrate-to-shoehorn,obsidian-vault,prototype,qa,request-refactor-plan,research,resolving-merge-conflicts,scaffold-exercises,setup-matt-pocock-skills,setup-pre-commit,setup-ts-deep-modules,tdd,teach,to-questionnaire,to-tickets,to-spec,triage,ubiquitous-language,wayfinder,wizard,writing-beats,writing-fragments,writing-great-skills,writing-shape
+# mattpocock/skills (35 total) - keep all
+mattpocock/skills ask-matt,claude-handoff,code-review,codebase-design,diagnosing-bugs,domain-modeling,git-guardrails-claude-code,grill-me,grill-with-docs,grilling,handoff,implement,improve-codebase-architecture,loop-me,migrate-to-shoehorn,prototype,research,resolving-merge-conflicts,scaffold-exercises,setup-matt-pocock-skills,setup-pre-commit,setup-ts-deep-modules,tdd,teach,to-questionnaire,to-spec,to-tickets,triage,wait-what,wayfinder,wizard,writing-beats,writing-for-agents,writing-fragments,writing-shape
 
 # max-sixty/worktrunk (2 total) - keep all
 max-sixty/worktrunk worktrunk,wt-switch-create
