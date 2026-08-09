@@ -32,3 +32,15 @@ make skills-refresh
 To add skills: edit `SKILLS.txt`, run `make skills-install`, and commit both files. Install-all repos (no selection) need a one-time bootstrap before they appear in the lock: `bunx skills add owner/repo --global --yes --skill '*'` (the `make skills-lock` warning prints the exact command), then `make skills-lock`. To remove: delete from `SKILLS.txt`, run `bunx skills remove <name> --global --yes`, then `make skills-lock`.
 
 Installs track each source's default branch: the skills CLI does not record commit SHAs in its lock yet, so entries are not pinned to a commit.
+
+## Muse bundled skills
+
+[muse](https://dev.meta.ai) (`curl -fsSL https://dev.meta.ai/install.sh | bash`) ships its
+built-in skills inside the binary rather than on disk, so they are vendored into `skills/`
+and synced like any other local skill: `create-plugin`, `create-skill`, `doctor`, `git`,
+`grill`, `grill-and-record`, `import`, `manage-settings`, `plan`, `read-session`, `taste`.
+`doctor`, `import`, `manage-settings`, `read-session`, `create-plugin`, and `create-skill`
+only apply to muse itself; the rest (`taste`, `git`, `plan`, `grill`, `grill-and-record`)
+are runtime-agnostic.
+
+Extracted from `~/.local/bin/muse-bin-0.1.0-R708.1`; re-extract by hand after a muse upgrade.
