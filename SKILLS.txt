@@ -187,6 +187,9 @@ vercel/turborepo turborepo
 # vercel-labs/agent-browser (5 total) - keep core
 vercel-labs/agent-browser agent-browser
 
+# vercel-labs/before-and-after (1 total) - keep all
+vercel-labs/before-and-after
+
 # vercel-labs/agent-skills (6 total) - keep core
 vercel-labs/agent-skills vercel-composition-patterns,deploy-to-vercel,vercel-react-best-practices,vercel-cli-with-tokens
 

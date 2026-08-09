@@ -393,6 +393,13 @@
       "skillPath": "skills/beads-workflow/SKILL.md",
       "skillFolderHash": "071c45a2e7e64b0f06d00e2abdd62531cc6ead70"
     },
+    "before-and-after": {
+      "source": "vercel-labs/before-and-after",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/before-and-after.git",
+      "skillPath": "skill/SKILL.md",
+      "skillFolderHash": "494b495538546c3a5594285e726970ff8f27a1ee"
+    },
     "better-auth-best-practices": {
       "source": "better-auth/skills",
       "sourceType": "github",
