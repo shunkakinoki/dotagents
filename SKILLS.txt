@@ -43,6 +43,9 @@ cursor/plugins check-compiler-errors,control-cli,control-ui,deslop,fix-ci,fix-me
 # Dicklesworthstone/coding_agent_session_search (1 total) - keep all
 Dicklesworthstone/coding_agent_session_search cass
 
+# DietrichGebert/ponytail (6 total) - keep all
+DietrichGebert/ponytail ponytail,ponytail-audit,ponytail-debt,ponytail-gain,ponytail-help,ponytail-review
+
 # donnfelker/donnfelker-plugin-marketplace (3 total) - keep all
 donnfelker/donnfelker-plugin-marketplace codebase-analyzer,find-past-conversation,generate-release-notes
 
