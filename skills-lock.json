@@ -2024,13 +2024,6 @@
       "skillPath": "plugins/insecure-defaults/skills/insecure-defaults/SKILL.md",
       "skillFolderHash": "33fe04f71e26c5aad21ecf4ac1cff9db64568667"
     },
-    "install-anti-slop": {
-      "source": "dmmulroy/anti-slop",
-      "sourceType": "github",
-      "sourceUrl": "https://github.com/dmmulroy/anti-slop.git",
-      "skillPath": "skills/install-anti-slop/SKILL.md",
-      "skillFolderHash": "dfab5559a49f2b4f3a5542d2721c89af0759f1ad"
-    },
     "installer-workmanship": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",

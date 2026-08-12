@@ -46,9 +46,6 @@ Dicklesworthstone/coding_agent_session_search cass
 # DietrichGebert/ponytail (6 total) - keep all
 DietrichGebert/ponytail ponytail,ponytail-audit,ponytail-debt,ponytail-gain,ponytail-help,ponytail-review
 
-# dmmulroy/anti-slop (1 total) - keep all
-dmmulroy/anti-slop
-
 # donnfelker/donnfelker-plugin-marketplace (3 total) - keep all
 donnfelker/donnfelker-plugin-marketplace codebase-analyzer,find-past-conversation,generate-release-notes
 
