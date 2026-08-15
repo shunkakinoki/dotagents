@@ -142,6 +142,9 @@ NousResearch/hermes-agent dogfood
 # nextlevelbuilder/ui-ux-pro-max-skill (7 total) - keep design only
 nextlevelbuilder/ui-ux-pro-max-skill ui-ux-pro-max
 
+# pbakaus/impeccable (1 total) - keep all
+pbakaus/impeccable impeccable
+
 # paperclipai/paperclip (4 total) - keep core
 paperclipai/paperclip paperclip,paperclip-create-agent,paperclip-create-plugin
 

@@ -1968,6 +1968,13 @@
       "skillPath": "skills/imagegen-frontend-web/SKILL.md",
       "skillFolderHash": "3b5117d349200e33f9c3399344681620079dcc18"
     },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/pbakaus/impeccable.git",
+      "skillPath": ".agents/skills/impeccable/SKILL.md",
+      "skillFolderHash": "f338a096ed14f1c0fd55638ce8f4aff7f12ffa4b"
+    },
     "implement": {
       "source": "mattpocock/skills",
       "sourceType": "github",
