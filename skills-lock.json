@@ -253,6 +253,13 @@
       "skillPath": "skills/angle-generator/SKILL.md",
       "skillFolderHash": "46ae0fa7455fcb5122c8a8908e2b2f1243985c77"
     },
+    "animate-expo": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animate-expo/SKILL.md",
+      "skillFolderHash": "2daf5ab8f4d3db7690e46d3d6d63e7ebae89a090"
+    },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
