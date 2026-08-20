@@ -3613,6 +3613,13 @@
       "skillPath": "skills/ux-audit/SKILL.md",
       "skillFolderHash": "2e8d0b02968c65431ac788d79fe6d7f7c518670e"
     },
+    "variate": {
+      "source": "nutlope/variate",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/nutlope/variate.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "3a82377d2e13160d879de18b40b323287f1636d9"
+    },
     "vercel": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
