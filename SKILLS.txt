@@ -7,6 +7,9 @@ addyosmani/agent-skills api-and-interface-design,browser-testing-with-devtools,c
 # antfu/skills (17 total) - keep tooling, drop vue ecosystem
 antfu/skills antfu,pnpm,slidev,tsdown,turborepo,vite,vitest
 
+# anthropics/claude-plugins-community (31 total) - keep eli5
+anthropics/claude-plugins-community eli5
+
 # anthropics/claude-plugins-official (19 total) - keep Claude/MCP dev skills
 anthropics/claude-plugins-official claude-automation-recommender,claude-md-improver,frontend-design,writing-hookify-rules,build-mcp-app,build-mcp-server,build-mcpb,playground,agent-development,command-development,hook-development,mcp-integration,plugin-settings,plugin-structure,skill-development,skill-creator
 
