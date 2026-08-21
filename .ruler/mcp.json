@@ -44,6 +44,10 @@
       "command": "serena",
       "args": ["start-mcp-server"]
     },
+    "Stripe": {
+      "type": "http",
+      "url": "https://mcp.stripe.com"
+    },
     "XcodeBuildMCP": {
       "command": "xcodebuildmcp",
       "args": ["mcp"]
