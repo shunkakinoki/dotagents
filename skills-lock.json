@@ -1163,6 +1163,13 @@
       "skillPath": "skills/effect-ts/SKILL.md",
       "skillFolderHash": "569bad2f4f8c8ff9c4f282d488de7c5e5effa30a"
     },
+    "eli5": {
+      "source": "anthropics/claude-plugins-community",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/anthropics/claude-plugins-community.git",
+      "skillPath": "eli5/skills/eli5/SKILL.md",
+      "skillFolderHash": "d16165120b7658216c79601b0ee568f42e540961"
+    },
     "elicit": {
       "source": "juxt/allium",
       "sourceType": "github",
