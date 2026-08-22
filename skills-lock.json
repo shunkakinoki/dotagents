@@ -3571,6 +3571,13 @@
       "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
       "skillFolderHash": "75e1acaafe8b08e59d4b86fc253ac7873aff6bba"
     },
+    "unlazy": {
+      "source": "Leonxlnx/unlazy",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Leonxlnx/unlazy.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "ed9e8d2b5919698cf2c54bda270d507e10b69617"
+    },
     "unslop": {
       "source": "cursor/plugins",
       "sourceType": "github",
