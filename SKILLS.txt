@@ -88,8 +88,8 @@ higgsfield-ai/skills higgsfield-generate,higgsfield-marketplace-cards,higgsfield
 # inference-sh/skills (78 total) - keep core tools
 inference-sh/skills web-search,agent-browser,agent-ui
 
-# Jakubantalik/transitions.dev (1 total) - keep all
-Jakubantalik/transitions.dev transitions-dev
+# Jakubantalik/transitions.dev (2 total) - keep all
+Jakubantalik/transitions.dev transitions-dev,transitions-polish
 
 # juxt/allium (6 total) - keep all
 juxt/allium allium,distill,elicit,propagate,tend,weed

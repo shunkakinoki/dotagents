@@ -3478,7 +3478,14 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/Jakubantalik/transitions.dev.git",
       "skillPath": "skills/transitions-dev/SKILL.md",
-      "skillFolderHash": "b5843d085c881a788329d6fdf41da9fed68b8e5b"
+      "skillFolderHash": "c942e6c9cbabf11ae8d28ec3717b4f108f0ad230"
+    },
+    "transitions-polish": {
+      "source": "Jakubantalik/transitions.dev",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Jakubantalik/transitions.dev.git",
+      "skillPath": "skills/transitions-polish/SKILL.md",
+      "skillFolderHash": "afd053fa85269d70d7e76f56321d7eb5bebde212"
     },
     "triage": {
       "source": "anthropics/defending-code-reference-harness",
