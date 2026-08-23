@@ -1,10 +1,17 @@
 # Skills Management
 
-External skills are declared in `dotagents/SKILLS.txt` (canonical) and locked
-in `dotagents/skills-lock.json` (generated, committed). Skills install globally
-via the [skills CLI](https://github.com/vercel-labs/skills). The CLI installs
-per project only, so this repository scripts the global install
-(see https://github.com/vercel-labs/skills/issues/549).
+Two kinds of skills, two homes:
+
+- **Inline skills** (authored in this repo): live in `dotagents/.ruler/skills/`
+  (tracked, source of truth). Synced to every agent's global skills directory
+  via `make skills-sync`. Never vendor a skill inline if an official version
+  exists on [skills.sh](https://skills.sh) - reference it in `SKILLS.txt`
+  instead.
+- **External/official skills**: declared in `dotagents/SKILLS.txt` (canonical)
+  and locked in `dotagents/skills-lock.json` (generated, committed). Installed
+  globally via the [skills CLI](https://github.com/vercel-labs/skills)
+  (skills.sh). The CLI installs per project only, so this repository scripts
+  the global install (see https://github.com/vercel-labs/skills/issues/549).
 
 ## SKILLS.txt Format
 

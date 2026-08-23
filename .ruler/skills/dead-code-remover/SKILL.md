@@ -10,6 +10,11 @@ Two lanes each run: (1) delete code that is provably unreachable, (2) plant
 probes on code that looks dead but cannot be proven dead statically, and
 harvest probes planted by earlier runs.
 
+## Official skills (skills.sh)
+
+- `tech-debt` (anthropics/knowledge-work-plugins): debt triage framing
+- `refactor` (github/awesome-copilot): safe mechanical refactor procedure
+
 ## Lane 1: provably dead - delete now
 
 Static signals, by ecosystem:

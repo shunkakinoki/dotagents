@@ -10,8 +10,7 @@ COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME
 RULES_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))rules
 RULES_TARGET_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler
 
-SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))skills
-SKILLS_RULER_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
+SKILLS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler/skills
 SKILLS_TARGET_DIRS := $(HOME)/.claude/skills $(HOME)/.cursor/skills $(HOME)/.codex/skills $(HOME)/.roo/skills $(HOME)/.gemini/skills $(HOME)/.agents/skills $(HOME)/.vibe/skills $(HOME)/.config/opencode/skills
 SKILLS_FILE := $(dir $(lastword $(MAKEFILE_LIST)))SKILLS.txt
 SKILLS_LOCK_FILE := $(dir $(lastword $(MAKEFILE_LIST)))skills-lock.json
@@ -48,7 +47,6 @@ endif
 ruler-prepare: ## Prepare the project for development.
 	@make ruler-commands-copy
 	@make ruler-rules-copy
-	@make ruler-skills-copy
 
 # ====================================================================================
 # COMMANDS
@@ -166,11 +164,6 @@ skills-lock: ## Regenerate skills-lock.json from SKILLS.txt.
 		echo "warn: installed but not declared in SKILLS.txt: $$undeclared"; \
 	fi; \
 	jq -r --argjson ondisk "$$ondisk" '.skills | "skills-lock.json: \(length) skills (\([keys[] | select(. as $$k | $$ondisk | index($$k) | not)] | length) not yet installed)"' "$(SKILLS_LOCK_FILE)"
-
-.PHONY: ruler-skills-copy
-ruler-skills-copy: ## Copy skills from root to .ruler/skills directory (overwrites, preserves other files).
-	@rsync -a $(SKILLS_SRC_DIR)/ $(SKILLS_RULER_DIR)/
-	@echo "Synced $(SKILLS_SRC_DIR) → $(SKILLS_RULER_DIR)"
 
 .PHONY: skills-sync
 skills-sync: ## Sync root skills to agent-specific directories (preserves externally installed skills).

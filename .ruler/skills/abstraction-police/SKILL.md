@@ -9,6 +9,11 @@ description: Find leaky abstractions - internals escaping through interfaces, ca
 A leak is when a caller must know how something works to use it. Find leaks,
 fix the boundary, one leak per PR.
 
+## Official skills (skills.sh)
+
+- `api-and-interface-design` (addyosmani/agent-skills): interface design rules
+- `refactor` (github/awesome-copilot): safe mechanical refactor procedure
+
 ## Leak patterns to scan for
 
 - **Reach-around**: callers importing from `foo/internal/*`, `foo/lib/*`, or

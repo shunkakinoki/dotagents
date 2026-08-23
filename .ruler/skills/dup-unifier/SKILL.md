@@ -10,6 +10,13 @@ Find pairs or clusters of code that started as the same idea and drifted apart
 (copy-pasted helpers, parallel components, re-implemented utilities), then
 unify each cluster in its own small PR.
 
+## Official skills (skills.sh)
+
+Lean on installed official skills instead of re-deriving their content:
+
+- `jscpd` (kucherenko/jscpd): duplicate detection tool usage and thresholds
+- `dry-refactoring` (kucherenko/jscpd): how to consolidate found duplicates
+
 ## Scan
 
 Run in order, cheapest first:
