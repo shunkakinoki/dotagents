@@ -813,6 +813,13 @@
       "skillPath": "skills/coverage-tracker-setup/SKILL.md",
       "skillFolderHash": "2277605f2dbf9801f50137b16746ed1e32c5acc3"
     },
+    "crabbox": {
+      "source": "openclaw/crabbox",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/openclaw/crabbox.git",
+      "skillPath": "skills/crabbox/SKILL.md",
+      "skillFolderHash": "bfce017acaec2853df110b579f6a673670e39026"
+    },
     "create-auth": {
       "source": "better-auth/skills",
       "sourceType": "github",
