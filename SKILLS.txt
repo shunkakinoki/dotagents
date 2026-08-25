@@ -123,6 +123,8 @@ ogulcancelik/herdr herdr
 
 # openclaw/agent-skills - keep autoreview
 openclaw/agent-skills autoreview
+# openclaw/crabbox - keep remote execution and validation guidance
+openclaw/crabbox crabbox
 
 # PaulRBerg/agent-skills - keep dev tools (renamed: bump-deps→node-deps-bumper, bump-release→release-bumper)
 PaulRBerg/agent-skills cli-gh,code-polish,effect-ts,node-deps-bumper,release-bumper,tailwind-css,yeet
