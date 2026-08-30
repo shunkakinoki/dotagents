@@ -1310,6 +1310,13 @@
       "skillPath": "skills/flywheel-discord/SKILL.md",
       "skillFolderHash": "5f5559823660184942de505bbab54882249a94d5"
     },
+    "forward-implementation-first": {
+      "source": "Vuk97/forward-implementation-first",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Vuk97/forward-implementation-first.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "91fa46a0108ecfc612a55cf587a2086621a31161"
+    },
     "fp-check": {
       "source": "trailofbits/skills",
       "sourceType": "github",
