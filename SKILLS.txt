@@ -212,3 +212,6 @@ vercel-labs/agent-skills vercel-composition-patterns,deploy-to-vercel,vercel-rea
 
 # vercel-labs/portless (2 total) - keep all
 vercel-labs/portless oauth,portless
+
+# Vuk97/forward-implementation-first (1 total) - keep all
+Vuk97/forward-implementation-first forward-implementation-first
