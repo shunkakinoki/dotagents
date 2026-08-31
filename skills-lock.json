@@ -764,6 +764,13 @@
       "skillPath": "skills/commit/SKILL.md",
       "skillFolderHash": "73d58e0baee7aa6da72e0b44585cb9d3f7258496"
     },
+    "computer-use": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/computer-use/SKILL.md",
+      "skillFolderHash": "2072384f53670cb61d93f4f6264ad2d8f6b5239c"
+    },
     "context-engineering": {
       "source": "addyosmani/agent-skills",
       "sourceType": "github",
@@ -2150,6 +2157,13 @@
       "skillPath": "skills/linear-cli/SKILL.md",
       "skillFolderHash": "9498a678c738a19b81e2583d7745464539208d20"
     },
+    "linear-tickets": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/linear-tickets/SKILL.md",
+      "skillFolderHash": "1047772e2422647d8c36f850f22d4182f9f87c61"
+    },
     "loop-library": {
       "source": "Forward-Future/loop-library",
       "sourceType": "github",
@@ -2416,12 +2430,54 @@
       "skillPath": "skills/operationalizing-expertise/SKILL.md",
       "skillFolderHash": "2e977803156cc63712e15822fbf9bf4113f59e14"
     },
+    "orca-cli": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/orca-cli/SKILL.md",
+      "skillFolderHash": "ee3a35c76f875ea6ebaf68947af13ba6346b13f2"
+    },
+    "orca-emulator": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/orca-emulator/SKILL.md",
+      "skillFolderHash": "ad1ecea6dfda6c0c79b06c2b87df290ba97cea2c"
+    },
+    "orca-emulator-android": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/orca-emulator-android/SKILL.md",
+      "skillFolderHash": "9e270499eef6bc00c1d578f527ab005fc32e18e2"
+    },
+    "orca-linear": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/orca-linear/SKILL.md",
+      "skillFolderHash": "091d9bcc279d7ec7f4d3f63929f01f8b9e3db68d"
+    },
+    "orca-per-workspace-env": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/orca-per-workspace-env/SKILL.md",
+      "skillFolderHash": "942b9397139f9d5b6cd4164339c965c35494985d"
+    },
     "orchestrate": {
       "source": "cursor/plugins",
       "sourceType": "github",
       "sourceUrl": "https://github.com/cursor/plugins.git",
       "skillPath": "orchestrate/skills/orchestrate/SKILL.md",
       "skillFolderHash": "6a89a98dfb47951d6c3e766560151fa2cdcdd2dd"
+    },
+    "orchestration": {
+      "source": "stablyai/orca",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/stablyai/orca.git",
+      "skillPath": "skills/orchestration/SKILL.md",
+      "skillFolderHash": "9aa26fde93c0592e5983cdca1ccd33b402802255"
     },
     "organization-best-practices": {
       "source": "better-auth/skills",

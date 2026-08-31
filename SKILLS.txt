@@ -180,6 +180,9 @@ ShawnPana/smux smux
 # shunkakinoki/private-skills (ALL) - install-all; private repo, not enumerable here
 shunkakinoki/private-skills
 
+# stablyai/orca (8 total) - keep all
+stablyai/orca computer-use,linear-tickets,orca-cli,orca-emulator,orca-emulator-android,orca-linear,orca-per-workspace-env,orchestration
+
 # subsy/ralph-tui (4 total) - keep all
 subsy/ralph-tui ralph-tui-create-beads,ralph-tui-create-beads-rust,ralph-tui-create-json,ralph-tui-prd
 
