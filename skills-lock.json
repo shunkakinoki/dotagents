@@ -1,6 +1,13 @@
 {
   "version": 3,
   "skills": {
+    "1password": {
+      "source": "BetterWright/betterwright",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/BetterWright/betterwright.git",
+      "skillPath": "skills/1password/SKILL.md",
+      "skillFolderHash": "f7ae1a0d8b5d00acab6e2f664624960527852050"
+    },
     "ab-testing": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -442,6 +449,13 @@
       "skillPath": "skills/cloud/bigtable-basics/SKILL.md",
       "skillFolderHash": "bb2f3b9612235ff28a5db85dd92e66e515ff3918"
     },
+    "bitwarden": {
+      "source": "BetterWright/betterwright",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/BetterWright/betterwright.git",
+      "skillPath": "skills/bitwarden/SKILL.md",
+      "skillFolderHash": "e161aa9ce43ea7339448bb549427dc9069b44720"
+    },
     "blast-radius": {
       "source": "cursor/plugins",
       "sourceType": "github",
@@ -455,6 +469,13 @@
       "sourceUrl": "https://github.com/shunkakinoki/private-skills.git",
       "skillPath": "skills/brenner/SKILL.md",
       "skillFolderHash": "2655b36ca7030d1d4f1800f6402a4b0acd42a382"
+    },
+    "browser": {
+      "source": "BetterWright/betterwright",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/BetterWright/betterwright.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "e8f86a35af55cfb4392de42ac888c087f5998da0"
     },
     "browser-extension-automation": {
       "source": "shunkakinoki/private-skills",
@@ -882,6 +903,13 @@
       "sourceUrl": "https://github.com/anthropics/knowledge-work-plugins.git",
       "skillPath": "data/skills/create-viz/SKILL.md",
       "skillFolderHash": "a1d964650cb9d2439af30254e88d45ad494ec05d"
+    },
+    "credential-manager": {
+      "source": "BetterWright/betterwright",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/BetterWright/betterwright.git",
+      "skillPath": "skills/credential-manager/SKILL.md",
+      "skillFolderHash": "d41529e7661cd40ea62eaadcc9b3336d85dfdefb"
     },
     "crisis-holding": {
       "source": "elvisun/newsjack",
@@ -1373,6 +1401,13 @@
       "skillPath": "skills/output-skill/SKILL.md",
       "skillFolderHash": "3dd6ad49b667d15182acddc9d3e4f7763ae33c9c"
     },
+    "full-stack-e2e-review": {
+      "source": "BetterWright/betterwright",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/BetterWright/betterwright.git",
+      "skillPath": "skills/full-stack-e2e-review/SKILL.md",
+      "skillFolderHash": "6e239b427280a7cb12de8636c29c2bba84934fb6"
+    },
     "ga4": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -1533,6 +1568,13 @@
       "sourceUrl": "https://github.com/shunkakinoki/private-skills.git",
       "skillPath": "skills/git-worktree-branch-rationalization/SKILL.md",
       "skillFolderHash": "00d8932cb9e5aa5f5f9287e335419bc0f816a99b"
+    },
+    "github": {
+      "source": "BetterWright/betterwright",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/BetterWright/betterwright.git",
+      "skillPath": "skills/github/SKILL.md",
+      "skillFolderHash": "cd4bd9f293fbecc38659f8bd89348f866e8e8064"
     },
     "github-issues": {
       "source": "github/awesome-copilot",
