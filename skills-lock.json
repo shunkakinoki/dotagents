@@ -2108,6 +2108,13 @@
       "skillPath": "skills/iterate-pr/SKILL.md",
       "skillFolderHash": "b4be97617dde6f0a22f015d36cb45a5e74dfe4e5"
     },
+    "javascript-testing-expert": {
+      "source": "dubzzz/fast-check",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/dubzzz/fast-check.git",
+      "skillPath": "skills/javascript-testing-expert/SKILL.md",
+      "skillFolderHash": "a2b25800894a4fbf6ac149f00f5dfb23fca6529e"
+    },
     "journalist-fit-check": {
       "source": "elvisun/newsjack",
       "sourceType": "github",
