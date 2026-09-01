@@ -55,7 +55,7 @@ dmmulroy/anti-slop
 # donnfelker/donnfelker-plugin-marketplace (3 total) - keep all
 donnfelker/donnfelker-plugin-marketplace codebase-analyzer,find-past-conversation,generate-release-notes
 
-# dubzzz/fast-check (1+ skills) - keep javascript-testing-expert only
+# dubzzz/fast-check (2 total) - keep javascript-testing-expert only
 dubzzz/fast-check javascript-testing-expert
 
 # elvisun/newsjack (21 total) - keep all
