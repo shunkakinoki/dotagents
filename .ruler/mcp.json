@@ -14,11 +14,8 @@
       "args": []
     },
     "GitHub": {
-      "command": "sh",
-      "args": [
-        "-c",
-        "exec mcp-remote 'https://api.githubcopilot.com/mcp/' --header \"Authorization:Bearer $(gh auth token)\""
-      ]
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
     },
     "MemPalace": {
       "command": "python3-mempalace",
