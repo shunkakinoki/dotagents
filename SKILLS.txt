@@ -19,6 +19,10 @@ anthropics/defending-code-reference-harness customize,patch,quickstart,threat-mo
 # anthropics/knowledge-work-plugins (114 total) - keep dev/planning/search
 anthropics/knowledge-work-plugins memory-management,start,task-management,update,knowledge-synthesis,search,search-strategy,source-management,architecture,code-review,debug,deploy-checklist,documentation,incident-response,standup,system-design,tech-debt,testing-strategy,analyze,build-dashboard,create-viz,data-visualization,explore-data,view-pdf
 
+# Appllama/appllama-skills (2 total) - keep all
+# Source: jaimintf iOS skill pack / SHUN-5788 — https://x.com/jaimintf/status/2101017883870667052
+Appllama/appllama-skills appllama-app-design-skill,appllama-usage
+
 # austintgriffith/ethskills (1 total) - keep all
 austintgriffith/ethskills ethskills
 
@@ -64,8 +68,11 @@ dubzzz/fast-check javascript-testing-expert
 # elvisun/newsjack (21 total) - keep all
 elvisun/newsjack angle-generator,coverage-tracker,coverage-tracker-setup,crisis-holding,fact-check,find-journalists,headline-generator,journalist-fit-check,meanest-editor,news-search,newsjack-detector,newsjack-monitor-setup,newsjack-triage,newsworthiness-check,pr-calendar,pr-strategist,press-clip,reactive-comment,relevance-coarse-filter,story-origin-check,voice-extractor
 
-# emilkowalski/skills (6 total) - keep all (renamed from emilkowalski/skill; adds animate-expo)
-emilkowalski/skills animate-expo,animation-vocabulary,apple-design,emil-design-eng,improve-animations,review-animations
+# emilkowalski/skills (13 upstream) - keep all except prototype (name collides with mattpocock/skills; SHUN-5788 / jaimintf iOS pack)
+emilkowalski/skills animate,animate-expo,animation-vocabulary,apple-design,ask-sonner,emil-design-eng,find-animation-opportunities,improve-animations,mobile-native,pick-ui-library,review-animations,write-swift
+
+# expo/skills (24 total) - keep plugins/expo skills (SHUN-5788 / jaimintf iOS pack)
+expo/skills eas-app-stores,eas-hosting,eas-observe,eas-simulator,eas-update,eas-update-insights,eas-workflows,expo-animation,expo-app-clip,expo-brownfield,expo-data-fetching,expo-design-system,expo-dev-client,expo-dom,expo-examples,expo-module,expo-native-ui,expo-overview,expo-project-structure,expo-router,expo-skill-feedback,expo-ui,expo-upgrade,expo-web-to-native
 
 # Forward-Future/loop-library (2 total) - keep all
 Forward-Future/loop-library loop-library,loopy
@@ -195,6 +202,9 @@ subsy/ralph-tui ralph-tui-create-beads,ralph-tui-create-beads-rust,ralph-tui-cre
 # tobi/qmd (2 total) - keep all
 tobi/qmd qmd,release
 
+# twostraws/SwiftUI-Agent-Skill (1 total) - keep all (SHUN-5788 / jaimintf iOS pack)
+twostraws/SwiftUI-Agent-Skill swiftui-pro
+
 # trailofbits/skills (61 total) - keep security essentials
 trailofbits/skills gh-cli,code-maturity-assessor,secure-workflow-guide,semgrep,codeql,modern-python,insecure-defaults,supply-chain-risk-auditor,agentic-actions-auditor,fp-check
 
@@ -216,8 +226,8 @@ vercel-labs/agent-browser agent-browser
 # vercel-labs/before-and-after (1 total) - keep all
 vercel-labs/before-and-after
 
-# vercel-labs/agent-skills (6 total) - keep core
-vercel-labs/agent-skills vercel-composition-patterns,deploy-to-vercel,vercel-react-best-practices,vercel-cli-with-tokens
+# vercel-labs/agent-skills (6 total) - keep core + react-native + optimize (SHUN-5788 / jaimintf iOS pack)
+vercel-labs/agent-skills deploy-to-vercel,vercel-cli-with-tokens,vercel-composition-patterns,vercel-optimize,vercel-react-best-practices,vercel-react-native-skills
 
 # vercel-labs/portless (2 total) - keep all
 vercel-labs/portless oauth,portless
