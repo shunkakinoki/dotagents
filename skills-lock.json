@@ -260,19 +260,26 @@
       "skillPath": "skills/angle-generator/SKILL.md",
       "skillFolderHash": "46ae0fa7455fcb5122c8a8908e2b2f1243985c77"
     },
+    "animate": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/animate/SKILL.md",
+      "skillFolderHash": "a92e36f28d741aee4ff77d1a001300d7e86e07fe"
+    },
     "animate-expo": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/animate-expo/SKILL.md",
-      "skillFolderHash": "2daf5ab8f4d3db7690e46d3d6d63e7ebae89a090"
+      "skillFolderHash": "6874701c790c7e74926ccd0a8716647a81424c85"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/animation-vocabulary/SKILL.md",
-      "skillFolderHash": "e6dc24ca1ff1e70c9677df9a1d2d1c80415cbb3c"
+      "skillFolderHash": "d49565744427887a1f719de1ceee04d941d4e681"
     },
     "antfu": {
       "source": "antfu/skills",
@@ -293,7 +300,21 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/apple-design/SKILL.md",
-      "skillFolderHash": "e9f5b472dfb28d8cf29f64001b6c01ef94b8168b"
+      "skillFolderHash": "cd509ae729c86487d352e17a26651217a4c25711"
+    },
+    "appllama-app-design-skill": {
+      "source": "Appllama/appllama-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Appllama/appllama-skills.git",
+      "skillPath": "skills/appllama-app-design-skill/SKILL.md",
+      "skillFolderHash": "f086c89a253ea50e56bcd6b849890dbd873a4747"
+    },
+    "appllama-usage": {
+      "source": "Appllama/appllama-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/Appllama/appllama-skills.git",
+      "skillPath": "skills/appllama-usage/SKILL.md",
+      "skillFolderHash": "03d1940357a719a2edf48c1314f689c845c20a43"
     },
     "arbitrage": {
       "source": "blader/arbitrage",
@@ -329,6 +350,13 @@
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/engineering/ask-matt/SKILL.md",
       "skillFolderHash": "c9c83b11b1a0c91c555ed6ade5ba67f6d6b103d4"
+    },
+    "ask-sonner": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/ask-sonner/SKILL.md",
+      "skillFolderHash": "aeca3dba0eb0415fa5a310cd6823b824fe60323d"
     },
     "asupersync-mega-skill": {
       "source": "shunkakinoki/private-skills",
@@ -1184,6 +1212,55 @@
       "skillPath": "skills/e2e-testing-for-webapps/SKILL.md",
       "skillFolderHash": "fb874b129913887b64957a4dba7063a12d5765d7"
     },
+    "eas-app-stores": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-app-stores/SKILL.md",
+      "skillFolderHash": "2af394a296c9b29e6745b9379070233ebb4f5c65"
+    },
+    "eas-hosting": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-hosting/SKILL.md",
+      "skillFolderHash": "8553db3f986848eb7ff34a23cecb9225246b6b6e"
+    },
+    "eas-observe": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-observe/SKILL.md",
+      "skillFolderHash": "4de6163b60f14e870841e614bb0bfde5efff4261"
+    },
+    "eas-simulator": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-simulator/SKILL.md",
+      "skillFolderHash": "9554bd7475d4902f332847d8b3cbdadfcb51d405"
+    },
+    "eas-update": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-update/SKILL.md",
+      "skillFolderHash": "d84acd6b5ee86ea74c0b07631089c6ea5bfde375"
+    },
+    "eas-update-insights": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-update-insights/SKILL.md",
+      "skillFolderHash": "27b19b8d5265b0989f98588631ebbb6c52d3112d"
+    },
+    "eas-workflows": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/eas-workflows/SKILL.md",
+      "skillFolderHash": "4681577d41527b8450ed01b8065186314a6a1156"
+    },
     "editorconfig": {
       "source": "github/awesome-copilot",
       "sourceType": "github",
@@ -1231,7 +1308,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/emil-design-eng/SKILL.md",
-      "skillFolderHash": "175725745e70946d891b93a1694d7c9ebb71b69d"
+      "skillFolderHash": "db7a20dc1d8ad26a0307dcb45ebc79fc372f5c69"
     },
     "ethskills": {
       "source": "austintgriffith/ethskills",
@@ -1261,6 +1338,125 @@
       "skillPath": "data/skills/explore-data/SKILL.md",
       "skillFolderHash": "bee4c8c0603859fd60c3622dd41e7a093476fcbf"
     },
+    "expo-animation": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-animation/SKILL.md",
+      "skillFolderHash": "3d1de25e14e22c841736dbff87536962a8684ca5"
+    },
+    "expo-app-clip": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-app-clip/SKILL.md",
+      "skillFolderHash": "f1080197bba0ac993b31264c6ec566ae80e06407"
+    },
+    "expo-brownfield": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-brownfield/SKILL.md",
+      "skillFolderHash": "02904e2e2b24cef62d8e9b84ac57f27a9b40a854"
+    },
+    "expo-data-fetching": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-data-fetching/SKILL.md",
+      "skillFolderHash": "7fc49ce6be71ea70730702c987a44d24442baa89"
+    },
+    "expo-design-system": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-design-system/SKILL.md",
+      "skillFolderHash": "cc9ddd82f024025228f8bbb397d33a02045048f8"
+    },
+    "expo-dev-client": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-dev-client/SKILL.md",
+      "skillFolderHash": "176c1c857f175cde8e8210d4ffd776e8eaa912a3"
+    },
+    "expo-dom": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-dom/SKILL.md",
+      "skillFolderHash": "2b9fed71db484fef6cecaa9112ce046b2937585a"
+    },
+    "expo-examples": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-examples/SKILL.md",
+      "skillFolderHash": "16cb24343221d9cf22589fdc9be74c37b5167092"
+    },
+    "expo-module": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-module/SKILL.md",
+      "skillFolderHash": "feada0039890909266374f181971fd28d5bbfc45"
+    },
+    "expo-native-ui": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-native-ui/SKILL.md",
+      "skillFolderHash": "f43305426a75f4100920c18547c5e3baac51681e"
+    },
+    "expo-overview": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-overview/SKILL.md",
+      "skillFolderHash": "8d4c2f55c792e7f5d45cb144cefbc6b29bd2eaf2"
+    },
+    "expo-project-structure": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-project-structure/SKILL.md",
+      "skillFolderHash": "c63556ba37f73f1e2a09283357451297fda0b928"
+    },
+    "expo-router": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-router/SKILL.md",
+      "skillFolderHash": "518f757b350fd596eec9e9f7231baf0dde3bcc77"
+    },
+    "expo-skill-feedback": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-skill-feedback/SKILL.md",
+      "skillFolderHash": "12ed75862ebc20a412de59c2b54cdee05b88299a"
+    },
+    "expo-ui": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-ui/SKILL.md",
+      "skillFolderHash": "f33320b4c9f176fa296ad53868724c57a2a7ae81"
+    },
+    "expo-upgrade": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-upgrade/SKILL.md",
+      "skillFolderHash": "83f2eaa19046f4b08c141bfe700eac1be9f7c2e5"
+    },
+    "expo-web-to-native": {
+      "source": "expo/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/expo/skills.git",
+      "skillPath": "plugins/expo/skills/expo-web-to-native/SKILL.md",
+      "skillFolderHash": "8cbc8e2821fe1542e4dd63b29163b910c0ba88c6"
+    },
     "extreme-software-optimization": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -1281,6 +1477,13 @@
       "sourceUrl": "https://github.com/cursor/plugins.git",
       "skillPath": "pstack/skills/figure-it-out/SKILL.md",
       "skillFolderHash": "ab4f59a6cf0bed04794b713e40b605963e975071"
+    },
+    "find-animation-opportunities": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/find-animation-opportunities/SKILL.md",
+      "skillFolderHash": "e6443880f38e33cf78e5d678471eed35e8566763"
     },
     "find-bugs": {
       "source": "getsentry/skills",
@@ -2071,7 +2274,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/improve-animations/SKILL.md",
-      "skillFolderHash": "2ff93ddb9833df45f5e83080de838bb668530820"
+      "skillFolderHash": "cf1f7aabac34c08f2cf833f039fa99af2f415183"
     },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
@@ -2310,6 +2513,13 @@
       "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
       "skillPath": "skills/minimalist-skill/SKILL.md",
       "skillFolderHash": "5509c012862cda27e2ed7efae89ed940ecc53add"
+    },
+    "mobile-native": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/mobile-native/SKILL.md",
+      "skillFolderHash": "fdad6e6e91d8bbfda7164c7027269a8389dbadcd"
     },
     "mock-code-finder": {
       "source": "shunkakinoki/private-skills",
@@ -2583,6 +2793,13 @@
       "sourceUrl": "https://github.com/shunkakinoki/private-skills.git",
       "skillPath": "skills/pi-agent-rust/SKILL.md",
       "skillFolderHash": "caf1d5e81ad674f0b7736b0fd32e79f1132fc309"
+    },
+    "pick-ui-library": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/pick-ui-library/SKILL.md",
+      "skillFolderHash": "370e19776f0aa2403a2edeed78266bd6a5d78036"
     },
     "planning-and-task-breakdown": {
       "source": "addyosmani/agent-skills",
@@ -3100,7 +3317,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/review-animations/SKILL.md",
-      "skillFolderHash": "82571acae75a97764fa7899f10bd21d93a4f1414"
+      "skillFolderHash": "0e0d3cb3e07ca307fe946ccaf57f6c82eb75124a"
     },
     "review-plugin-submission": {
       "source": "cursor/plugins",
@@ -3423,6 +3640,13 @@
       "sourceUrl": "https://github.com/trailofbits/skills.git",
       "skillPath": "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/SKILL.md",
       "skillFolderHash": "a8c2b21bbedc82f4a18d7b5ed50b926fdf127b40"
+    },
+    "swiftui-pro": {
+      "source": "twostraws/SwiftUI-Agent-Skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/twostraws/SwiftUI-Agent-Skill.git",
+      "skillPath": "swiftui-pro/SKILL.md",
+      "skillFolderHash": "09b8fff9743cfc94eea3ada3727e3ec369ff10fb"
     },
     "system-design": {
       "source": "anthropics/knowledge-work-plugins",
@@ -3788,12 +4012,26 @@
       "skillPath": "skills/composition-patterns/SKILL.md",
       "skillFolderHash": "bf90d0a4b83ea054653350f9c67f6de235d3a368"
     },
+    "vercel-optimize": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/vercel-optimize/SKILL.md",
+      "skillFolderHash": "0901aa3667db7a6e5cc40b213327290bf6556373"
+    },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
       "skillPath": "skills/react-best-practices/SKILL.md",
       "skillFolderHash": "a203aee7243640ceb56ce2c6c4ab286573df5e69"
+    },
+    "vercel-react-native-skills": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-skills.git",
+      "skillPath": "skills/react-native-skills/SKILL.md",
+      "skillFolderHash": "8b4c6a51914e2111ab6f4f00cb81778652aa241d"
     },
     "verification-before-completion": {
       "source": "obra/superpowers",
@@ -3990,6 +4228,13 @@
       "sourceUrl": "https://github.com/shunkakinoki/private-skills.git",
       "skillPath": "skills/wrangler/SKILL.md",
       "skillFolderHash": "46fde7fa03c2adecbee011650e17ba7d7e490dac"
+    },
+    "write-swift": {
+      "source": "emilkowalski/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/emilkowalski/skills.git",
+      "skillPath": "skills/write-swift/SKILL.md",
+      "skillFolderHash": "bdefda3891d347b8a183bdc727e4a1de2be3c82b"
     },
     "writing-beats": {
       "source": "mattpocock/skills",
