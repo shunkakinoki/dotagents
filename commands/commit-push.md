@@ -56,5 +56,5 @@ git reset --soft HEAD~1              # Undo commit, keep changes
 - Atomic commits (one logical change)
 - Present tense: "Add" not "Added"
 - Under 72 characters
-- No co-authorship in commits
+- Include the AI co-author trailer (`Co-Authored-By: ...`) on agent-authored commits
 - Reference issues: `Closes #123`
