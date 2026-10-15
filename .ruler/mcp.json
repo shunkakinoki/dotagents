@@ -4,46 +4,17 @@
       "command": "chrome-devtools-mcp",
       "args": ["--autoConnect", "--channel=beta"]
     },
-    "Codex": {
-      "type": "stdio",
-      "command": "codex",
-      "args": ["mcp-server"]
-    },
     "Context7": {
       "command": "context7-mcp",
       "args": []
-    },
-    "GitHub": {
-      "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/"
     },
     "MemPalace": {
       "command": "python3-mempalace",
       "args": ["-m", "mempalace.mcp_server"]
     },
-    "OpenRouter": {
-      "type": "http",
-      "url": "https://mcp.openrouter.ai/mcp"
-    },
-    "Paybox": {
-      "type": "http",
-      "url": "https://api.paybox.sh/mcp"
-    },
-    "PlanetScale": {
-      "type": "http",
-      "url": "https://mcp.pscale.dev/mcp/planetscale"
-    },
-    "Sentry": {
-      "type": "http",
-      "url": "https://mcp.sentry.dev/mcp"
-    },
     "Serena": {
       "command": "serena",
       "args": ["start-mcp-server"]
-    },
-    "Stripe": {
-      "type": "http",
-      "url": "https://mcp.stripe.com"
     },
     "XcodeBuildMCP": {
       "command": "xcodebuildmcp",
