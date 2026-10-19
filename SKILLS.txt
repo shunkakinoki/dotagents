@@ -29,8 +29,8 @@ austintgriffith/ethskills ethskills
 # better-auth/skills (5 total) - keep all
 better-auth/skills better-auth-best-practices,create-auth,email-and-password-best-practices,organization-best-practices,two-factor-authentication-best-practices
 
-# BetterWright/betterwright (6 total) - keep all
-BetterWright/betterwright 1password,bitwarden,browser,credential-manager,full-stack-e2e-review,github
+# BetterWright/betterwright (1 total) - keep all
+BetterWright/betterwright browser
 
 # blader/arbitrage (1 total) - keep all
 blader/arbitrage arbitrage

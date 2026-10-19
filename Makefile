@@ -36,12 +36,14 @@ DOTDIRS_SRC_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 ifeq ($(DOTAGENTS_SKIP_SYNC),)
 .PHONY: sync
 sync: ruler-prepare ## Sync project commands, skills, and MCP configuration to assistant-specific directories.
-	@$(MAKE) ruler-apply-global
-	@$(MAKE) commands-sync
-	@$(MAKE) skills-install
-	@$(MAKE) skills-sync
-	@$(MAKE) mcp-sync
-	@$(MAKE) ruler-dotdirs-sync
+	@status=0; \
+	$(MAKE) ruler-dotdirs-sync || status=1; \
+	$(MAKE) commands-sync || status=1; \
+	$(MAKE) skills-install || { echo "warn: skills-install failed; continuing sync"; status=1; }; \
+	$(MAKE) skills-sync || status=1; \
+	$(MAKE) mcp-sync || status=1; \
+	$(MAKE) ruler-apply-global || status=1; \
+	exit $$status
 endif
 
 .PHONY: ruler-prepare
