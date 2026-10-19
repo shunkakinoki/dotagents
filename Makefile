@@ -222,7 +222,8 @@ ruler-apply-global: ruler-prepare ## Apply Ruler outputs to global paths.
 		ruler_src="$(abspath $(dir $(lastword $(MAKEFILE_LIST))))/.ruler"; \
 		ruler_home="$$HOME/.ruler"; \
 		rsync -a --delete "$$ruler_src/" "$$ruler_home/"; \
-		bun x @intellectronica/ruler apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
+		cd "$(SKILLS_PROJECT_DIR)" && bun install --frozen-lockfile --minimum-release-age 0 --no-progress >/dev/null; \
+		"$(SKILLS_PROJECT_DIR)/node_modules/.bin/ruler" apply --project-root "$$HOME" --config "$$ruler_home/ruler.toml" --local-only'
 
 .PHONY: ruler-dotdirs-sync
 ruler-dotdirs-sync: ## Sync repo dot directories to $HOME equivalents.
