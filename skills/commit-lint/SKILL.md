@@ -67,5 +67,5 @@ BREAKING CHANGE: Method now requires email parameter
 
 - Keep header under 72 characters
 - Use present tense: "Add" not "Added"
-- Include the AI co-author trailer (`Co-Authored-By: ...`) on agent-authored commits
+- Solo-authored commits only (no `Co-Authored-By` trailers)
 - AI attribution goes in PR description, not commits
