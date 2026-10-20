@@ -66,7 +66,7 @@ gh pr edit <number> --add-label documentation # docs:
 
 - Conventional commit title format
 - Under 72 characters
-- Include the AI co-author trailer (`Co-Authored-By: ...`) on agent-authored commits
+- Solo-authored commits (no `Co-Authored-By` trailers)
 - AI attribution in PR body only
 - Generate changeset via `/changesets` if applicable
 - Run quality checks before creating
