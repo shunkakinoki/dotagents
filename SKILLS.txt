@@ -113,6 +113,9 @@ juxt/allium allium,distill,elicit,propagate,tend,weed
 # kitlangton/motel (1 total) - keep all
 kitlangton/motel motel-debug
 
+# kitlangton/scrawl (1 total) - keep all
+kitlangton/scrawl scrawl
+
 # kitlangton/skills (1 total) - keep all
 kitlangton/skills effect
 

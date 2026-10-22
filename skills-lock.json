@@ -265,14 +265,14 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/animate-expo/SKILL.md",
-      "skillFolderHash": "6874701c790c7e74926ccd0a8716647a81424c85"
+      "skillFolderHash": "2daf5ab8f4d3db7690e46d3d6d63e7ebae89a090"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/animation-vocabulary/SKILL.md",
-      "skillFolderHash": "d49565744427887a1f719de1ceee04d941d4e681"
+      "skillFolderHash": "e6dc24ca1ff1e70c9677df9a1d2d1c80415cbb3c"
     },
     "antfu": {
       "source": "antfu/skills",
@@ -293,7 +293,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/apple-design/SKILL.md",
-      "skillFolderHash": "cd509ae729c86487d352e17a26651217a4c25711"
+      "skillFolderHash": "e9f5b472dfb28d8cf29f64001b6c01ef94b8168b"
     },
     "appllama-app-design-skill": {
       "source": "Appllama/appllama-skills",
@@ -860,7 +860,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/openclaw/crabbox.git",
       "skillPath": "skills/crabbox/SKILL.md",
-      "skillFolderHash": "bfce017acaec2853df110b579f6a673670e39026"
+      "skillFolderHash": "fa729dbc16aa28f46508a5f32c06a150f1b63772"
     },
     "create-auth": {
       "source": "better-auth/skills",
@@ -1217,7 +1217,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/expo/skills.git",
       "skillPath": "plugins/expo/skills/eas-simulator/SKILL.md",
-      "skillFolderHash": "9554bd7475d4902f332847d8b3cbdadfcb51d405"
+      "skillFolderHash": "eb83f7f999e67389969fd74d7b77925879172c28"
     },
     "eas-update": {
       "source": "expo/skills",
@@ -1287,7 +1287,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/emil-design-eng/SKILL.md",
-      "skillFolderHash": "db7a20dc1d8ad26a0307dcb45ebc79fc372f5c69"
+      "skillFolderHash": "175725745e70946d891b93a1694d7c9ebb71b69d"
     },
     "ethskills": {
       "source": "austintgriffith/ethskills",
@@ -2239,7 +2239,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/improve-animations/SKILL.md",
-      "skillFolderHash": "cf1f7aabac34c08f2cf833f039fa99af2f415183"
+      "skillFolderHash": "2ff93ddb9833df45f5e83080de838bb668530820"
     },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
@@ -2281,7 +2281,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/dmmulroy/anti-slop.git",
       "skillPath": "skills/install-anti-slop/SKILL.md",
-      "skillFolderHash": "dfab5559a49f2b4f3a5542d2721c89af0759f1ad"
+      "skillFolderHash": "b1512e24318785e3f9028e19a8f7cbec11343088"
     },
     "installer-workmanship": {
       "source": "shunkakinoki/private-skills",
@@ -3282,7 +3282,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/emilkowalski/skills.git",
       "skillPath": "skills/review-animations/SKILL.md",
-      "skillFolderHash": "0e0d3cb3e07ca307fe946ccaf57f6c82eb75124a"
+      "skillFolderHash": "82571acae75a97764fa7899f10bd21d93a4f1414"
     },
     "review-plugin-submission": {
       "source": "cursor/plugins",
@@ -3360,6 +3360,13 @@
       "sourceUrl": "https://github.com/mattpocock/skills.git",
       "skillPath": "skills/misc/scaffold-exercises/SKILL.md",
       "skillFolderHash": "44a0ee332b9d67ebbd59389c7eb4e5aff1ce845c"
+    },
+    "scrawl": {
+      "source": "kitlangton/scrawl",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/kitlangton/scrawl.git",
+      "skillPath": "skills/scrawl/SKILL.md",
+      "skillFolderHash": "afddc05003828078d088586e829c1938d3b731f9"
     },
     "search": {
       "source": "anthropics/knowledge-work-plugins",
@@ -3786,7 +3793,7 @@
       "sourceType": "github",
       "sourceUrl": "https://github.com/Jakubantalik/transitions.dev.git",
       "skillPath": "skills/transitions-dev/SKILL.md",
-      "skillFolderHash": "c942e6c9cbabf11ae8d28ec3717b4f108f0ad230"
+      "skillFolderHash": "b5843d085c881a788329d6fdf41da9fed68b8e5b"
     },
     "transitions-polish": {
       "source": "Jakubantalik/transitions.dev",
