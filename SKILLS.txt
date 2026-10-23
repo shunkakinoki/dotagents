@@ -38,6 +38,9 @@ blader/arbitrage arbitrage
 # blader/humanizer (1 total) - keep all
 blader/humanizer humanizer
 
+# cloudflare/security-audit-skill (1 total) - keep all
+cloudflare/security-audit-skill
+
 # cloudflare/skills (11 total) - keep all
 cloudflare/skills agents-sdk,cloudflare,cloudflare-email-service,cloudflare-one,cloudflare-one-migrations,durable-objects,sandbox-sdk,turnstile-spin,web-perf,workers-best-practices,wrangler
 

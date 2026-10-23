@@ -3403,6 +3403,13 @@
       "skillPath": "skills/security-and-hardening/SKILL.md",
       "skillFolderHash": "360a9928af79444e0148dae714570a7c3478e97b"
     },
+    "security-audit": {
+      "source": "cloudflare/security-audit-skill",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/cloudflare/security-audit-skill.git",
+      "skillPath": "skills/security-audit/SKILL.md",
+      "skillFolderHash": "ccbc33ed119b28c3ef7b44a7e2081ab191ad63af"
+    },
     "security-audit-for-saas": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
