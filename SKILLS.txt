@@ -208,6 +208,9 @@ stablyai/orca computer-use,linear-tickets,orca-cli,orca-emulator,orca-emulator-a
 # subsy/ralph-tui (4 total) - keep all
 subsy/ralph-tui ralph-tui-create-beads,ralph-tui-create-beads-rust,ralph-tui-create-json,ralph-tui-prd
 
+# t3dotgg/tstack (9 total) - keep all
+t3dotgg/tstack
+
 # tobi/qmd (2 total) - keep all
 tobi/qmd qmd,release
 
