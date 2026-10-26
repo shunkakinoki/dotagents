@@ -386,6 +386,13 @@
       "skillPath": ".agents/skills/axi/SKILL.md",
       "skillFolderHash": "9a238ca5757ff4d7931adafb8d3747c93d0f8eb6"
     },
+    "babysit-pr": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/babysit-pr/SKILL.md",
+      "skillFolderHash": "7b4e3e4e0f8b53a1fd049d6a27d5f998395ace52"
+    },
     "bd-to-br-migration": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -840,6 +847,13 @@
       "sourceUrl": "https://github.com/github/awesome-copilot.git",
       "skillPath": "skills/conventional-commit/SKILL.md",
       "skillFolderHash": "2dd6528ab4c12198e4805ea62739f7c51d0dd51d"
+    },
+    "council": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/council/SKILL.md",
+      "skillFolderHash": "8242f6403b2313f82cdc28e3faad90604c6ad469"
     },
     "coverage-tracker": {
       "source": "elvisun/newsjack",
@@ -1457,6 +1471,13 @@
       "skillPath": "pstack/skills/figure-it-out/SKILL.md",
       "skillFolderHash": "ab4f59a6cf0bed04794b713e40b605963e975071"
     },
+    "file-pr": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/file-pr/SKILL.md",
+      "skillFolderHash": "04b5dff2274053132e131912257c82c4d8141dd0"
+    },
     "find-animation-opportunities": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
@@ -1582,6 +1603,20 @@
       "sourceUrl": "https://github.com/Leonxlnx/taste-skill.git",
       "skillPath": "skills/output-skill/SKILL.md",
       "skillFolderHash": "3dd6ad49b667d15182acddc9d3e4f7763ae33c9c"
+    },
+    "full-send": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/full-send/SKILL.md",
+      "skillFolderHash": "de21961fbb3f6892ab4ea1fb2b58e0f95debec87"
+    },
+    "full-stop": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/full-stop/SKILL.md",
+      "skillFolderHash": "dee091aa3cdc5019dcc541256a77db717b15f43f"
     },
     "ga4": {
       "source": "shunkakinoki/private-skills",
@@ -2360,6 +2395,13 @@
       "skillPath": "skills/lean-formal-feedback-loop/SKILL.md",
       "skillFolderHash": "404da95f0fa573d12760f6f0913eb985aa70ac32"
     },
+    "leaving-pr-comments": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/leaving-pr-comments/SKILL.md",
+      "skillFolderHash": "3905d758fb70b4e660038456f86ac02343a3dedf"
+    },
     "library-updater": {
       "source": "shunkakinoki/private-skills",
       "sourceType": "github",
@@ -2499,6 +2541,13 @@
       "sourceUrl": "https://github.com/trailofbits/skills.git",
       "skillPath": "plugins/modern-python/skills/modern-python/SKILL.md",
       "skillFolderHash": "66286b6bf2ff7866f31fd76829ca51083d864ff4"
+    },
+    "modernize": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/modernize/SKILL.md",
+      "skillFolderHash": "149f54a0835d2da770b564eb8624f1e3618a33a7"
     },
     "modes-of-reasoning-project-analysis": {
       "source": "shunkakinoki/private-skills",
@@ -3550,6 +3599,13 @@
       "skillPath": "skills/smux/SKILL.md",
       "skillFolderHash": "cdaaf4397d928e44d0bd404b331feec71588af04"
     },
+    "sol-loop": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/sol-loop/SKILL.md",
+      "skillFolderHash": "9d2b1c1b00bf54e1b4e6e6243aec6d39037ce624"
+    },
     "source-driven-development": {
       "source": "addyosmani/agent-skills",
       "sourceType": "github",
@@ -3654,6 +3710,13 @@
       "sourceUrl": "https://github.com/PaulRBerg/agent-skills.git",
       "skillPath": "skills/tailwind-css/SKILL.md",
       "skillFolderHash": "f8f39e68c086e7deb45a2aab624b8ed1277f6ec3"
+    },
+    "takeover": {
+      "source": "t3dotgg/tstack",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/t3dotgg/tstack.git",
+      "skillPath": "skills/takeover/SKILL.md",
+      "skillFolderHash": "54cfa8d25b9a356cc826daa964979e8cdce377ad"
     },
     "tanstack": {
       "source": "shunkakinoki/private-skills",
