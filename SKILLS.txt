@@ -26,6 +26,9 @@ Appllama/appllama-skills appllama-app-design-skill,appllama-usage
 # austintgriffith/ethskills (1 total) - keep all
 austintgriffith/ethskills ethskills
 
+# benjitaylor/skills (1 total) - keep all
+benjitaylor/skills
+
 # better-auth/skills (5 total) - keep all
 better-auth/skills better-auth-best-practices,create-auth,email-and-password-best-practices,organization-best-practices,two-factor-authentication-best-practices
 

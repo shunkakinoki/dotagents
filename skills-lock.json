@@ -3634,6 +3634,13 @@
       "skillPath": "skills/ssh/SKILL.md",
       "skillFolderHash": "b52751362adebacbada19b8853f4fb3df56503d5"
     },
+    "stageshow": {
+      "source": "benjitaylor/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/benjitaylor/skills.git",
+      "skillPath": "stageshow/SKILL.md",
+      "skillFolderHash": "5f24a58c1b28ba9d208e576e3c6267ccd1fc1769"
+    },
     "standup": {
       "source": "anthropics/knowledge-work-plugins",
       "sourceType": "github",
