@@ -18,6 +18,9 @@
         "mempalace.mcp_server"
       ]
     },
+    "Mobbin": {
+      "url": "https://api.mobbin.com/mcp"
+    },
     "Serena": {
       "command": "serena",
       "args": [
