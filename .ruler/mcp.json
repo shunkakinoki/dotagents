@@ -2,7 +2,10 @@
   "mcpServers": {
     "ChromeDevtools": {
       "command": "chrome-devtools-mcp",
-      "args": ["--autoConnect", "--channel=beta"]
+      "args": [
+        "--autoConnect",
+        "--channel=beta"
+      ]
     },
     "Context7": {
       "command": "context7-mcp",
@@ -10,15 +13,32 @@
     },
     "MemPalace": {
       "command": "python3-mempalace",
-      "args": ["-m", "mempalace.mcp_server"]
+      "args": [
+        "-m",
+        "mempalace.mcp_server"
+      ]
     },
     "Serena": {
       "command": "serena",
-      "args": ["start-mcp-server"]
+      "args": [
+        "start-mcp-server"
+      ]
     },
     "XcodeBuildMCP": {
       "command": "xcodebuildmcp",
-      "args": ["mcp"]
+      "args": [
+        "mcp"
+      ]
+    },
+    "T3Code": {
+      "command": "t3",
+      "args": [
+        "acp-mcp-bridge"
+      ],
+      "env": {
+        "T3_ACP_MCP_ENDPOINT": "${T3_ACP_MCP_ENDPOINT}",
+        "T3_ACP_MCP_AUTHORIZATION": "${T3_ACP_MCP_AUTHORIZATION}"
+      }
     }
   }
 }
