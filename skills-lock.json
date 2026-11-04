@@ -36,6 +36,13 @@
       "skillPath": "skills/agent-ci/SKILL.md",
       "skillFolderHash": "74743678978f58979faaae7fc71c24a7e9a245b9"
     },
+    "agent-desktop": {
+      "source": "vercel-labs/agent-desktop",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/agent-desktop.git",
+      "skillPath": "skills/agent-desktop/SKILL.md",
+      "skillFolderHash": "f0508d68f434a9294541cdc03843b141b557e3af"
+    },
     "agent-development": {
       "source": "anthropics/claude-plugins-official",
       "sourceType": "github",
