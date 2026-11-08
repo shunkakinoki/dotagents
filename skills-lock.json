@@ -610,6 +610,13 @@
       "skillPath": "skills/ci-cd-and-automation/SKILL.md",
       "skillFolderHash": "34db321777a17e268ac425f0f7f2501dda55c955"
     },
+    "cinematic-shot": {
+      "source": "1weiho/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/1weiho/skills.git",
+      "skillPath": "skills/cinematic-shot/SKILL.md",
+      "skillFolderHash": "a0ae2d2e7a32f047ad75c891fed61a075beb6c43"
+    },
     "claude-automation-recommender": {
       "source": "anthropics/claude-plugins-official",
       "sourceType": "github",
@@ -644,6 +651,13 @@
       "sourceUrl": "https://github.com/getsentry/skills.git",
       "skillPath": "skills/claude-settings-audit/SKILL.md",
       "skillFolderHash": "5182a8183a621929a42088413ab93146090593c9"
+    },
+    "clean-ui-shot": {
+      "source": "1weiho/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/1weiho/skills.git",
+      "skillPath": "skills/clean-ui-shot/SKILL.md",
+      "skillFolderHash": "9265dd6f00cef310e11b5c25a4e41175b2cf0c76"
     },
     "cli-for-agents": {
       "source": "cursor/plugins",
