@@ -3977,6 +3977,13 @@
       "skillPath": "skills/ui-polish/SKILL.md",
       "skillFolderHash": "bf48e9728de12957eec41a895a79d980cee503a3"
     },
+    "ui-redline-walkthrough": {
+      "source": "rjmahesh/ui-redline-walkthrough",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/rjmahesh/ui-redline-walkthrough.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "a34312297d7cb6e9b40f42d42e7fd2c02f70aa97"
+    },
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",

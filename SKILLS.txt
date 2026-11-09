@@ -193,6 +193,9 @@ redwoodjs/agent-ci agent-ci
 # remotion-dev/skills (1 total) - keep all
 remotion-dev/skills remotion-best-practices
 
+# rjmahesh/ui-redline-walkthrough (1 total) - keep all
+rjmahesh/ui-redline-walkthrough
+
 # schpet/linear-cli (2 total) - keep all
 schpet/linear-cli linear-cli,release
 
