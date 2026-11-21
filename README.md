@@ -44,3 +44,7 @@ only apply to muse itself; the rest (`taste`, `git`, `plan`, `grill`, `grill-and
 are runtime-agnostic.
 
 Extracted from `~/.local/bin/muse-bin-0.1.0-R708.1`; re-extract by hand after a muse upgrade.
+
+## References
+
+- [@pritamux post on X](https://x.com/pritamux/status/2124157134212673722)
