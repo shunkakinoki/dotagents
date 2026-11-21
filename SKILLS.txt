@@ -187,6 +187,9 @@ paperclipai/paperclip paperclip,paperclip-create-agent,paperclip-create-plugin
 # petergyang/no-ai-slop (1 total) - keep all
 petergyang/no-ai-slop
 
+# pritamux/gridlines (1 total) - keep gridlines
+pritamux/gridlines gridlines
+
 # redwoodjs/agent-ci (1 total) - keep all
 redwoodjs/agent-ci agent-ci
 
@@ -254,4 +257,4 @@ vercel-labs/agent-skills deploy-to-vercel,vercel-cli-with-tokens,vercel-composit
 vercel-labs/portless oauth,portless
 
 # Vuk97/forward-implementation-first (1 total) - keep all
-Vuk97/forward-implementation-first forward-implementation-first
+Vuk97/forward-implementation-first forward-implementation-

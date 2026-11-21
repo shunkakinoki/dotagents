@@ -2031,6 +2031,13 @@
       "skillPath": "skills/cloud/google-cloud-waf-sustainability/SKILL.md",
       "skillFolderHash": "fd7ed477c4f5acb4ca98910b85cf90dc3ffa31f0"
     },
+    "gridlines": {
+      "source": "pritamux/gridlines",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/pritamux/gridlines.git",
+      "skillPath": "skills/gridlines/SKILL.md",
+      "skillFolderHash": "125cf01cb54ef81fd8ec064ecac60df4bddbd89d"
+    },
     "grill-me": {
       "source": "mattpocock/skills",
       "sourceType": "github",
