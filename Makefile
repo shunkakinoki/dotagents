@@ -5,7 +5,7 @@
 # ====================================================================================
 
 COMMANDS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))commands
-COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME)/.codex/prompts $(HOME)/.config/opencode/command $(HOME)/.config/amp/commands $(HOME)/.kilocode/workflows $(HOME)/Documents/Cline/Rules
+COMMANDS_TARGET_DIRS := $(HOME)/.cursor/commands $(HOME)/.claude/commands $(HOME)/.codex/prompts $(HOME)/.config/opencode/command $(HOME)/.config/amp/commands $(HOME)/.kilocode/workflows $(HOME)/.cline/rules
 
 RULES_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))rules
 RULES_TARGET_DIR := $(dir $(lastword $(MAKEFILE_LIST))).ruler
