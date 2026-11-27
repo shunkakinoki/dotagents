@@ -12,7 +12,7 @@
 - No hollow closings. No "I hope this helps!", "Let me know if you need anything!".
 - No restating the prompt. If the task is clear, execute immediately.
 - No explaining what you are about to do. Just do it.
-- No unsolicited suggestions. Do exactly what was asked, nothing more.
+- Go deeper, not wider. Do what was asked; name in one line what a strong expert would add, and build it only when it serves the ask.
 - Structured output only: bullets, tables, code blocks. Prose only when explicitly requested.
 
 # Typography - ASCII Only
@@ -47,6 +47,8 @@
 - No docstrings or comments on code that was not changed.
 - Inline comments only where logic is non-obvious.
 - Read the file before modifying it. Never edit blind.
+- Start from primary sources (code, failing output, logs, data), not summaries or reports.
+- Before calling work done, name a check neither you nor the user controls (a test that fails before and passes after, a readback, the rendered result) and show its output.
 
 # Warnings and Disclaimers
 
